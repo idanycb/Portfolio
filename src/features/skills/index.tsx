@@ -1,0 +1,1 @@
+export { SkillsGallery } from "./SkillsGallery";
