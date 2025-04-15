@@ -1,13 +1,16 @@
 import PageLayout from "@/components/layouts/PageLayout";
+import { Container } from "@/components/shared";
 import { AllProjects } from "@/features/projects";
 
 export default function Projects() {
   return (
     <PageLayout
       heroContent={
-        <h1 className="relative top-1/3 -translate-y-1/2 px-8 text-2xl font-medium">
-          welcome to my realm of wild projects and awesome creations
-        </h1>
+        <Container>
+          <h1 className="relative top-[23vh] max-w-xs text-2xl font-medium md:max-w-[30rem] md:text-4xl lg:max-w-[40rem] lg:text-5xl lg:leading-15">
+            welcome to my realm of wild projects and awesome creations
+          </h1>
+        </Container>
       }
     >
       <AllProjects />

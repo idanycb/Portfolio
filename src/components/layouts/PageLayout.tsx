@@ -1,4 +1,5 @@
-import { Container, Footer, GetInTouch, HeroWithNav } from "@/components/ui";
+import { Container, HeroWithNav } from "@/components/shared";
+import { Footer, GetInTouch } from "@/components/ui";
 
 interface PageLayoutProps {
   heroContent: React.ReactNode;

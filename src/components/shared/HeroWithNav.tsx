@@ -1,5 +1,4 @@
-import { Header } from "@/components/ui/Header";
-import { StickyNav } from "./StickyNav";
+import { Header, StickyNav } from "@/components/ui";
 
 type HeroProps = {
   children: React.ReactNode;

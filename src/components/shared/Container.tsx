@@ -1,3 +1,3 @@
 export function Container({ children }: { children: React.ReactNode }) {
-  return <div className="container px-8">{children}</div>;
+  return <div className="container mx-auto px-8">{children}</div>;
 }

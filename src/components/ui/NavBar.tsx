@@ -58,16 +58,18 @@ const urls = [
     },
   },
   {
-    href: "/resume",
+    href: "/Resume_v1.pdf",
     label: "Resume",
+    download: true,
     icon: {
       active: <RiFileListLine className={DEFAULT_ICON_STYLING.ACTIVE} />,
       inactive: <RiFileListLine className={DEFAULT_ICON_STYLING.INACTIVE} />,
     },
   },
   {
-    href: "/github",
+    href: "https://github.com/dany-cb",
     label: "GitHub Profile",
+    external: true,
     icon: {
       active: <RiGithubLine className={DEFAULT_ICON_STYLING.INACTIVE} />,
       inactive: <RiGithubLine className={DEFAULT_ICON_STYLING.INACTIVE} />,
@@ -78,7 +80,7 @@ const urls = [
 type NavBarProps = {
   className?: string;
 };
-export function NavBar({ className }: NavBarProps) {
+function NavBar({ className }: NavBarProps) {
   const pathname = usePathname();
 
   return (
@@ -86,7 +88,11 @@ export function NavBar({ className }: NavBarProps) {
       <ul className="flex h-fit justify-between gap-4 rounded-4xl bg-black px-5 py-2">
         {urls.map((url) => (
           <li key={url.href}>
-            <Link href={url.href}>
+            <Link
+              href={url.href}
+              download={url.download}
+              target={url.external ? "_blank" : undefined}
+            >
               {pathname === url.href ? url.icon.active : url.icon.inactive}
             </Link>
           </li>
@@ -94,4 +100,8 @@ export function NavBar({ className }: NavBarProps) {
       </ul>
     </nav>
   );
+}
+
+export function StickyNav() {
+  return <NavBar className="sticky top-8 -mt-24 mb-24 h-0" />;
 }

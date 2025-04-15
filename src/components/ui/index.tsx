@@ -1,6 +1,6 @@
+export { AboutMe } from "./AboutMe";
 export { Footer } from "./Footer";
-
 export { GetInTouch } from "./GetInTouch";
-
-export { Container } from "./Container";
-export { HeroWithNav } from "./HeroWithNav";
+export { Header } from "./Header";
+export { StickyNav } from "./NavBar";
+export { ProjectModal } from "./ProjectModal";

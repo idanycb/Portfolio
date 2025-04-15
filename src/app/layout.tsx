@@ -29,7 +29,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${dMSans.variable} ${inter.variable} ${ibmPlexMono.variable} antialiased`}>
+      <body
+        className={`${dMSans.variable} ${inter.variable} ${ibmPlexMono.variable} relative antialiased`}
+      >
         {children}
       </body>
     </html>
