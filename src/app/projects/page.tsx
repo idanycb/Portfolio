@@ -1,5 +1,5 @@
 import PageLayout from "@/components/layouts/PageLayout";
-import { Container } from "@/components/shared";
+import { Container } from "@/components/ui";
 import { AllProjects } from "@/features/projects";
 
 export default function Projects() {

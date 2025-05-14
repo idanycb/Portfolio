@@ -12,7 +12,7 @@ export function FeaturedProjects() {
           Impressive Works
         </h1>
         <span className="font-body hidden w-48 text-[10px] font-light uppercase md:inline lg:w-68 lg:text-sm">
-          Here's a selection of projects that showcase my passion for design and development,
+          Here&apos;s a selection of projects that showcase my passion for design and development,
           reflecting creativity and innovation.
         </span>
       </div>

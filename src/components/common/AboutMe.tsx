@@ -5,7 +5,8 @@ export function AboutMe() {
     <div className="flex flex-col gap-8 py-8 md:flex-row lg:py-16">
       <p className="font-medium md:w-xl md:text-lg lg:text-2xl">
         Driven by curiosity and a love for design, I create simple, functional, and visually
-        striking digital experiences. As a student, I'm always learning and exploring new ideas.
+        striking digital experiences. As a student, I&apos;m always learning and exploring new
+        ideas.
       </p>
       <aside className="ml-auto flex w-64 flex-col gap-3 text-right text-xs md:w-66 md:gap-2 md:self-center md:text-[10px] lg:w-74 lg:text-sm">
         <p className="font-light text-neutral-600">

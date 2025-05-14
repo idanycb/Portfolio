@@ -115,7 +115,7 @@ export const skills = [
         "Designing and managing databases for efficient data storage, retrieval, and manipulation.",
       skills: [
         { name: "MongoDB", icon: "/icons/skills/mongodb-original.svg" },
-        { name: "PostgreSQL", icon: "/icons/skills/postgresql-original.svg" },
+        { name: "Postgres", icon: "/icons/skills/postgresql-original.svg" },
         { name: "MySQL", icon: "/icons/skills/mysql-original.svg" },
         { name: "Firebase", icon: "/icons/skills/firebase-plain.svg" },
       ],

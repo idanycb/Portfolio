@@ -1,10 +1,10 @@
 "use client";
 
-import { ProjectModal } from "@/components/ui/ProjectModal";
 import Image from "next/image";
 import { useState } from "react";
 import { BsArrowRightCircle } from "react-icons/bs";
 import { Project, projects } from "./data/projects";
+import { ProjectModal } from "./ProjectModal";
 
 type ProjectListProps = {
   showAll: boolean;
