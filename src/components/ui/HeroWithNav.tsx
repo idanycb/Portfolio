@@ -1,4 +1,5 @@
-import { Header, StickyNav } from "@/components/common";
+import { Header } from "@/components/common";
+import { NavBar } from "@/features/navigation";
 
 type HeroProps = {
   children: React.ReactNode;
@@ -7,11 +8,11 @@ type HeroProps = {
 export function HeroWithNav({ children }: HeroProps) {
   return (
     <>
-      <div className="flex h-svh w-full flex-col overflow-hidden">
+      <section className="flex h-svh w-full flex-col overflow-hidden">
         <Header />
         {children}
-      </div>
-      <StickyNav />
+      </section>
+      <NavBar />
     </>
   );
 }

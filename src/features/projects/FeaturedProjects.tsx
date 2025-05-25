@@ -1,3 +1,4 @@
+import { TextFadeIn } from "@/components/animation";
 import Link from "next/link";
 import { GoDotFill } from "react-icons/go";
 import { ProjectList } from "./ProjectList";
@@ -11,10 +12,14 @@ export function FeaturedProjects() {
         <h1 className="text-4xl font-medium md:self-center md:text-5xl lg:text-6xl">
           Impressive Works
         </h1>
-        <span className="font-body hidden w-48 text-[10px] font-light uppercase md:inline lg:w-68 lg:text-sm">
+        <TextFadeIn
+          as="span"
+          scrollTrigger
+          className="font-body hidden w-48 text-[10px] font-light uppercase md:inline lg:w-68 lg:text-sm"
+        >
           Here&apos;s a selection of projects that showcase my passion for design and development,
           reflecting creativity and innovation.
-        </span>
+        </TextFadeIn>
       </div>
       <ProjectList showAll={false} productsFilter={featuredProjectsID} />
       <Link
