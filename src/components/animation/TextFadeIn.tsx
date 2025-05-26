@@ -14,6 +14,7 @@ interface Props extends PropsWithChildren {
   tl?: gsap.core.Timeline;
   delay?: number;
   scrollTrigger?: true;
+  singleLine?: true;
 }
 
 export function TextFadeIn({
@@ -22,6 +23,7 @@ export function TextFadeIn({
   tl,
   as: Cmp = "p",
   delay,
+  singleLine,
   scrollTrigger,
 }: Props) {
   const container = useRef<HTMLDivElement>(null);
@@ -30,26 +32,34 @@ export function TextFadeIn({
     () => {
       gsap.set(container.current!.children, { opacity: 1 });
 
-      SplitText.create(container.current!.children, {
-        type: "words,lines",
-        linesClass: "line",
-        autoSplit: true,
-        mask: "lines",
-        onSplit: (self) => {
-          return gsap.from(self.lines, {
+      singleLine
+        ? gsap.from(container.current!.children, {
             duration: 0.6,
             yPercent: 100,
             opacity: 0,
-            stagger: 0.1,
             ease: "expo.out",
             delay: delay,
-            scrollTrigger: scrollTrigger && {
-              trigger: container.current,
-              start: "clamp(top 80% )",
+          })
+        : SplitText.create(container.current!.children, {
+            type: "words,lines",
+            linesClass: "line",
+            autoSplit: true,
+            mask: "lines",
+            onSplit: (self) => {
+              return gsap.from(self.lines, {
+                duration: 0.6,
+                yPercent: 100,
+                opacity: 0,
+                stagger: 0.1,
+                ease: "expo.out",
+                delay: delay,
+                scrollTrigger: scrollTrigger && {
+                  trigger: container.current,
+                  start: "clamp(top 80% )",
+                },
+              });
             },
           });
-        },
-      });
     },
     { scope: container },
   );

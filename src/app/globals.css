@@ -55,4 +55,11 @@
     border-bottom: 1px solid black;
     z-index: -10;
   }
+
+  .glassmorph {
+    /* From https://css.glass */
+    div {
+      background: rgba(211, 211, 211, 0.35);
+    }
+  }
 }

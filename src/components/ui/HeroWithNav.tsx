@@ -1,6 +1,3 @@
-import { Header } from "@/components/common";
-import { NavBar } from "@/features/navigation";
-
 type HeroProps = {
   children: React.ReactNode;
 };
@@ -8,11 +5,7 @@ type HeroProps = {
 export function HeroWithNav({ children }: HeroProps) {
   return (
     <>
-      <section className="flex h-svh w-full flex-col overflow-hidden">
-        <Header />
-        {children}
-      </section>
-      <NavBar />
+      <section className="flex h-svh w-full flex-col overflow-hidden">{children}</section>
     </>
   );
 }

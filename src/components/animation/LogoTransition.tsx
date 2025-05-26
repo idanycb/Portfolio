@@ -17,18 +17,22 @@ export function LogoTransition({ children, className }: Props) {
 
   useGSAP(
     () => {
-      gsap.set(container.current!.children, { opacity: 1 });
+      gsap.set(container.current, { opacity: 1 });
       //   gsap.set(".black-bg", { xPercent: -50 });
       gsap.set(".black-bg .center", { scaleX: 0 });
-      gsap.set(".black-bg .left", { x: 130 });
-      gsap.set(".black-bg .right", { x: -130 });
+      const offset = gsap.utils.selector(container.current)(".center")[0].clientWidth / 2;
+
+      gsap.set(".home-icon", { x: offset - 7 });
+      gsap.set(".ham-icon", { x: -offset + 7 });
+      gsap.set(".black-bg .left", { x: offset });
+      gsap.set(".black-bg .right", { x: -offset });
 
       let tl = gsap.timeline();
       tl.from(container.current!.children, {
         duration: 0.6,
         yPercent: 100,
       })
-        .to(".left, .right", {
+        .to(".left, .right, .home-icon, .ham-icon", {
           x: 0,
           delay: 0.2,
         })
@@ -36,13 +40,15 @@ export function LogoTransition({ children, className }: Props) {
           ".center",
           {
             scaleX: 1,
+            onComplete: () => {
+              container.current?.children[0].children[0].classList.add("backdrop-blur-xl");
+            },
           },
           "<",
         )
         .to(".other-icons", {
           opacity: 1,
           stagger: {
-            from: "center",
             ease: "power2.inOut",
             amount: 0.1,
           },
@@ -52,8 +58,8 @@ export function LogoTransition({ children, className }: Props) {
   );
 
   return (
-    <div ref={container} className={cx("relative overflow-hidden", className)}>
+    <nav ref={container} className={cx("relative overflow-hidden", className)}>
       {children}
-    </div>
+    </nav>
   );
 }

@@ -1,4 +1,4 @@
-import { Footer, GetInTouch } from "@/components/common";
+import { Footer, GetInTouch, Header } from "@/components/common";
 import { Container, HeroWithNav } from "@/components/ui";
 
 interface PageLayoutProps {
@@ -9,6 +9,7 @@ interface PageLayoutProps {
 export default function PageLayout({ heroContent, children }: PageLayoutProps) {
   return (
     <>
+      <Header />
       <HeroWithNav>{heroContent}</HeroWithNav>
       <Container>
         {children}
