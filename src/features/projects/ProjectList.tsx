@@ -19,7 +19,7 @@ let isAnimationConfigured = false;
 export function ProjectList({ showAll, productsFilter }: ProjectListProps) {
   const [selectedProject, setSelectedProject] = useState<ProjectT | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [tl, setTl] = useState(gsap.timeline({ paused: true }));
+  const [tl] = useState(gsap.timeline({ paused: true }));
   const ref = useRef<HTMLDivElement>(null);
   useGSAP(
     () => {
@@ -66,6 +66,7 @@ export function ProjectList({ showAll, productsFilter }: ProjectListProps) {
               project={project}
               setSelectedProject={setSelectedProject}
               setIsModalOpen={setIsModalOpen}
+              fadeIn
             />
           ))}
         {projects
@@ -95,9 +96,16 @@ interface ProjectProps {
   setSelectedProject: (project: ProjectT) => void;
   setIsModalOpen: (isOpen: boolean) => void;
   className?: string;
+  fadeIn?: true;
 }
 
-const Project = ({ project, setSelectedProject, setIsModalOpen, className }: ProjectProps) => {
+const Project = ({
+  project,
+  setSelectedProject,
+  setIsModalOpen,
+  className,
+  fadeIn,
+}: ProjectProps) => {
   const handleProjectClick = (project: ProjectT) => {
     setSelectedProject(project);
     setIsModalOpen(true);
@@ -107,22 +115,41 @@ const Project = ({ project, setSelectedProject, setIsModalOpen, className }: Pro
       onClick={() => handleProjectClick(project)}
       className={cx("cursor-pointer transition-transform hover:scale-[1.02]", className)}
     >
-      <FadeIn scrollTrigger from="left">
-        <div className="h-[200px] w-full overflow-hidden rounded-2xl drop-shadow-lg lg:mb-4 lg:h-[300px]">
-          <Image
-            width={0}
-            height={0}
-            sizes="100vw"
-            src={project.image}
-            alt={project.title}
-            className="h-full w-full object-cover"
-          />
-        </div>
-        <div className="mt-3 flex items-center gap-3 pl-3 lg:text-xl">
-          <BsArrowRightCircle className="lg:h-6 lg:w-6" />
-          <h3>{project.title}</h3>
-        </div>
-      </FadeIn>
+      {fadeIn ? (
+        <FadeIn scrollTrigger from="left">
+          <div className="h-[200px] w-full overflow-hidden rounded-2xl drop-shadow-lg lg:mb-4 lg:h-[300px]">
+            <Image
+              width={0}
+              height={0}
+              sizes="100vw"
+              src={project.image}
+              alt={project.title}
+              className="h-full w-full object-cover"
+            />
+          </div>
+          <div className="mt-3 flex items-center gap-3 pl-3 lg:text-xl">
+            <BsArrowRightCircle className="lg:h-6 lg:w-6" />
+            <h3>{project.title}</h3>
+          </div>
+        </FadeIn>
+      ) : (
+        <>
+          <div className="h-[200px] w-full overflow-hidden rounded-2xl drop-shadow-lg lg:mb-4 lg:h-[300px]">
+            <Image
+              width={0}
+              height={0}
+              sizes="100vw"
+              src={project.image}
+              alt={project.title}
+              className="h-full w-full object-cover"
+            />
+          </div>
+          <div className="mt-3 flex items-center gap-3 pl-3 lg:text-xl">
+            <BsArrowRightCircle className="lg:h-6 lg:w-6" />
+            <h3>{project.title}</h3>
+          </div>
+        </>
+      )}
     </div>
   );
 };

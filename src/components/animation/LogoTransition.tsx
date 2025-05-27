@@ -27,7 +27,7 @@ export function LogoTransition({ children, className }: Props) {
       gsap.set(".black-bg .left", { x: offset });
       gsap.set(".black-bg .right", { x: -offset });
 
-      let tl = gsap.timeline();
+      const tl = gsap.timeline();
       tl.from(container.current!.children, {
         duration: 0.6,
         yPercent: 100,

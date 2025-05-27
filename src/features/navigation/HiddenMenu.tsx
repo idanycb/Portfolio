@@ -33,7 +33,7 @@ export function HiddenMenu({
   const container = useRef<HTMLDivElement>(null);
   useGSAP(() => {
     const els = gsap.utils.selector(container.current)(".fade-in");
-    navAnimationSet &&
+    if (navAnimationSet) {
       tl!.from(
         els,
         {
@@ -44,6 +44,7 @@ export function HiddenMenu({
         },
         "<0.2",
       );
+    }
   }, [navAnimationSet]);
 
   return (
@@ -67,8 +68,8 @@ export function HiddenMenu({
           ))}
         </ul>
       </nav>
-      <div className="mb-20 flex h-full items-center justify-end overflow-hidden lg:mb-0 lg:items-end">
-        <p className="fade-in group origin-right -rotate-90 overflow-visible font-medium whitespace-nowrap lg:rotate-0">
+      <div className="flex h-full items-center justify-end overflow-hidden pb-20 lg:mb-0 lg:items-end">
+        <p className="fade-in group origin-bottom-right -rotate-90 overflow-visible font-medium whitespace-nowrap lg:rotate-0">
           Developed & Coded by @
           <strong className="relative inline-block overflow-hidden align-middle">
             <span className="inline-block transition-transform ease-in-out group-hover:-translate-y-full group-focus:-translate-y-full group-active:-translate-y-full">

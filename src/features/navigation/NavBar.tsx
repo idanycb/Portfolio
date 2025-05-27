@@ -30,19 +30,19 @@ const urls = [
   {
     label: "LinkedIn",
     mobileLabel: "LI",
-    href: "https://www.linkedin.com/in/your-profile",
+    href: "https://www.linkedin.com/in/danycb",
     external: true,
   },
   {
     label: "GitHub",
     mobileLabel: "GH",
-    href: "https://www.github.com/your-profile",
+    href: "https://www.github.com/dany-cb",
     external: true,
   },
   {
     label: "Instagram",
     mobileLabel: "IG",
-    href: "https://www.instagram.com/your-profile",
+    href: "https://www.instagram.com/__danielthomas",
     external: true,
   },
 ];
@@ -59,7 +59,6 @@ let isAnimationConfigured = false;
 export function NavBar({ className, ref, tl, setNavAnimationSet, menuRef }: Props) {
   const [morphTl, setMorphTl] = useState<GSAPTimeline>();
   const bodyEl = useRef<HTMLElement>(null);
-  const [menuOpen, setMenuOpen] = useState(false);
 
   useGSAP(
     () => {
@@ -104,7 +103,7 @@ export function NavBar({ className, ref, tl, setNavAnimationSet, menuRef }: Prop
 
         isAnimationConfigured = true;
         setNavAnimationSet(true);
-        setMenuOpen((prev) => !prev);
+        // setMenuOpen((prev) => !prev);
       }
       return;
     }

@@ -30,35 +30,37 @@ export function TextFadeIn({
     () => {
       gsap.set(container.current!.children, { opacity: 1 });
 
-      singleLine
-        ? gsap.from(container.current!.children, {
-            duration: 0.6,
-            yPercent: 100,
-            opacity: 0,
-            ease: "expo.out",
-            delay: delay,
-          })
-        : SplitText.create(container.current!.children, {
-            type: "words,lines",
-            linesClass: "line",
-            autoSplit: true,
-            mask: "lines",
-            onSplit: (self) => {
-              return gsap.from(self.lines, {
-                duration: 0.6,
-                yPercent: 100,
-                opacity: 0,
-                stagger: 0.1,
-                ease: "expo.out",
-                delay: delay,
-                scrollTrigger: scrollTrigger && {
-                  once: true,
-                  trigger: container.current,
-                  start: "clamp(top 80% )",
-                },
-              });
-            },
-          });
+      if (singleLine) {
+        gsap.from(container.current!.children, {
+          duration: 0.6,
+          yPercent: 100,
+          opacity: 0,
+          ease: "expo.out",
+          delay: delay,
+        });
+      } else {
+        SplitText.create(container.current!.children, {
+          type: "words,lines",
+          linesClass: "line",
+          autoSplit: true,
+          mask: "lines",
+          onSplit: (self) => {
+            return gsap.from(self.lines, {
+              duration: 0.6,
+              yPercent: 100,
+              opacity: 0,
+              stagger: 0.1,
+              ease: "expo.out",
+              delay: delay,
+              scrollTrigger: scrollTrigger && {
+                once: true,
+                trigger: container.current,
+                start: "clamp(top 80% )",
+              },
+            });
+          },
+        });
+      }
     },
     { scope: container },
   );
