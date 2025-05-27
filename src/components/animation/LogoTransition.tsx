@@ -22,8 +22,8 @@ export function LogoTransition({ children, className }: Props) {
       gsap.set(".black-bg .center", { scaleX: 0 });
       const offset = gsap.utils.selector(container.current)(".center")[0].clientWidth / 2;
 
-      gsap.set(".home-icon", { x: offset - 7 });
-      gsap.set(".ham-icon", { x: -offset + 7 });
+      gsap.set(".home-icon", { x: offset - 24 });
+      gsap.set(".ham-icon", { x: -offset + 24 });
       gsap.set(".black-bg .left", { x: offset });
       gsap.set(".black-bg .right", { x: -offset });
 

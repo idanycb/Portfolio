@@ -11,7 +11,6 @@ gsap.registerPlugin(useGSAP, SplitText, ScrollTrigger);
 interface Props extends PropsWithChildren {
   className?: string;
   as?: React.ElementType;
-  tl?: gsap.core.Timeline;
   delay?: number;
   scrollTrigger?: true;
   singleLine?: true;
@@ -20,7 +19,6 @@ interface Props extends PropsWithChildren {
 export function TextFadeIn({
   children,
   className,
-  tl,
   as: Cmp = "p",
   delay,
   singleLine,
@@ -54,6 +52,7 @@ export function TextFadeIn({
                 ease: "expo.out",
                 delay: delay,
                 scrollTrigger: scrollTrigger && {
+                  once: true,
                   trigger: container.current,
                   start: "clamp(top 80% )",
                 },

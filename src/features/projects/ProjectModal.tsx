@@ -1,12 +1,12 @@
 "use client";
 
-import { Project } from "@/features/projects/data/projects";
+import { ProjectT } from "@/features/projects/data/projects";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { IoClose } from "react-icons/io5";
 
 interface ProjectModalProps {
-  project: Project | null;
+  project: ProjectT | null;
   isOpen: boolean;
   onClose: () => void;
 }

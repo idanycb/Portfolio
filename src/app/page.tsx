@@ -1,17 +1,18 @@
-import { AboutMe, Footer, GetInTouch, Header } from "@/components/common";
-import { Container } from "@/components/ui";
-import { FeaturedProjects } from "@/features/projects";
+import { AboutMe, GetInTouch, Header } from "@/components/common";
+import { HeroPage } from "@/components/common/HeroPage";
+import { Projects } from "@/features/projects";
+import { SkillsGallery } from "@/features/skills";
 
 export default function Home() {
   return (
     <main>
       <Header />
-      <Container>
-        <AboutMe />
-        <FeaturedProjects />
-        <GetInTouch />
-      </Container>
-      <Footer />
+      <HeroPage />
+      <AboutMe />
+      <Projects />
+      <SkillsGallery />
+      <GetInTouch />
+      {/* <Footer /> */}
     </main>
   );
 }

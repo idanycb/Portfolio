@@ -14,9 +14,24 @@ interface Props extends PropsWithChildren {
   delay?: number;
   scrollTrigger?: true;
   duration?: number;
+  from?: "top" | "bottom" | "left" | "right";
 }
 
-export function FadeIn({ children, className, duration = 0.6, tl, delay, scrollTrigger }: Props) {
+const directionMap: Record<string, GSAPTweenVars> = {
+  top: { yPercent: -100 },
+  bottom: { yPercent: 100 },
+  left: { xPercent: -100 },
+  right: { xPercent: 100 },
+};
+
+export function FadeIn({
+  children,
+  className,
+  duration = 0.6,
+  from = "bottom",
+  delay,
+  scrollTrigger,
+}: Props) {
   const container = useRef<HTMLDivElement>(null);
 
   useGSAP(
@@ -25,12 +40,13 @@ export function FadeIn({ children, className, duration = 0.6, tl, delay, scrollT
 
       gsap.from(container.current!.children, {
         duration: duration,
-        yPercent: 100,
+        ...directionMap[from],
         opacity: 0,
         stagger: 0.1,
         ease: "expo.out",
         delay: delay,
         scrollTrigger: scrollTrigger && {
+          once: true,
           trigger: container.current,
           start: "clamp(top center)",
         },

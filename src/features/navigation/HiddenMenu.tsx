@@ -1,75 +1,85 @@
-import { TextFadeIn } from "@/components/animation";
-import { FadeIn } from "@/components/animation/FadeIn";
-import cx from "classix";
-import Image from "next/image";
+import { HeroLayout } from "@/components/layouts/HeroLayout";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 import Link from "next/link";
-import HeroLogo from "./img/HeroLogo.svg";
+import { useRef } from "react";
 
 const urls = [
   {
-    href: "#",
+    href: "#about",
     label: "About",
   },
   {
-    href: "#",
+    href: "#projects",
     label: "Projects",
   },
   {
-    href: "#",
+    href: "#skills",
     label: "Skills",
   },
   {
-    href: "#",
+    href: "#contact",
     label: "Contact",
   },
 ];
 
-export function HiddenMenu({ className }: { className?: string }) {
+export function HiddenMenu({
+  tl,
+  navAnimationSet,
+}: {
+  tl?: GSAPTimeline;
+  navAnimationSet?: boolean;
+}) {
+  const container = useRef<HTMLDivElement>(null);
+  useGSAP(() => {
+    const els = gsap.utils.selector(container.current)(".fade-in");
+    navAnimationSet &&
+      tl!.from(
+        els,
+        {
+          duration: 0.3,
+          xPercent: 100,
+          stagger: 0.1,
+          ease: "power2.inOut",
+        },
+        "<0.2",
+      );
+  }, [navAnimationSet]);
+
   return (
-    <div className={cx(className, "flex pt-10")}>
-      <div className="flex w-1/2 flex-col">
-        <FadeIn delay={0.5} duration={1.5}>
-          <Image src={HeroLogo} alt="logo" priority />
-        </FadeIn>
-        <div className="flex grow items-center">
-          <TextFadeIn
-            delay={0.5}
-            className="relative left-4 font-serif text-xs leading-tight font-extrabold"
-          >
-            Passionate Designer & Full Stack Developer
-          </TextFadeIn>
-        </div>
+    <HeroLayout ref={container}>
+      <nav>
+        <ul className="font-heading flex flex-col gap-2 text-right text-3xl lg:gap-4 lg:text-4xl">
+          {urls.map((url) => (
+            <li key={url.label} className="overflow-hidden pb-2">
+              <Link
+                aria-label={url.label}
+                href={url.href}
+                className="fade-in inline-block pl-4 transition-[font-size] duration-300 ease-in-out lg:hover:text-[1.3em]"
+                onClick={() => {
+                  // close the menu by reversing the timeline
+                  tl?.reverse();
+                }}
+              >
+                {url.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <div className="mb-20 flex h-full items-center justify-end overflow-hidden lg:mb-0 lg:items-end">
+        <p className="fade-in group origin-right -rotate-90 overflow-visible font-medium whitespace-nowrap lg:rotate-0">
+          Developed & Coded by @
+          <strong className="relative inline-block overflow-hidden align-middle">
+            <span className="inline-block transition-transform ease-in-out group-hover:-translate-y-full group-focus:-translate-y-full group-active:-translate-y-full">
+              Dany
+            </span>
+            <span className="absolute top-0 left-0 inline-block translate-y-full transition-transform ease-in-out group-hover:translate-y-0 group-focus:translate-y-0 group-active:translate-y-0">
+              Me!
+            </span>
+          </strong>
+        </p>
       </div>
-      <div className="flex w-1/2 flex-col">
-        <nav className="">
-          <ul className="font-heading flex flex-col gap-2 text-right text-3xl">
-            {urls.map((url) => (
-              <TextFadeIn singleLine delay={1} as="li" key={url.label}>
-                <Link aria-label={url.label} href={url.href}>
-                  {url.label}
-                </Link>
-              </TextFadeIn>
-            ))}
-          </ul>
-        </nav>
-        <div className="mb-20 flex h-full items-center justify-end">
-          <TextFadeIn
-            singleLine
-            delay={0.5}
-            className="group origin-right -rotate-90 overflow-visible font-medium whitespace-nowrap"
-          >
-            Developed & Coded by @
-            <strong className="relative inline-block overflow-hidden align-middle">
-              <span className="inline-block transition-transform ease-in-out group-hover:-translate-y-full group-focus:-translate-y-full group-active:-translate-y-full">
-                Dany
-              </span>
-              <span className="absolute top-0 left-0 inline-block translate-y-full transition-transform ease-in-out group-hover:translate-y-0 group-focus:translate-y-0 group-active:translate-y-0">
-                Me!
-              </span>
-            </strong>
-          </TextFadeIn>
-        </div>
-      </div>
-    </div>
+    </HeroLayout>
   );
 }

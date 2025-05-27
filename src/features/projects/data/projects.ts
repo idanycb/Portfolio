@@ -1,4 +1,4 @@
-export type Project = {
+export type ProjectT = {
   id: number;
   title: string;
   image: string;
@@ -8,7 +8,7 @@ export type Project = {
   demoURL?: string;
 };
 
-export const projects: Project[] = [
+export const projects: ProjectT[] = [
   {
     id: 1,
     title: "JobJive",
