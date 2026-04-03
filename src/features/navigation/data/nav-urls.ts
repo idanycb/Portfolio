@@ -25,7 +25,7 @@ export const urls = [
     icon: getIcon(RiFileListLine, true),
   },
   {
-    href: "https://github.com/dany-cb",
+    href: "https://github.com/idanycb",
     label: "GitHub Profile",
     externalTarget: "_blank",
     icon: getIcon(RiGithubLine, true),

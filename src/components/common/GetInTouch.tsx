@@ -5,7 +5,7 @@ export function GetInTouch() {
     <section id="contact" className="py-24">
       <Container>
         <span className="font-mono text-[10px] md:text-sm">That&apos;s all for now.</span>
-        <h2 className="text-2xl lg:text-5xl lg:leading-[3.5rem]">
+        <h2 className="text-2xl lg:text-5xl lg:leading-14">
           Got a project in mind?
           <br />
           Let&apos;s talk

@@ -23,7 +23,7 @@ const urls = [
         src={homeIcon}
         alt="home icon"
         priority
-        className="home-icon min-h-[36px] min-w-[36px] rounded-full ring-4 ring-neutral-100 outline-1 outline-black"
+        className="home-icon min-h-9 min-w-9 rounded-full ring-4 ring-neutral-100 outline-1 outline-black"
       />
     ),
   },
