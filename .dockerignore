@@ -1,0 +1,22 @@
+# VCS
+.git
+.github
+
+# Dependencies and package manager stores
+node_modules
+.pnpm-store
+
+# Build outputs and local artifacts
+.next
+out
+dist
+coverage
+
+# Environment and editor noise
+.env
+.env.*
+.vscode
+
+# OS/editor files
+.DS_Store
+*.log
