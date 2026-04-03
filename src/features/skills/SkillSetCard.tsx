@@ -2,6 +2,7 @@
 
 import FlipCard from "@/components/ui/FlipCard";
 import { type SkillSet } from "@/features/skills/data/skills";
+import Image, { type StaticImageData } from "next/image";
 const LEFT_ALIGNED_SECTIONS = ["Core Computer Science Concepts", "Personal Development"];
 
 type SkillSetCardProps = {
@@ -37,17 +38,23 @@ export const SkillSetCard = ({ skillSection, className }: SkillSetCardProps) => 
 };
 
 type SkillIconProps = {
-  skillIconUrl?: string;
+  skillIconUrl?: StaticImageData;
   skillName: string;
 };
 const SkillIcon = ({ skillIconUrl: url, skillName: name }: SkillIconProps) => {
   return (
     <>
       {url ? (
-        <div className="flex max-w-1/3 grow-1 justify-center justify-self-end pb-1 lg:pb-2">
+        <div className="flex max-w-1/3 grow justify-center justify-self-end pb-1 lg:pb-2">
           <FlipCard className="flex h-14 w-14 items-center justify-center rounded-full bg-neutral-900 lg:h-16 lg:w-16">
             <FlipCard.Front>
-              <img src={url} alt={name} className="h-7 w-7 lg:h-8 lg:w-8" />
+              <Image
+                src={url}
+                alt={name}
+                width={32}
+                height={32}
+                className="h-7 w-7 lg:h-8 lg:w-8"
+              />
             </FlipCard.Front>
             <FlipCard.Back>
               <p className="font-heading text-center text-xs font-light text-white">{name}</p>

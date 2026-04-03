@@ -81,11 +81,9 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
 
         <div className="mb-6">
           <Image
-            width={0}
-            height={0}
-            sizes="100vw"
             src={project.image}
             alt={project.title}
+            sizes="100vw"
             className="mb-4 h-64 w-full rounded-lg object-cover"
           />
           <p className="mb-4 text-gray-700">{project.description}</p>

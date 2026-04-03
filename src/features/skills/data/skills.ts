@@ -1,4 +1,40 @@
-export type SkillIcon = string | { name: string; icon: string };
+import type { StaticImageData } from "next/image";
+
+import cOriginal from "@/assets/icons/skills/c-original.svg";
+import cplusplusOriginal from "@/assets/icons/skills/cplusplus-original.svg";
+import css3Original from "@/assets/icons/skills/css3-original.svg";
+import cudaOriginal from "@/assets/icons/skills/cuda-original.svg";
+import dockerOriginal from "@/assets/icons/skills/docker-original.svg";
+import expressOriginal from "@/assets/icons/skills/express-original.svg";
+import figmaOriginal from "@/assets/icons/skills/figma-original.svg";
+import firebasePlain from "@/assets/icons/skills/firebase-plain.svg";
+import flaskOriginal from "@/assets/icons/skills/flask-original.svg";
+import framerOriginal from "@/assets/icons/skills/framer-original.svg";
+import gitOriginal from "@/assets/icons/skills/git-original.svg";
+import githubOriginal from "@/assets/icons/skills/github-original.svg";
+import gitlabOriginal from "@/assets/icons/skills/gitlab-original.svg";
+import goOriginal from "@/assets/icons/skills/go-original.svg";
+import googlecloudOriginal from "@/assets/icons/skills/googlecloud-original.svg";
+import html5Original from "@/assets/icons/skills/html5-original.svg";
+import javaOriginal from "@/assets/icons/skills/java-original.svg";
+import javascriptOriginal from "@/assets/icons/skills/javascript-original.svg";
+import jestPlain from "@/assets/icons/skills/jest-plain.svg";
+import mongodbOriginal from "@/assets/icons/skills/mongodb-original.svg";
+import mysqlOriginal from "@/assets/icons/skills/mysql-original.svg";
+import nextjsOriginal from "@/assets/icons/skills/nextjs-original.svg";
+import nodejsOriginal from "@/assets/icons/skills/nodejs-original.svg";
+import photoshopPlain from "@/assets/icons/skills/photoshop-plain.svg";
+import postgresqlOriginal from "@/assets/icons/skills/postgresql-original.svg";
+import postmanOriginal from "@/assets/icons/skills/postman-original.svg";
+import pythonOriginal from "@/assets/icons/skills/python-original.svg";
+import reactOriginal from "@/assets/icons/skills/react-original.svg";
+import sassOriginal from "@/assets/icons/skills/sass-original.svg";
+import tailwindcssPlain from "@/assets/icons/skills/tailwindcss-plain.svg";
+import typescriptOriginal from "@/assets/icons/skills/typescript-original.svg";
+import vercelOriginal from "@/assets/icons/skills/vercel-original.svg";
+import xdPlain from "@/assets/icons/skills/xd-plain.svg";
+
+export type SkillIcon = string | { name: string; icon: StaticImageData };
 
 export type SkillSet = {
   section: string;
@@ -13,11 +49,11 @@ export const skills = [
       description:
         "Building engaging and user-friendly web interfaces using modern frameworks and technologies with expertise.",
       skills: [
-        { name: "HTML5", icon: "/icons/skills/html5-original.svg" },
-        { name: "JavaScript", icon: "/icons/skills/javascript-original.svg" },
-        { name: "TypeScript", icon: "/icons/skills/typescript-original.svg" },
-        { name: "React", icon: "/icons/skills/react-original.svg" },
-        { name: "Next.js", icon: "/icons/skills/nextjs-original.svg" },
+        { name: "HTML5", icon: html5Original },
+        { name: "JavaScript", icon: javascriptOriginal },
+        { name: "TypeScript", icon: typescriptOriginal },
+        { name: "React", icon: reactOriginal },
+        { name: "Next.js", icon: nextjsOriginal },
       ],
     },
     {
@@ -25,9 +61,9 @@ export const skills = [
       description:
         "Developing robust server-side logic and APIs to power dynamic and scalable web applications.",
       skills: [
-        { name: "Node.js", icon: "/icons/skills/nodejs-original.svg" },
-        { name: "Express.js", icon: "/icons/skills/express-original.svg" },
-        { name: "Flask", icon: "/icons/skills/flask-original.svg" },
+        { name: "Node.js", icon: nodejsOriginal },
+        { name: "Express.js", icon: expressOriginal },
+        { name: "Flask", icon: flaskOriginal },
       ],
     },
     {
@@ -64,25 +100,25 @@ export const skills = [
       description:
         "Crafting visually appealing and responsive designs with advanced styling tools and frameworks.",
       skills: [
-        { name: "CSS", icon: "/icons/skills/css3-original.svg" },
-        { name: "Sass", icon: "/icons/skills/sass-original.svg" },
-        { name: "Tailwind CSS", icon: "/icons/skills/tailwindcss-plain.svg" },
+        { name: "CSS", icon: css3Original },
+        { name: "Sass", icon: sassOriginal },
+        { name: "Tailwind CSS", icon: tailwindcssPlain },
       ],
     },
     {
       section: "Web Animations",
       description:
         "Creating engaging and interactive web experiences through animations and transitions.",
-      skills: [{ name: "Framer Motion", icon: "/icons/skills/framer-original.svg" }],
+      skills: [{ name: "Framer Motion", icon: framerOriginal }],
     },
     {
       section: "Cloud & Deployment",
       description:
         "Deploying applications and managing cloud resources for scalability and performance.",
       skills: [
-        { name: "GCP", icon: "/icons/skills/googlecloud-original.svg" },
-        { name: "Docker", icon: "/icons/skills/docker-original.svg" },
-        { name: "Vercel", icon: "/icons/skills/vercel-original.svg" },
+        { name: "GCP", icon: googlecloudOriginal },
+        { name: "Docker", icon: dockerOriginal },
+        { name: "Vercel", icon: vercelOriginal },
       ],
     },
     {
@@ -90,8 +126,8 @@ export const skills = [
       description:
         "Ensuring code quality and reliability through systematic testing and debugging practices.",
       skills: [
-        { name: "Jest", icon: "/icons/skills/jest-plain.svg" },
-        { name: "Postman", icon: "/icons/skills/postman-original.svg" },
+        { name: "Jest", icon: jestPlain },
+        { name: "Postman", icon: postmanOriginal },
       ],
     },
   ],
@@ -101,12 +137,12 @@ export const skills = [
       description:
         "Proficient in problem-solving and applying programming languages to implement efficient data structures and algorithms.",
       skills: [
-        { name: "Python", icon: "/icons/skills/python-original.svg" },
-        { name: "Java", icon: "/icons/skills/java-original.svg" },
-        { name: "C++", icon: "/icons/skills/cplusplus-original.svg" },
-        { name: "C", icon: "/icons/skills/c-original.svg" },
-        { name: "CUDA", icon: "/icons/skills/cuda-original.svg" },
-        { name: "Go", icon: "/icons/skills/go-original.svg" },
+        { name: "Python", icon: pythonOriginal },
+        { name: "Java", icon: javaOriginal },
+        { name: "C++", icon: cplusplusOriginal },
+        { name: "C", icon: cOriginal },
+        { name: "CUDA", icon: cudaOriginal },
+        { name: "Go", icon: goOriginal },
       ],
     },
     {
@@ -114,10 +150,10 @@ export const skills = [
       description:
         "Designing and managing databases for efficient data storage, retrieval, and manipulation.",
       skills: [
-        { name: "MongoDB", icon: "/icons/skills/mongodb-original.svg" },
-        { name: "Postgres", icon: "/icons/skills/postgresql-original.svg" },
-        { name: "MySQL", icon: "/icons/skills/mysql-original.svg" },
-        { name: "Firebase", icon: "/icons/skills/firebase-plain.svg" },
+        { name: "MongoDB", icon: mongodbOriginal },
+        { name: "Postgres", icon: postgresqlOriginal },
+        { name: "MySQL", icon: mysqlOriginal },
+        { name: "Firebase", icon: firebasePlain },
       ],
     },
     {
@@ -125,9 +161,9 @@ export const skills = [
       description:
         "Efficiently managing code and collaborating with teams using version control systems.",
       skills: [
-        { name: "Git", icon: "/icons/skills/git-original.svg" },
-        { name: "GitHub", icon: "/icons/skills/github-original.svg" },
-        { name: "GitLab", icon: "/icons/skills/gitlab-original.svg" },
+        { name: "Git", icon: gitOriginal },
+        { name: "GitHub", icon: githubOriginal },
+        { name: "GitLab", icon: gitlabOriginal },
       ],
     },
     {
@@ -137,9 +173,9 @@ export const skills = [
       skills: [
         "Prototyping",
         "Wireframing",
-        { name: "Figma", icon: "/icons/skills/figma-original.svg" },
-        { name: "Adobe XD", icon: "/icons/skills/xd-plain.svg" },
-        { name: "Adobe Photoshop", icon: "/icons/skills/photoshop-plain.svg" },
+        { name: "Figma", icon: figmaOriginal },
+        { name: "Adobe XD", icon: xdPlain },
+        { name: "Adobe Photoshop", icon: photoshopPlain },
       ],
     },
   ],

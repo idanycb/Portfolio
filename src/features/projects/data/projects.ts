@@ -1,7 +1,17 @@
+import type { StaticImageData } from "next/image";
+
+import calculatorImage from "@/assets/images/projects/calculator.jpeg";
+import flair2k22Image from "@/assets/images/projects/flair-2k22.jpeg";
+import flair2k23Image from "@/assets/images/projects/flair-2k23.jpeg";
+import gLearnerImage from "@/assets/images/projects/g-learner.png";
+import jobJiveImage from "@/assets/images/projects/job-jive.png";
+import spacexImage from "@/assets/images/projects/spacex.jpeg";
+import todoAppImage from "@/assets/images/projects/todo-app.jpeg";
+
 export type ProjectT = {
   id: number;
   title: string;
-  image: string;
+  image: StaticImageData;
   description: string;
   tags: string[];
   repoURL: string;
@@ -12,7 +22,7 @@ export const projects: ProjectT[] = [
   {
     id: 1,
     title: "JobJive",
-    image: "/images/projects/job-jive.png",
+    image: jobJiveImage,
     description:
       "A mock interview application that uses ChatGPT and ElevenLabs to simulate a virtual interview experience, offering candidates realistic practice sessions and personalized feedback.",
     tags: ["React", "TypeScript", "Node.js", "MongoDB", "Express"],
@@ -21,7 +31,7 @@ export const projects: ProjectT[] = [
   {
     id: 2,
     title: "SpaceX Clone",
-    image: "/images/projects/spacex.jpeg",
+    image: spacexImage,
     description:
       "A clone of the SpaceX website built with Gatsby and TypeScript. Features responsive design and modern UI components.",
     tags: ["Gatsby", "TypeScript", "React", "CSS"],
@@ -31,7 +41,7 @@ export const projects: ProjectT[] = [
   {
     id: 3,
     title: "G-Learner",
-    image: "/images/projects/g-learner.png",
+    image: gLearnerImage,
     description:
       "A smart learning portal that continuously gathers YouTube educational videos and ranks them against user-entered topics to streamline self-study. Features a real-time NLP pipeline that distills 5-minute transcripts in under 400 ms and utilizes a feed-forward ANN to instantly map user queries to the highest-relevance videos.",
     tags: ["Next.js", "TypeScript", "Python", "AI", "Prisma"],
@@ -40,7 +50,7 @@ export const projects: ProjectT[] = [
   {
     id: 4,
     title: "Flair 2k23",
-    image: "/images/projects/flair-2k23.jpeg",
+    image: flair2k23Image,
     description:
       "A college event website built with Next.js, JavaScript, and TypeScript. Features event registration, schedule viewing, and interactive UI.",
     tags: ["Next.js", "TypeScript", "JavaScript", "CSS", "SCSS"],
@@ -50,7 +60,7 @@ export const projects: ProjectT[] = [
   {
     id: 5,
     title: "Flair 2k22",
-    image: "/images/projects/flair-2k22.jpeg",
+    image: flair2k22Image,
     description:
       "A college event website built with React, JavaScript, and TypeScript. Features event registration, schedule viewing, and interactive UI.",
     tags: ["React", "TypeScript", "SCSS", "JavaScript", "HTML"],
@@ -60,7 +70,7 @@ export const projects: ProjectT[] = [
   {
     id: 6,
     title: "ToDo List",
-    image: "/images/projects/todo-app.jpeg",
+    image: todoAppImage,
     description:
       "A feature-rich ToDo List application built from scratch using TypeScript and SCSS. Implements OOP principles and modern web standards without frameworks.",
     tags: ["TypeScript", "JavaScript", "HTML", "SCSS", "Webpack"],
@@ -70,7 +80,7 @@ export const projects: ProjectT[] = [
   {
     id: 7,
     title: "Simple Calculator",
-    image: "/images/projects/calculator.jpeg",
+    image: calculatorImage,
     description:
       "A calculator app built with vanilla JavaScript, HTML, and SCSS. Designed to test pure development skills without external libraries or frameworks.",
     tags: ["JavaScript", "HTML", "SCSS"],

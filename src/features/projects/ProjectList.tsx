@@ -117,13 +117,11 @@ const Project = ({
     >
       {fadeIn ? (
         <FadeIn scrollTrigger from="left">
-          <div className="h-[200px] w-full overflow-hidden rounded-2xl drop-shadow-lg lg:mb-4 lg:h-[300px]">
+          <div className="h-50 w-full overflow-hidden rounded-2xl drop-shadow-lg lg:mb-4 lg:h-75">
             <Image
-              width={0}
-              height={0}
-              sizes="100vw"
               src={project.image}
               alt={project.title}
+              sizes="100vw"
               className="h-full w-full object-cover"
             />
           </div>
@@ -134,13 +132,11 @@ const Project = ({
         </FadeIn>
       ) : (
         <>
-          <div className="h-[200px] w-full overflow-hidden rounded-2xl drop-shadow-lg lg:mb-4 lg:h-[300px]">
+          <div className="h-50 w-full overflow-hidden rounded-2xl drop-shadow-lg lg:mb-4 lg:h-75">
             <Image
-              width={0}
-              height={0}
-              sizes="100vw"
               src={project.image}
               alt={project.title}
+              sizes="100vw"
               className="h-full w-full object-cover"
             />
           </div>
