@@ -33,7 +33,7 @@ jobs:
           images: ${{ steps.vars.outputs.image }}
           tags: |
             type=raw,value=latest
-            type=sha
+            type=raw,value=main-${{ github.run_number }}-${{ github.sha }}
 
       - name: Build and push image
         uses: docker/build-push-action@v7
