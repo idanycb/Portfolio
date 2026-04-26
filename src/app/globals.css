@@ -15,6 +15,7 @@
   --font-heading: var(--font-inter);
   --font-body: var(--font-dm-sans);
   --font-mono: var(--font-ibm-plex-mono);
+  --font-archivo: var(--font-archivo);
 }
 /* 
 @media (prefers-color-scheme: dark) {
@@ -31,17 +32,19 @@
     font-family: var(--font-dm-sans);
   }
 
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    font-family: var(--font-inter);
-  }
-
-  p {
-    font-family: var(--font-dm-sans);
+    font-family: var(--font-archivo);
   }
 }
 
@@ -57,9 +60,17 @@
   }
 
   .glassmorph {
-    /* From https://css.glass */
-    div {
-      background: rgba(211, 211, 211, 0.35);
-    }
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8.9px);
+    -webkit-backdrop-filter: blur(8.9px);
   }
+}
+
+@utility writing-vertical-rl {
+  writing-mode: vertical-rl;
+}
+
+@utility writing-normal {
+  writing-mode: horizontal-tb;
 }

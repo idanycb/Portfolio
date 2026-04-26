@@ -1,4 +1,5 @@
-import { DM_Sans, IBM_Plex_Mono, Inter } from "next/font/google";
+import type { Viewport } from "next";
+import { Archivo, DM_Sans, IBM_Plex_Mono, Inter } from "next/font/google";
 import "./globals.css";
 
 const dMSans = DM_Sans({
@@ -17,6 +18,11 @@ const ibmPlexMono = IBM_Plex_Mono({
   weight: "400",
 });
 
+const archivo = Archivo({
+  variable: "--font-archivo",
+  subsets: ["latin"],
+});
+
 export const metadata = {
   title: "Daniel Thomas — Full Stack Developer",
   description: "A portfolio site showcasing projects, skills, and design work.",
@@ -33,6 +39,11 @@ export const metadata = {
   author: "Daniel Thomas Jesudoss",
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -41,7 +52,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${dMSans.variable} ${inter.variable} ${ibmPlexMono.variable} relative antialiased`}
+        className={`${dMSans.variable} ${inter.variable} ${ibmPlexMono.variable} ${archivo.variable} m-0 overflow-x-hidden leading-normal antialiased`}
       >
         {children}
       </body>
