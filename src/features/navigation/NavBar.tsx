@@ -6,9 +6,7 @@ import gsap from "gsap";
 import MorphSVGPlugin from "gsap/MorphSVGPlugin";
 import Image from "next/image";
 import Link from "next/link";
-import { useRef, useState } from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
-import { hamburger_precompile } from "./data/icon-morph-precompile";
 import homeIcon from "./img/home-normal.png";
 gsap.registerPlugin(MorphSVGPlugin, useGSAP);
 
@@ -49,68 +47,9 @@ const urls = [
 
 interface Props {
   className?: string;
-  ref: React.Ref<HTMLDivElement>;
-  tl?: GSAPTimeline;
-  setNavAnimationSet: (value: true) => void;
-  menuRef?: React.RefObject<HTMLLIElement | null>;
 }
 
-let isAnimationConfigured = false;
-export function NavBar({ className, ref, tl, setNavAnimationSet, menuRef }: Props) {
-  const [morphTl, setMorphTl] = useState<GSAPTimeline>();
-  const bodyEl = useRef<HTMLElement>(null);
-
-  useGSAP(
-    () => {
-      const tl = gsap.timeline();
-      setMorphTl(tl);
-      bodyEl.current = document.body;
-    },
-    { scope: menuRef },
-  );
-
-  const toggleMenu = () => {
-    if (!isAnimationConfigured) {
-      if (ref && typeof ref !== "function" && ref.current && tl && morphTl) {
-        tl.to(ref.current, {
-          maskPosition: "0% 100%",
-          ease: "power2.inOut",
-          onStart: () => {
-            bodyEl.current!.style.overflow = "hidden";
-            gsap.set(ref.current, { visibility: "visible", pointerEvents: "auto" });
-          },
-          onReverseComplete: () => {
-            bodyEl.current!.style.overflow = "unset";
-            gsap.set(ref.current, { visibility: "hidden", pointerEvents: "none" });
-          },
-        });
-
-        if (menuRef && menuRef.current) {
-          tl.to(
-            menuRef.current!.children[0].children[0],
-            {
-              duration: 0.3,
-              morphSVG: {
-                shape: menuRef.current!.children[1].children[0] as SVGPathElement,
-                shapeIndex: [-1, 0, 0],
-                precompile: hamburger_precompile,
-              },
-              ease: "power2.inOut",
-            },
-            "<",
-          );
-        }
-
-        isAnimationConfigured = true;
-        setNavAnimationSet(true);
-        // setMenuOpen((prev) => !prev);
-      }
-      return;
-    }
-    if (tl && morphTl) {
-      tl.reversed(!tl.reversed());
-    }
-  };
+export function NavBar({ className }: Props) {
   return (
     <LogoTransition className={className}>
       <div className="black-bg absolute top-0 h-full w-full">
@@ -138,11 +77,8 @@ export function NavBar({ className, ref, tl, setNavAnimationSet, menuRef }: Prop
             </Link>
           </li>
         ))}
-        <li className="-z-20" ref={menuRef}>
-          <AiOutlineMenu
-            onClick={toggleMenu}
-            className="ham-icon h-full w-full rounded-full bg-white p-2"
-          />
+        <li className="-z-20">
+          <AiOutlineMenu className="ham-icon h-full w-full rounded-full bg-white p-2" />
           <AiOutlineClose className="close-icon hidden" />
         </li>
       </ul>
