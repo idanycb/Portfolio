@@ -1,18 +1,24 @@
 import { AboutMe, GetInTouch, Header } from "@/components/common";
-import { HeroPage } from "@/components/common/HeroPage";
+import { HeroPage } from "@/features/hero/HeroPage";
 import { Projects } from "@/features/projects";
 import { SkillsGallery } from "@/features/skills";
 
 export default function Home() {
   return (
-    <main>
+    <div className="relative grid">
       <Header />
-      <HeroPage />
-      <AboutMe />
-      <Projects />
-      <SkillsGallery />
-      <GetInTouch />
-      {/* <Footer /> */}
-    </main>
+      <main className="contents" role="main">
+        <div className="col-start-1 row-start-1">
+          <HeroPage />
+        </div>
+        <div className="col-start-1">
+          <AboutMe />
+          <Projects />
+          <SkillsGallery />
+          <GetInTouch />
+          {/* <Footer /> */}
+        </div>
+      </main>
+    </div>
   );
 }
