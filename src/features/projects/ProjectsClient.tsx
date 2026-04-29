@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { MdOutlineKeyboardArrowDown, MdOutlineKeyboardArrowUp } from "react-icons/md";
+import { BsArrowUpRight } from "react-icons/bs";
 import { ProjectList } from "./ProjectList";
 
 type ProjectsClientProps = {
@@ -16,14 +16,13 @@ export function ProjectsClient({ productsFilter }: ProjectsClientProps) {
       <ProjectList showAll={showAll} productsFilter={productsFilter} />
       <button
         onClick={() => setShowAll((prev) => !prev)}
-        className="font-heading flex w-fit items-center gap-2 self-center rounded-full border border-gray-300 px-6 py-2 text-xs select-none lg:text-sm"
+        className="font-archivo mt-8 inline-flex h-fit w-fit items-center gap-3 self-center rounded-none border border-black px-6 py-2 text-xs font-bold uppercase tracking-widest transition-colors select-none hover:bg-black hover:text-white"
       >
-        Show {showAll ? "Less" : "All"}
-        {showAll ? (
-          <MdOutlineKeyboardArrowUp className="h-4 w-4" />
-        ) : (
-          <MdOutlineKeyboardArrowDown className="h-4 w-4" />
-        )}
+        {showAll ? "SHOW LESS" : "VIEW ALL"}
+        <BsArrowUpRight
+          className={`text-sm transition-transform ${showAll ? "rotate-90" : ""}`}
+          strokeWidth={0.5}
+        />
       </button>
     </>
   );

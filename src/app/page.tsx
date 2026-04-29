@@ -1,7 +1,7 @@
 import { AboutMe, GetInTouch, Header } from "@/components/common";
 import { HeroPage } from "@/features/hero/HeroPage";
-import { Projects } from "@/features/projects";
 import { SkillsGallery } from "@/features/skills";
+import { Projects } from "@features/projects/Projects";
 
 export default function Home() {
   return (

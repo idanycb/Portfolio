@@ -4,6 +4,7 @@ import { ProjectT } from "@/features/projects/data/projects";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { IoClose } from "react-icons/io5";
+import { BsArrowUpRight } from "react-icons/bs";
 
 interface ProjectModalProps {
   project: ProjectT | null;
@@ -14,108 +15,87 @@ interface ProjectModalProps {
 export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
 
-  // Close modal when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
         onClose();
       }
     };
-
-    if (isOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    if (isOpen) document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isOpen, onClose]);
 
-  // Close modal with escape key
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        onClose();
-      }
+      if (event.key === "Escape") onClose();
     };
-
-    if (isOpen) {
-      document.addEventListener("keydown", handleEscape);
-    }
-
-    return () => {
-      document.removeEventListener("keydown", handleEscape);
-    };
+    if (isOpen) document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
   }, [isOpen, onClose]);
 
-  // Prevent body scrolling when modal is open
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-
-    return () => {
-      document.body.style.overflow = "";
-    };
+    document.body.style.overflow = isOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
   }, [isOpen]);
 
   if (!isOpen || !project) return null;
 
   return (
-    <div className="bg-opacity-50 fixed inset-0 z-50 flex items-center justify-center bg-black p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
       <div
         ref={modalRef}
-        className="max-h-[90vh] w-full max-w-2xl overflow-auto rounded-xl bg-white p-6 shadow-xl"
+        className="font-archivo max-h-[90vh] w-full max-w-2xl overflow-auto bg-white"
       >
-        <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-2xl font-bold">{project.title}</h2>
+        {/* Header */}
+        <div className="flex items-center justify-between border-b border-black px-6 py-4">
+          <h2 className="text-xl font-extrabold uppercase -tracking-wide">{project.title}</h2>
           <button
             onClick={onClose}
-            className="rounded-full p-1 transition-colors hover:bg-gray-200"
+            className="p-1 transition-colors hover:bg-black hover:text-white"
+            aria-label="Close"
           >
-            <IoClose size={24} />
+            <IoClose size={20} />
           </button>
         </div>
 
-        <div className="mb-6">
+        <div className="px-6 py-6">
           <Image
             src={project.image}
             alt={project.title}
             sizes="100vw"
-            className="mb-4 h-64 w-full rounded-lg object-cover"
+            className="mb-6 h-64 w-full object-cover grayscale"
           />
-          <p className="mb-4 text-gray-700">{project.description}</p>
 
-          <div className="mb-4">
-            <h3 className="mb-2 font-semibold">Technologies:</h3>
-            <div className="flex flex-wrap gap-2">
-              {project.tags.map((tag, index) => (
-                <span key={index} className="rounded-full bg-gray-200 px-3 py-1 text-sm">
-                  {tag}
-                </span>
-              ))}
-            </div>
+          <p className="font-body mb-6 text-sm leading-relaxed text-gray-700">{project.description}</p>
+
+          <div className="mb-6 flex flex-wrap gap-2">
+            {project.tags.map((tag) => (
+              <span
+                key={tag}
+                className="border border-black px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider"
+              >
+                {tag}
+              </span>
+            ))}
           </div>
 
-          <div className="mt-6 flex gap-4">
+          <div className="flex gap-4 border-t border-black pt-6">
             <a
               href={project.repoURL}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-md bg-gray-800 px-4 py-2 text-white transition-colors hover:bg-gray-700"
+              className="inline-flex items-center gap-2 border border-black bg-black px-5 py-2 text-xs font-bold uppercase tracking-widest text-white transition-colors hover:bg-white hover:text-black"
             >
-              View Repository
+              Repository <BsArrowUpRight strokeWidth={0.5} />
             </a>
             {project.demoURL && (
               <a
                 href={project.demoURL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-md bg-blue-600 px-4 py-2 text-white transition-colors hover:bg-blue-500"
+                className="inline-flex items-center gap-2 border border-black px-5 py-2 text-xs font-bold uppercase tracking-widest transition-colors hover:bg-black hover:text-white"
               >
-                Live Demo
+                Live Demo <BsArrowUpRight strokeWidth={0.5} />
               </a>
             )}
           </div>
