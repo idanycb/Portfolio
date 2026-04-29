@@ -1,10 +1,16 @@
 import type { Viewport } from "next";
-import { Archivo, DM_Sans, IBM_Plex_Mono, Inter } from "next/font/google";
+import { Archivo, DM_Sans, IBM_Plex_Mono, Inter, Roboto } from "next/font/google";
 import "./globals.css";
 
 const dMSans = DM_Sans({
   variable: "--font-dm-sans",
   subsets: ["latin"],
+});
+
+const roboto = Roboto({
+  variable: "--font-roboto",
+  subsets: ["latin"],
+  weight: "400",
 });
 
 const inter = Inter({
@@ -52,7 +58,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${dMSans.variable} ${inter.variable} ${ibmPlexMono.variable} ${archivo.variable} m-0 overflow-x-hidden leading-normal antialiased`}
+        className={`${dMSans.variable} ${inter.variable} ${ibmPlexMono.variable} ${archivo.variable} ${roboto.variable} m-0 overflow-x-hidden leading-normal antialiased`}
       >
         {children}
       </body>
