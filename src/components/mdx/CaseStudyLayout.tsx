@@ -1,4 +1,3 @@
-import Link from "next/link";
 import React from "react";
 import { FiArrowLeft } from "react-icons/fi";
 
@@ -14,13 +13,14 @@ export function CaseStudyLayout({ children, title, metadata }: Props) {
       {/* Navigation Bar */}
       <header className="sticky top-0 z-50 w-full border-b border-white/5 bg-[#0a0a0a]/80 backdrop-blur-md">
         <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
-          <Link
+          {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+          <a
             href="/#projects"
             className="flex items-center gap-2 rounded text-sm font-medium text-gray-400 transition-colors outline-none hover:text-white focus-visible:ring-2 focus-visible:ring-blue-500"
           >
             <FiArrowLeft aria-hidden="true" />
             <span>BACK TO PROJECTS</span>
-          </Link>
+          </a>
           <div className="font-archivo text-sm font-bold tracking-widest text-white uppercase">
             {title}
           </div>

@@ -27,6 +27,10 @@
 } */
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     background: var(--background);
     color: var(--foreground);
@@ -47,27 +51,33 @@
   h6 {
     font-family: var(--font-archivo);
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
 }
 
 @layer components {
-  .projects-marquee-track {
-    animation: projects-marquee var(--marquee-duration, 24s) linear infinite;
+  .marquee-track {
+    animation: marquee var(--marquee-duration, 24s) linear infinite;
     animation-play-state: paused;
   }
 
-  .projects-marquee-track-reverse {
+  .marquee-track-reverse {
     animation-direction: reverse;
   }
 
-  [data-in-view="true"] .projects-marquee-track {
+  [data-in-view="true"] .marquee-track {
     animation-play-state: running;
   }
 
-  [data-in-view="true"] .projects-marquee-row:hover .projects-marquee-track {
+  [data-in-view="true"] .marquee-row:hover .marquee-track {
     animation-play-state: paused;
   }
 
-  .projects-marquee-tag {
+  .marquee-tag {
     transition:
       color 180ms ease,
       background-color 180ms ease,
@@ -75,7 +85,7 @@
       transform 180ms ease;
   }
 
-  .projects-marquee-tag:hover {
+  .marquee-tag:hover {
     color: #171717;
     background-color: #f4f4f4;
     box-shadow: inset 0 0 0 1px rgba(23, 23, 23, 0.12);
@@ -83,20 +93,20 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    [data-in-view="true"] .projects-marquee-track {
+    [data-in-view="true"] .marquee-track {
       animation-play-state: paused;
     }
 
-    .projects-marquee-tag {
+    .marquee-tag {
       transition: none;
     }
 
-    .projects-marquee-tag:hover {
+    .marquee-tag:hover {
       transform: none;
     }
   }
 
-  @keyframes projects-marquee {
+  @keyframes marquee {
     from {
       transform: translate3d(0, 0, 0);
     }

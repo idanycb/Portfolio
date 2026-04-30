@@ -10,11 +10,14 @@ gsap.registerPlugin(useGSAP, SplitText, ScrollTrigger);
 
 interface Props extends PropsWithChildren {
   className?: string;
+  as?: React.ElementType;
   tl?: gsap.core.Timeline;
   delay?: number;
   scrollTrigger?: true;
   duration?: number;
   from?: "top" | "bottom" | "left" | "right";
+  clip?: boolean;
+  [key: string]: unknown;
 }
 
 const directionMap: Record<string, GSAPTweenVars> = {
@@ -27,10 +30,13 @@ const directionMap: Record<string, GSAPTweenVars> = {
 export function FadeIn({
   children,
   className,
-  duration = 0.6,
+  as: Component = "div",
+  duration = 0.8,
   from = "bottom",
   delay,
   scrollTrigger,
+  clip = true,
+  ...props
 }: Props) {
   const container = useRef<HTMLDivElement>(null);
 
@@ -48,7 +54,7 @@ export function FadeIn({
         scrollTrigger: scrollTrigger && {
           once: true,
           trigger: container.current,
-          start: "clamp(top center)",
+          start: "clamp(top 80%)",
         },
       });
     },
@@ -56,8 +62,12 @@ export function FadeIn({
   );
 
   return (
-    <div ref={container} className={cx("h-fit overflow-hidden opacity-0", className)}>
+    <Component
+      ref={container}
+      className={cx("h-fit opacity-0", clip ? "overflow-hidden" : "overflow-visible", className)}
+      {...props}
+    >
       {children}
-    </div>
+    </Component>
   );
 }

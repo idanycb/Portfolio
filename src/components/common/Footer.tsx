@@ -1,21 +1,29 @@
-import { BsArrow90DegRight } from "react-icons/bs";
-
 export function Footer() {
   return (
-    <footer className="bg-foreground text-background w-full px-4 py-10 sm:px-10 md:py-12 lg:py-18">
-      <div className="relative container mx-auto">
-        <span className="absolute -top-4 left-0 text-xs font-light text-neutral-300 md:left-1 lg:-top-5 lg:text-sm">
-          your friendly neighborhood coder
+    <footer className="flex items-center justify-between px-4 py-5 lg:grid lg:min-h-30 lg:grid-cols-3 lg:gap-10 lg:px-18">
+      <span className="hidden text-[11px] font-bold tracking-widest text-[#a3a3a3] uppercase lg:block">
+        DANIEL THOMAS — PORTFOLIO 2026
+      </span>
+      {/* Mobile: abbreviated name */}
+      <span className="text-[9px] font-bold tracking-[-0.02em] text-[#a3a3a3] lg:hidden">
+        DANIEL THOMAS — 2026
+      </span>
+      <span className="hidden text-center text-2xl font-black tracking-[-0.05em] uppercase lg:block">
+        DANY.
+      </span>
+      <a
+        href="#hero-section"
+        className="flex items-center gap-2 text-black no-underline transition-opacity hover:opacity-70 focus-visible:ring-2 focus-visible:ring-black lg:justify-end lg:gap-3"
+        aria-label="Back to Top"
+      >
+        <span
+          className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-black text-sm lg:h-9 lg:w-9 lg:border-[3px] lg:text-base"
+          aria-hidden="true"
+        >
+          ↑
         </span>
-        <div className="flex items-center justify-between">
-          <h5 className="font-body text-[1.6rem] font-medium md:text-5xl lg:text-7xl">
-            Check out the site code
-          </h5>
-          <a href="" target="_blank" className="">
-            <BsArrow90DegRight className="h-10 w-10 rounded-full bg-white p-2.5 text-black md:h-12 md:w-12 lg:h-16 lg:w-16 lg:p-4" />
-          </a>
-        </div>
-      </div>
+        <span className="text-[10px] font-bold tracking-[-0.03em] lg:text-[13px]">BACK TO TOP</span>
+      </a>
     </footer>
   );
 }

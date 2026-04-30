@@ -14,6 +14,7 @@ interface Props extends PropsWithChildren {
   delay?: number;
   scrollTrigger?: true;
   singleLine?: true;
+  [key: string]: unknown;
 }
 
 export function TextFadeIn({
@@ -23,6 +24,7 @@ export function TextFadeIn({
   delay,
   singleLine,
   scrollTrigger,
+  ...props
 }: Props) {
   const container = useRef<HTMLDivElement>(null);
 
@@ -55,7 +57,7 @@ export function TextFadeIn({
               scrollTrigger: scrollTrigger && {
                 once: true,
                 trigger: container.current,
-                start: "clamp(top 80% )",
+                start: "clamp(top 90% )",
               },
             });
           },
@@ -67,7 +69,9 @@ export function TextFadeIn({
 
   return (
     <div ref={container} className={cx("h-fit overflow-hidden", className)}>
-      <Cmp className="opacity-0">{children}</Cmp>
+      <Cmp className="opacity-0" {...props}>
+        {children}
+      </Cmp>
     </div>
   );
 }

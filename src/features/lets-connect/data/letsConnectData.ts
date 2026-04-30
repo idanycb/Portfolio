@@ -1,0 +1,43 @@
+export const letsConnectData = {
+  socials: [
+    {
+      num: "01",
+      bar: "Professional Network",
+      platformName: ["LINKED", "IN."],
+      handle: "/in/danycb",
+      tagline: "Connect professionally.\nWork history, skills,\nand recommendations.",
+      url: "linkedin.com/in/danycb",
+      href: "https://www.linkedin.com/in/dabycb",
+      pillLabel: "Professional",
+    },
+    {
+      num: "02",
+      bar: "Code & Projects",
+      platformName: ["GIT", "HUB."],
+      handle: "@idanycb",
+      tagline: "Browse my repositories.\nOpen source work,\nside projects, and commits.",
+      url: "github.com/idanycb",
+      href: "https://github.com/idanycb",
+      pillLabel: "Code",
+    },
+    {
+      num: "03",
+      bar: "Art & Life",
+      platformName: ["INSTA", "GRAM."],
+      handle: "@danyxcb",
+      tagline: "Dance, music, and the\nthings I make when\nI'm not coding.",
+      url: "instagram.com/danyxcb",
+      href: "https://www.instagram.com/danyxcb",
+      pillLabel: "Dance",
+    },
+  ],
+  ticker: [
+    "LinkedIn",
+    "GitHub",
+    "Instagram",
+    "Open to Opportunities",
+    "Let's Build Something",
+    "Get In Touch",
+    "Collaborate",
+  ],
+};

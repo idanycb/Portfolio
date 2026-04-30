@@ -3,7 +3,10 @@ import { Container } from "../ui";
 
 export function AboutMe() {
   return (
-    <section id="about" className="bg-black">
+    <section id="about" className="bg-black" aria-labelledby="about-heading">
+      <h2 id="about-heading" className="sr-only">
+        About Daniel Thomas
+      </h2>
       <Container className="flex flex-col gap-8 py-8 text-white md:flex-row lg:py-16">
         <TextFadeIn scrollTrigger className="font-medium md:w-xl md:text-lg lg:text-2xl">
           Driven by curiosity and a love for design, I create simple, functional, and visually

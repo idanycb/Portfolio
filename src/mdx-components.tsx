@@ -27,8 +27,22 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       </code>
     ),
     a: ({ href, children, ...props }) => {
-      const isInternal = href && href.startsWith("/");
-      if (isInternal) {
+      const isHashNavigation = href && (href.startsWith("#") || href.startsWith("/#"));
+      const isInternalRoute = href && href.startsWith("/") && !isHashNavigation;
+
+      if (isHashNavigation) {
+        return (
+          <a
+            href={href}
+            className="rounded text-blue-400 underline underline-offset-4 outline-none hover:text-blue-300 focus-visible:ring-2 focus-visible:ring-blue-500"
+            {...props}
+          >
+            {children}
+          </a>
+        );
+      }
+
+      if (isInternalRoute) {
         return (
           <Link
             href={href}

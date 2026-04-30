@@ -5,7 +5,6 @@ import gsap from "gsap";
 import MorphSVGPlugin from "gsap/MorphSVGPlugin";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { FiMoreHorizontal } from "react-icons/fi";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(MorphSVGPlugin, useGSAP);
@@ -18,7 +17,6 @@ export function Header() {
 
   const headerRef = useRef<HTMLElement>(null);
   const brandRef = useRef<HTMLDivElement>(null);
-  const bottomButtonRef = useRef<HTMLButtonElement>(null);
   const mobileButtonRef = useRef<HTMLButtonElement>(null);
   const line1Ref = useRef<SVGPathElement>(null);
   const line2Ref = useRef<SVGPathElement>(null);
@@ -58,9 +56,19 @@ export function Header() {
 
   useGSAP(() => {
     const brand = brandRef.current;
-    const bottomButton = bottomButtonRef.current;
     const mobileButton = mobileButtonRef.current;
-    if (!brand || !bottomButton || !mobileButton) return;
+    if (!brand || !mobileButton) return;
+
+    gsap.set(headerRef.current, { opacity: 1 });
+
+    gsap.from(headerRef.current!.children, {
+      duration: 0.8,
+      yPercent: -200,
+      opacity: 0,
+      delay: 0.5,
+      stagger: 0.1,
+      ease: "expo.out",
+    });
 
     const setControlsHidden = (hidden: boolean, immediate = false) => {
       if (areControlsHiddenRef.current === hidden) return;
@@ -68,7 +76,6 @@ export function Header() {
 
       if (immediate) {
         gsap.set(brand, { y: hidden ? -100 : 0, opacity: hidden ? 0 : 1 });
-        gsap.set(bottomButton, { y: hidden ? -80 : 0, opacity: hidden ? 0 : 1 });
         gsap.set(mobileButton, { y: hidden ? -24 : 0, opacity: hidden ? 0 : 1 });
         return;
       }
@@ -79,7 +86,6 @@ export function Header() {
         overwrite: "auto" as const,
       };
       gsap.to(brand, { y: hidden ? -100 : 0, opacity: hidden ? 0 : 1, ...tweenOptions });
-      gsap.to(bottomButton, { y: hidden ? -80 : 0, opacity: hidden ? 0 : 1, ...tweenOptions });
       gsap.to(mobileButton, { y: hidden ? -24 : 0, opacity: hidden ? 0 : 1, ...tweenOptions });
     };
 
@@ -144,7 +150,7 @@ export function Header() {
       scheduleFrame();
     };
 
-    gsap.set([brand, bottomButton, mobileButton], { y: 0, opacity: 1 });
+    gsap.set([brand, mobileButton], { y: 0, opacity: 1 });
     updateHeaderHeight();
     latestScrollYRef.current = window.scrollY;
     lastScrollYRef.current = latestScrollYRef.current;
@@ -181,7 +187,6 @@ export function Header() {
       gsap.killTweensOf(
         [
           brandRef.current,
-          bottomButtonRef.current,
           mobileButtonRef.current,
           line1Ref.current,
           line2Ref.current,
@@ -252,7 +257,7 @@ export function Header() {
     <>
       <header
         ref={headerRef}
-        className={`pointer-events-none z-50 flex w-full flex-col justify-between p-3 pb-6 md:p-6 lg:px-10 ${
+        className={`pointer-events-none z-50 flex w-full flex-col justify-between p-3 pb-6 opacity-0 md:p-6 lg:px-10 ${
           isFixed ? "fixed top-0 h-dvh" : "relative col-start-1 row-start-1 h-full"
         }`}
       >
@@ -274,24 +279,24 @@ export function Header() {
               aria-label="Main Navigation"
               className={`${isFixed ? "glassmorph" : ""} pointer-events-auto hidden items-center gap-22 rounded-full p-3 pr-8 pl-16 xl:flex`}
             >
-              <Link
+              <a
                 href="#about"
                 className="font-archivo text-[16px] font-black tracking-[-0.8px] text-black transition-opacity hover:opacity-70"
               >
                 ABOUT
-              </Link>
-              <Link
+              </a>
+              <a
                 href="#projects"
                 className="font-archivo text-[16px] font-black tracking-[-0.8px] text-black transition-opacity hover:opacity-70"
               >
                 PROJECTS
-              </Link>
-              <Link
+              </a>
+              <a
                 href="#skills"
                 className="font-archivo text-[16px] font-black tracking-[-0.8px] text-black transition-opacity hover:opacity-70"
               >
                 SKILLS
-              </Link>
+              </a>
             </nav>
           </div>
 
@@ -321,15 +326,6 @@ export function Header() {
             </svg>
           </button>
         </div>
-
-        {/* Socials Button */}
-        <button
-          ref={bottomButtonRef}
-          className="glassmorph pointer-events-auto flex h-11 w-11 items-center justify-center rounded-full border-2 border-black p-2 will-change-[transform,opacity] focus-visible:ring-2 focus-visible:ring-black"
-          aria-label="Socials"
-        >
-          <FiMoreHorizontal className="text-xl" />
-        </button>
       </header>
 
       {/* Mobile Modal Menu */}
@@ -344,27 +340,27 @@ export function Header() {
         className="fixed inset-0 z-40 hidden flex-col items-center justify-center bg-white/95 backdrop-blur-sm xl:hidden"
       >
         <nav className="flex flex-col items-center gap-8">
-          <Link
+          <a
             href="#about"
             onClick={toggleMenu}
             className="font-archivo text-[32px] font-black tracking-[-1.6px] text-black transition-opacity hover:opacity-70"
           >
             ABOUT
-          </Link>
-          <Link
+          </a>
+          <a
             href="#projects"
             onClick={toggleMenu}
             className="font-archivo text-[32px] font-black tracking-[-1.6px] text-black transition-opacity hover:opacity-70"
           >
             PROJECTS
-          </Link>
-          <Link
+          </a>
+          <a
             href="#skills"
             onClick={toggleMenu}
             className="font-archivo text-[32px] font-black tracking-[-1.6px] text-black transition-opacity hover:opacity-70"
           >
             SKILLS
-          </Link>
+          </a>
         </nav>
       </div>
     </>

@@ -5,6 +5,9 @@ import flair2k23Image from "@/assets/images/projects/flair-2k23.jpeg";
 import gLearnerImage from "@/assets/images/projects/g-learner.png";
 import placeholderProjectImage from "@/assets/images/projects/job-jive.png";
 import spacexImage from "@/assets/images/projects/spacex.jpeg";
+import portfoliogitopsImage from "@assets/images/projects/portfolio-gitops.png";
+import ragworkspaceImage from "@assets/images/projects/rag-workspace.png";
+import { StaticImport } from "next/dist/shared/lib/get-img-props";
 
 export type SpotlightProjectT = {
   id: number;
@@ -18,6 +21,7 @@ export type SpotlightProjectT = {
   caseStudySlug: string;
   repoURL: string;
   demoURL?: string;
+  image: StaticImport;
 };
 
 export type OtherProjectT = {
@@ -37,6 +41,7 @@ export const spotlightProjects: SpotlightProjectT[] = [
     id: 1,
     titleLines: ["RAG", "WORKSPACE"],
     category: "AI / Full-Stack",
+    image: ragworkspaceImage,
     description:
       "A multi-tenant document intelligence platform that turns complex PDFs into a queryable knowledge vault. Handles direct S3 uploads, asynchronous OCR processing, local embeddings, tenant-isolated pgvector storage, and a multi-stage RAG pipeline for grounded answers with citations.",
     role: "Full-Stack Eng.",
@@ -51,6 +56,7 @@ export const spotlightProjects: SpotlightProjectT[] = [
     id: 2,
     titleLines: ["PORTFOLIO", "GITOPS"],
     category: "DevOps / Infrastructure",
+    image: portfoliogitopsImage,
     description:
       "A declarative GitOps repository for provisioning and operating a production K3s cluster on Oracle Cloud Infrastructure. Uses FluxCD, Infisical, cert-manager, and Traefik for self-healing infrastructure with zero manual SSH workflow after bootstrap.",
     role: "DevOps Lead",
