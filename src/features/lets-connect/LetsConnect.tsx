@@ -12,10 +12,10 @@ export function LetsConnect() {
     >
       {/* Section Header */}
       <header className="flex items-baseline justify-between border-b-[3px] border-black px-4 py-5 lg:px-18">
-        <span className="text-[9px] font-bold tracking-[0.15em] text-[#a3a3a3] uppercase lg:text-[11px]">
+        <span className="text-[9px] font-bold tracking-[0.15em] text-[#717171] uppercase lg:text-[11px]">
           CONTACT
         </span>
-        <span className="text-[9px] font-bold tracking-widest text-[#a3a3a3] lg:text-[11px]">
+        <span className="text-[9px] font-bold tracking-widest text-[#717171] lg:text-[11px]">
           Find me online
         </span>
       </header>
@@ -51,6 +51,7 @@ export function LetsConnect() {
       <ul className="mt-6 border-t-[3px] border-black lg:mt-14 lg:grid lg:grid-cols-3">
         {socials.map((social, i) => (
           <FadeIn
+            as="li"
             from="left"
             scrollTrigger
             key={social.num}

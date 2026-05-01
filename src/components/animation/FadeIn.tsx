@@ -1,26 +1,21 @@
 "use client";
 
-import { useGSAP } from "@gsap/react";
 import { cx } from "classix";
-import gsap from "gsap";
-import { ScrollTrigger, SplitText } from "gsap/all";
-import { PropsWithChildren, useRef } from "react";
-
-gsap.registerPlugin(useGSAP, SplitText, ScrollTrigger);
+import { PropsWithChildren, useEffect, useRef } from "react";
 
 interface Props extends PropsWithChildren {
   className?: string;
   as?: React.ElementType;
-  tl?: gsap.core.Timeline;
   delay?: number;
   scrollTrigger?: true;
   duration?: number;
   from?: "top" | "bottom" | "left" | "right";
   clip?: boolean;
+  lcp?: boolean;
   [key: string]: unknown;
 }
 
-const directionMap: Record<string, GSAPTweenVars> = {
+const directionMap: Record<string, { yPercent?: number; xPercent?: number }> = {
   top: { yPercent: -100 },
   bottom: { yPercent: 100 },
   left: { xPercent: -100 },
@@ -36,35 +31,60 @@ export function FadeIn({
   delay,
   scrollTrigger,
   clip = true,
+  lcp = false,
   ...props
 }: Props) {
   const container = useRef<HTMLDivElement>(null);
 
-  useGSAP(
-    () => {
-      gsap.set(container.current, { opacity: 1 });
+  useEffect(() => {
+    let canceled = false;
+    let cleanup: (() => void) | undefined;
 
-      gsap.from(container.current!.children, {
-        duration: duration,
-        ...directionMap[from],
-        opacity: 0,
-        stagger: 0.1,
-        ease: "expo.out",
-        delay: delay,
-        scrollTrigger: scrollTrigger && {
-          once: true,
-          trigger: container.current,
-          start: "clamp(top 80%)",
-        },
-      });
-    },
-    { scope: container },
-  );
+    const run = async () => {
+      const gsapModule = await import("gsap");
+      const scrollTriggerModule = await import("gsap/ScrollTrigger");
+
+      if (canceled || !container.current) return;
+
+      const gsap = gsapModule.default;
+      const ScrollTrigger = scrollTriggerModule.ScrollTrigger;
+      gsap.registerPlugin(ScrollTrigger);
+
+      const ctx = gsap.context(() => {
+        if (!container.current) return;
+        gsap.set(container.current, { opacity: 1 });
+        gsap.from(container.current.children, {
+          duration,
+          ...directionMap[from],
+          ...(lcp ? {} : { opacity: 0 }),
+          stagger: 0.2,
+          ease: "expo.out",
+          delay,
+          scrollTrigger: scrollTrigger
+            ? {
+                once: true,
+                trigger: container.current,
+                start: "clamp(top 80%)",
+              }
+            : undefined,
+        });
+      }, container);
+
+      cleanup = () => ctx.revert();
+    };
+
+    run();
+
+    return () => {
+      canceled = true;
+      cleanup?.();
+    };
+  }, [delay, duration, from, lcp, scrollTrigger]);
 
   return (
     <Component
       ref={container}
-      className={cx("h-fit opacity-0", clip ? "overflow-hidden" : "overflow-visible", className)}
+      className={cx("h-fit", lcp ? "" : "opacity-0", clip ? "overflow-hidden" : "overflow-visible", className)}
       {...props}
     >
       {children}

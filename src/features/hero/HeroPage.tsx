@@ -19,7 +19,7 @@ export const HeroPage = () => {
           CALL ME
         </span>
       </FadeIn>
-      <FadeIn delay={0.1} className="col-span-2 md:col-span-1 xl:col-span-4 xl:row-start-5">
+      <FadeIn lcp delay={0.1} className="col-span-2 md:col-span-1 xl:col-span-4 xl:row-start-5">
         <h1 className="mb-6 -ml-2 text-[clamp(6.5rem,35cqw,9.3rem)] leading-[0.8] font-extrabold -tracking-widest text-balance md:-ml-3 md:text-[clamp(10rem,40cqw,12rem)] xl:text-[clamp(9rem,11.4vw,14rem)]">
           DANY.
         </h1>
@@ -74,9 +74,10 @@ export const HeroPage = () => {
             <Image
               src={SelfPortrait}
               alt="Portrait of Daniel Thomas"
-              quality={100}
+              quality={90}
               className="h-full w-auto object-cover grayscale"
               priority
+              sizes="(max-width: 1280px) 0vw, 44vw"
             />
           </div>
         </FadeIn>
@@ -130,6 +131,7 @@ export const HeroPage = () => {
               src={SelfPortrait}
               alt="Portrait of Daniel Thomas"
               className="h-full w-auto object-cover grayscale"
+              sizes="(max-width: 768px) 165px, 317px"
               priority
             />
           </div>

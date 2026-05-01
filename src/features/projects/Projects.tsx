@@ -59,14 +59,16 @@ export function Projects() {
         {spotlightProjects.map((project, i) => (
           <FadeIn
             key={project.id}
+            delay={i * 0.2}
             as="li"
-            className="border-b-[3px] border-black md:not-last:border-r-[3px]"
+            className="flex h-full flex-col border-b-[3px] border-black md:not-last:border-r-[3px]"
             scrollTrigger
             from="left"
           >
             {/* Image placeholder */}
             <div className="relative h-50 overflow-hidden border-b-[3px] border-black bg-[#E3E3E3] md:h-90">
               <ParallaxImage
+                sizes="(max-width 768px) 100vw, 50vw"
                 src={project.image}
                 alt={`Cover image for ${project.titleLines.join(" ")}`}
                 fill
@@ -86,60 +88,48 @@ export function Projects() {
             </div>
 
             {/* Card body */}
-            <div className="px-4 pt-5 pb-6 md:px-9 md:pt-8 md:pb-9">
-              <TextFadeIn
-                className="mb-2 text-[9px] font-bold tracking-[0.12em] text-[#A3A3A3] uppercase md:mb-3 md:text-[11px]"
-                scrollTrigger
-              >
-                {project.category}
-              </TextFadeIn>
-              <TextFadeIn
-                as="h4"
-                className="mb-3 text-[30px] leading-[0.93] font-black -tracking-[0.05em] uppercase md:mb-4 md:text-[42px] md:leading-[0.95]"
-                scrollTrigger
-              >
-                {project.titleLines.map((line, li) => (
-                  <span key={li} className="block">
-                    {line}
-                  </span>
-                ))}
-              </TextFadeIn>
-              <TextFadeIn
-                className="mb-5 text-[11px] leading-normal font-bold text-[#4a4848] md:mb-8 md:max-w-95 md:text-[13px]"
-                scrollTrigger
-              >
-                {project.description}
-              </TextFadeIn>
+            <div className="flex grow flex-col justify-between px-4 pt-5 pb-6 md:px-9 md:pt-8 md:pb-9">
+              <div className="w-full">
+                <p className="mb-2 text-[9px] font-bold tracking-[0.12em] text-[#A3A3A3] uppercase md:mb-3 md:text-[11px]">
+                  {project.category}
+                </p>
+                <h4 className="mb-3 text-[30px] leading-[0.93] font-black -tracking-[0.05em] uppercase md:mb-4 md:text-[42px] md:leading-[0.95]">
+                  {project.titleLines.map((line, li) => (
+                    <span key={li} className="block">
+                      {line}
+                    </span>
+                  ))}
+                </h4>
+                <p className="mb-5 text-[11px] leading-normal font-bold text-[#4a4848] md:mb-8 md:max-w-95 md:text-[13px]">
+                  {project.description}
+                </p>
+              </div>
 
               {/* Meta — mobile: equal cols with border dividers; desktop: gap row */}
-              <FadeIn
-                className="mb-5 flex border-t-2 border-[#E3E3E3] pt-3.5 md:mb-8 md:gap-6 md:pt-5"
-                scrollTrigger
-              >
-                {[
-                  { label: "Role", value: project.role },
-                  { label: "Duration", value: project.duration },
-                  { label: "Stack", value: project.stackDisplay },
-                ].map((item, mi) => (
-                  <div
-                    key={item.label}
-                    className={`flex flex-1 flex-col gap-0.75 md:flex-initial md:gap-1 ${mi > 0 ? "border-l-2 border-[#E3E3E3] pl-2 md:border-l-0 md:pl-0" : ""}`}
-                  >
-                    <span className="text-[8px] font-bold tracking-[0.14em] text-[#A3A3A3] uppercase md:text-[9px]">
-                      {item.label}
-                    </span>
-                    <span className="text-[11px] font-bold -tracking-[0.03em] md:text-[13px]">
-                      {item.value}
-                    </span>
-                  </div>
-                ))}
-              </FadeIn>
-
-              {/* CTA — mobile: full-width; desktop: inline */}
-              <FadeIn scrollTrigger>
+              <div className="w-full">
+                <div className="mb-5 flex border-t-2 border-[#E3E3E3] pt-3.5 md:mb-8 md:gap-6 md:pt-5">
+                  {[
+                    { label: "Role", value: project.role },
+                    { label: "Duration", value: project.duration },
+                    { label: "Stack", value: project.stackDisplay },
+                  ].map((item, mi) => (
+                    <div
+                      key={item.label}
+                      className={`flex flex-1 flex-col gap-0.75 md:flex-initial md:gap-1 ${mi > 0 ? "border-l-2 border-[#E3E3E3] pl-2 md:border-l-0 md:pl-0" : ""}`}
+                    >
+                      <span className="text-[8px] font-bold tracking-[0.14em] text-[#A3A3A3] uppercase md:text-[9px]">
+                        {item.label}
+                      </span>
+                      <span className="text-[11px] font-bold -tracking-[0.03em] md:text-[13px]">
+                        {item.value}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+                {/* CTA — mobile: full-width; desktop: inline */}
                 <Link
                   href={`/projects/${project.caseStudySlug}`}
-                  className="flex w-full items-center justify-between bg-black px-4.5 py-3 text-[14px] font-bold -tracking-[0.05em] text-white transition-colors hover:bg-white hover:text-black hover:outline-[3px] hover:outline-black md:inline-flex md:w-auto md:justify-start md:gap-2.5 md:px-5.5 md:py-2.5 md:text-base"
+                  className="flex items-center justify-between bg-black px-4.5 py-3 text-[14px] font-bold -tracking-[0.05em] text-white transition-colors hover:bg-white hover:text-black hover:outline-[3px] hover:outline-black md:inline-flex md:w-auto md:justify-start md:gap-2.5 md:px-5.5 md:py-2.5 md:text-base"
                 >
                   VIEW CASE STUDY
                   <svg
@@ -158,7 +148,7 @@ export function Projects() {
                     />
                   </svg>
                 </Link>
-              </FadeIn>
+              </div>
             </div>
           </FadeIn>
         ))}

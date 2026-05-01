@@ -266,7 +266,7 @@ export function Header() {
           className="z-50 flex items-center justify-between rounded-lg will-change-[transform,opacity] select-none"
         >
           <div className="flex w-full items-center justify-between">
-            <Link href="/" aria-label="Home" className="pointer-events-auto rounded-full">
+            <Link href="/" aria-label="Daniel Thomas – Home" className="pointer-events-auto rounded-full">
               <div className="glassmorph flex items-center justify-center rounded-full border-3 border-black px-4 py-2 transition-colors hover:bg-black hover:text-white">
                 <span className="text-[clamp(1rem,5vw,1.4rem)] leading-[0.95] font-semibold tracking-tight uppercase">
                   Daniel Thomas

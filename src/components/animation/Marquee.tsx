@@ -145,7 +145,7 @@ export function Marquee({ tags }: MarqueeProps) {
                   {rowTags.map((tag, tagIndex) => (
                     <span
                       key={`${tag}-${tagIndex}`}
-                      className="relative inline-flex shrink-0 items-center px-3 py-2.5 text-[9px] font-bold tracking-[0.08em] whitespace-nowrap text-[#A3A3A3] uppercase md:px-6 md:py-3.5 md:text-[13px]"
+                      className="relative inline-flex shrink-0 items-center px-3 py-2.5 text-[9px] font-bold tracking-[0.08em] whitespace-nowrap text-[#717171] uppercase md:px-6 md:py-3.5 md:text-[13px]"
                     >
                       <span className="absolute left-0 inline-block h-1 w-1 shrink-0 -translate-x-1/2 rounded-full bg-[#A3A3A3] md:h-1.5 md:w-1.5" />
                       <span className="marquee-tag inline-block rounded-full px-2 py-1 md:px-2.5">

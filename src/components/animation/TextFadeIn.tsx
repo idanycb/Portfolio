@@ -1,12 +1,7 @@
 "use client";
 
-import { useGSAP } from "@gsap/react";
 import { cx } from "classix";
-import gsap from "gsap";
-import { ScrollTrigger, SplitText } from "gsap/all";
-import { PropsWithChildren, useRef } from "react";
-
-gsap.registerPlugin(useGSAP, SplitText, ScrollTrigger);
+import { PropsWithChildren, useEffect, useRef } from "react";
 
 interface Props extends PropsWithChildren {
   className?: string;
@@ -28,20 +23,41 @@ export function TextFadeIn({
 }: Props) {
   const container = useRef<HTMLDivElement>(null);
 
-  useGSAP(
-    () => {
-      gsap.set(container.current!.children, { opacity: 1 });
+  useEffect(() => {
+    let canceled = false;
+    let cleanup: (() => void) | undefined;
 
-      if (singleLine) {
-        gsap.from(container.current!.children, {
-          duration: 0.6,
-          yPercent: 100,
-          opacity: 0,
-          ease: "expo.out",
-          delay: delay,
-        });
-      } else {
-        SplitText.create(container.current!.children, {
+    const run = async () => {
+      const gsapModule = await import("gsap");
+      const scrollTriggerModule = await import("gsap/ScrollTrigger");
+
+      if (canceled || !container.current) return;
+
+      const gsap = gsapModule.default;
+      const ScrollTrigger = scrollTriggerModule.ScrollTrigger;
+      gsap.registerPlugin(ScrollTrigger);
+
+      const ctx = gsap.context(async () => {
+        if (!container.current) return;
+        gsap.set(container.current.children, { opacity: 1 });
+
+        if (singleLine) {
+          gsap.from(container.current.children, {
+            duration: 0.6,
+            yPercent: 100,
+            opacity: 0,
+            ease: "expo.out",
+            delay,
+          });
+          return;
+        }
+
+        const splitTextModule = await import("gsap/SplitText");
+        if (canceled || !container.current) return;
+        const SplitText = splitTextModule.SplitText;
+        gsap.registerPlugin(SplitText);
+
+        SplitText.create(container.current.children, {
           type: "words,lines",
           linesClass: "line",
           autoSplit: true,
@@ -53,19 +69,29 @@ export function TextFadeIn({
               opacity: 0,
               stagger: 0.1,
               ease: "expo.out",
-              delay: delay,
-              scrollTrigger: scrollTrigger && {
-                once: true,
-                trigger: container.current,
-                start: "clamp(top 90% )",
-              },
+              delay,
+              scrollTrigger: scrollTrigger
+                ? {
+                    once: true,
+                    trigger: container.current,
+                    start: "clamp(top 90% )",
+                  }
+                : undefined,
             });
           },
         });
-      }
-    },
-    { scope: container },
-  );
+      }, container);
+
+      cleanup = () => ctx.revert();
+    };
+
+    run();
+
+    return () => {
+      canceled = true;
+      cleanup?.();
+    };
+  }, [delay, scrollTrigger, singleLine]);
 
   return (
     <div ref={container} className={cx("h-fit overflow-hidden", className)}>

@@ -1,13 +1,8 @@
 "use client";
 
-import { useGSAP } from "@gsap/react";
 import { cx } from "classix";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/all";
 import Image from "next/image";
-import { type ComponentProps, useRef } from "react";
-
-gsap.registerPlugin(useGSAP, ScrollTrigger);
+import { type ComponentProps, useEffect, useRef } from "react";
 
 type ImageProps = ComponentProps<typeof Image>;
 
@@ -19,12 +14,14 @@ interface ParallaxImageProps extends Omit<ImageProps, "className"> {
   start?: string;
   end?: string;
   scrub?: boolean | number;
+  sizes: string;
 }
 
 export function ParallaxImage({
   className,
   imageClassName,
   alt,
+  sizes,
   amount = 18,
   scale = 1.12,
   start = "top bottom",
@@ -37,9 +34,22 @@ export function ParallaxImage({
   const containerRef = useRef<HTMLDivElement>(null);
   const frameRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
+  const refreshScrollTriggerRef = useRef<() => void>(() => {});
 
-  useGSAP(
-    () => {
+  useEffect(() => {
+    let canceled = false;
+    let cleanup: (() => void) | undefined;
+
+    const run = async () => {
+      const gsapModule = await import("gsap");
+      const scrollTriggerModule = await import("gsap/ScrollTrigger");
+
+      if (canceled) return;
+      const gsap = gsapModule.default;
+      const ScrollTrigger = scrollTriggerModule.ScrollTrigger;
+      gsap.registerPlugin(ScrollTrigger);
+      refreshScrollTriggerRef.current = () => ScrollTrigger.refresh();
+
       const container = containerRef.current;
       const frame = frameRef.current;
       const image = imageRef.current;
@@ -103,13 +113,20 @@ export function ParallaxImage({
       resizeObserver.observe(container);
       resizeObserver.observe(image);
 
-      return () => {
+      cleanup = () => {
         resizeObserver.disconnect();
         scrollTrigger.kill();
       };
-    },
-    { dependencies: [amount, end, scale, scrub, start], scope: containerRef },
-  );
+    };
+
+    run();
+
+    return () => {
+      canceled = true;
+      refreshScrollTriggerRef.current = () => {};
+      cleanup?.();
+    };
+  }, [amount, end, scale, scrub, start]);
 
   return (
     <div ref={containerRef} className={cx("absolute inset-0 overflow-hidden", className)}>
@@ -117,10 +134,11 @@ export function ParallaxImage({
         <Image
           {...imageProps}
           alt={alt}
+          sizes={sizes}
           ref={imageRef}
           onLoad={(event) => {
             onLoad?.(event);
-            ScrollTrigger.refresh();
+            refreshScrollTriggerRef.current();
           }}
           className={cx("block h-auto w-full max-w-none object-contain", imageClassName)}
         />
