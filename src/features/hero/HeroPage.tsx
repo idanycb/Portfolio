@@ -11,7 +11,7 @@ export const HeroPage = () => {
   return (
     <section
       id="hero-section"
-      className="font-archivo md:pl-12] relative m-auto grid min-h-dvh max-w-105 grid-cols-[1fr_auto] grid-rows-[repeat(4,min-content)_minmax(40px,auto)] overflow-x-hidden bg-white px-4 pt-20 pb-4 text-black md:max-w-2xl md:pt-24 md:pr-10 md:pb-10 xl:max-w-full xl:grid-cols-12 xl:grid-rows-[repeat(7,min-content)] xl:px-20 xl:pt-28"
+      className="font-archivo md:pl-12] relative m-auto grid min-h-svh max-w-105 grid-cols-[1fr_auto] grid-rows-[repeat(4,min-content)_minmax(40px,auto)] overflow-x-hidden bg-white px-4 pt-20 pb-4 text-black md:min-h-dvh md:max-w-2xl md:pt-24 md:pr-10 md:pb-10 xl:max-w-full xl:grid-cols-12 xl:grid-rows-[repeat(7,min-content)] xl:px-20 xl:pt-28"
     >
       {/* 1. HERO TEXT */}
       <FadeIn from="top" className="col-span-2 mt-5 block h-fit xl:row-start-4 xl:self-end">
@@ -33,7 +33,7 @@ export const HeroPage = () => {
         <FadeIn
           from="top"
           delay={0.2}
-          className="absolute top-2 bottom-2 left-0 hidden h-auto! w-0.5 xl:block"
+          className="absolute top-0 bottom-2 -left-2 hidden h-auto! w-1 xl:block"
         >
           <span className="block h-full w-full bg-black" />
         </FadeIn>

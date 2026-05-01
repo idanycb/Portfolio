@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { FadeIn, ParallaxImage, TextFadeIn } from "@components/animation";
 
+import { RxExternalLink } from "react-icons/rx";
 import { ProjectsMarquee } from "./ProjectsMarquee";
 import { otherProjects, spotlightProjects } from "./data/projects";
 
@@ -127,27 +128,44 @@ export function Projects() {
                   ))}
                 </div>
                 {/* CTA — mobile: full-width; desktop: inline */}
-                <Link
-                  href={`/projects/${project.caseStudySlug}`}
-                  className="flex items-center justify-between bg-black px-4.5 py-3 text-[14px] font-bold -tracking-[0.05em] text-white transition-colors hover:bg-white hover:text-black hover:outline-[3px] hover:outline-black md:inline-flex md:w-auto md:justify-start md:gap-2.5 md:px-5.5 md:py-2.5 md:text-base"
-                >
-                  VIEW CASE STUDY
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                    className="md:h-4 md:w-4"
-                    aria-hidden="true"
+                <div className="flex flex-wrap gap-2.5 md:items-start">
+                  <Link
+                    href={`/projects/${project.caseStudySlug}`}
+                    className="flex items-center justify-between bg-black px-4.5 py-3 text-[14px] font-bold -tracking-[0.05em] text-white transition-colors hover:bg-white hover:text-black hover:outline-[3px] hover:outline-black md:inline-flex md:w-auto md:justify-start md:gap-2.5 md:px-5.5 md:py-2.5 md:text-base"
                   >
-                    <path
-                      d="M3 13L13 3M13 3H5M13 3V11"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="square"
-                    />
-                  </svg>
-                </Link>
+                    VIEW CASE STUDY
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      className="ml-2 md:ml-0 md:h-4 md:w-4"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M3 13L13 3M13 3H5M13 3V11"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="square"
+                      />
+                    </svg>
+                  </Link>
+                  {project.demoURL && (
+                    <a
+                      href={project.demoURL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-between bg-black px-4.5 py-3 text-[14px] font-bold -tracking-[0.05em] text-white transition-colors hover:bg-white hover:text-black hover:outline-[3px] hover:outline-black md:inline-flex md:w-auto md:justify-start md:gap-2.5 md:px-5.5 md:py-2.5 md:text-base"
+                    >
+                      DEMO
+                      <RxExternalLink
+                        className="mb-0.5 ml-2 h-3.5 w-3.5 md:ml-0 md:h-4 md:w-4"
+                        strokeWidth={1}
+                        aria-hidden="true"
+                      />
+                    </a>
+                  )}
+                </div>
               </div>
             </div>
           </FadeIn>
