@@ -7,7 +7,7 @@ export const letsConnectData = {
       handle: "/in/danycb",
       tagline: "Connect professionally.\nWork history, skills,\nand recommendations.",
       url: "linkedin.com/in/danycb",
-      href: "https://www.linkedin.com/in/dabycb",
+      href: "https://www.linkedin.com/in/danycb",
       pillLabel: "Professional",
     },
     {
