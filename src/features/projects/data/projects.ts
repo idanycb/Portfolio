@@ -50,7 +50,7 @@ export const spotlightProjects: SpotlightProjectT[] = [
     tags: ["Spring Boot", "Next.js", "RAG", "PgVector", "AWS", "PostgreSQL"],
     caseStudySlug: "rag-workspace",
     repoURL: "https://github.com/idanycb/findoc-rag",
-    demoURL: "https://doc-analyzer.danycb.tech",
+    demoURL: "https://doc-analyzer.danycb.com",
   },
   {
     id: 2,
@@ -138,7 +138,7 @@ export const projects: ProjectT[] = [
       "A multi-tenant document intelligence platform that turns complex PDFs into a queryable knowledge vault. Built with Spring Boot and Next.js, it handles direct S3 uploads, asynchronous OCR processing, local embeddings, tenant-isolated pgvector storage, and a multi-stage RAG pipeline for grounded answers with citations.",
     tags: ["Spring Boot", "Next.js", "RAG", "PgVector", "AWS", "PostgreSQL"],
     repoURL: "https://github.com/idanycb/findoc-rag",
-    demoURL: "https://doc-analyzer.danycb.tech",
+    demoURL: "https://doc-analyzer.danycb.com",
   },
   {
     id: 2,

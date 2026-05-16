@@ -14,10 +14,10 @@ The repository solves two problems that are easy to underestimate:
 
 The cluster hosts two public applications:
 
-| Domain                     | Application                                   |
-| -------------------------- | --------------------------------------------- |
-| `danycb.tech`              | Personal portfolio website (Next.js / SSR)    |
-| `doc-analyzer.danycb.tech` | FinDoc — an LLM-powered RAG document analyzer |
+| Domain                    | Application                                   |
+| ------------------------- | --------------------------------------------- |
+| `danycb.com`              | Personal portfolio website (Next.js / SSR)    |
+| `doc-analyzer.danycb.com` | FinDoc — an LLM-powered RAG document analyzer |
 
 FinDoc is a multi-component application: a Spring Boot backend, a Next.js frontend, a pgvector database, an Unstructured.io document parsing service, AWS S3/SQS for storage and async ingestion, and Groq for LLM inference.
 
@@ -55,11 +55,11 @@ flowchart LR
     OCI --> Traefik["Traefik v39\nLoadBalancer"]
     Traefik --> Gateway["Gateway API\ntraefik-gateway"]
     Gateway -->|"web:80"| Redirect["HTTP → HTTPS 301"]
-    Gateway -->|"websecure:443\nwildcard TLS"| Portfolio["danycb.tech / www.danycb.tech\n→ portfolio:80"]
-    Gateway -->|"websecure:443\nwildcard TLS"| DocFrontend["doc-analyzer.danycb.tech\n→ frontend:80"]
+    Gateway -->|"websecure:443\nwildcard TLS"| Portfolio["danycb.com / www.danycb.com\n→ portfolio:80"]
+    Gateway -->|"websecure:443\nwildcard TLS"| DocFrontend["doc-analyzer.danycb.com\n→ frontend:80"]
 ```
 
-A single wildcard certificate (`*.danycb.tech` + apex `danycb.tech`) is issued via Let's Encrypt ACME DNS-01 through Cloudflare's API, stored in the `traefik` namespace, and shared across all current and future subdomains. No HTTP-01 endpoint exposure required.
+A single wildcard certificate (`*.danycb.com` + apex `danycb.com`) is issued via Let's Encrypt ACME DNS-01 through Cloudflare's API, stored in the `traefik` namespace, and shared across all current and future subdomains. No HTTP-01 endpoint exposure required.
 
 ### Secrets Architecture
 
@@ -226,7 +226,7 @@ flowchart TD
     FluxSync -->|"Kustomization"| DocAnalyzer["doc-analyzer namespace\nfrontend + backend rollout"]
 
     InfisicalCloud["Infisical Cloud"] -->|"InfisicalSecret CRs\nresync 15m"| Secrets["Kubernetes Secrets\n(all namespaces)"]
-    LetsEncrypt["Let's Encrypt\nACME DNS-01"] -->|"cert-manager\nauto-renew"| TLS["wildcard-danycb-tech-tls\nTraefik namespace"]
+    LetsEncrypt["Let's Encrypt\nACME DNS-01"] -->|"cert-manager\nauto-renew"| TLS["wildcard-danycb-com-tls\nTraefik namespace"]
 ```
 
 Local validation runs via `run-verify.sh`, chaining four checks in order: `yamllint` → `kubeconform` (against pinned CRD JSON schemas generated from Helm charts) → `kustomize build` (every directory containing a `kustomization.yaml`) → `flux kustomization validate` (dry-run for all Flux Kustomization CRs). The pipeline is complete and mature; it awaits a GitHub Actions workflow to enforce it automatically on PRs.
