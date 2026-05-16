@@ -4,15 +4,15 @@ WORKDIR /app
 # Enable corepack and set pnpm store path in one layer
 RUN corepack enable && corepack prepare pnpm@latest --activate
 
-# Copy only lockfile first — pnpm fetch only needs this
-COPY pnpm-lock.yaml ./
+# Copy workspace config and lockfile before fetch so pnpm reads onlyBuiltDependencies consistently
+COPY pnpm-lock.yaml pnpm-workspace.yaml ./
 
 # Use BuildKit cache mount for the pnpm store
 RUN --mount=type=cache,id=pnpm-store,target=/root/.local/share/pnpm/store \
     pnpm fetch
 
 # Now copy the rest and install from the offline store
-COPY package.json pnpm-workspace.yaml ./
+COPY package.json ./
 RUN --mount=type=cache,id=pnpm-store,target=/root/.local/share/pnpm/store \
     pnpm install --frozen-lockfile --prefer-offline
 
