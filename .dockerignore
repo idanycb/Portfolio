@@ -8,6 +8,10 @@ node_modules
 
 # Build outputs and local artifacts
 .next
+!.next/standalone
+!.next/standalone/**
+!.next/static
+!.next/static/**
 out
 dist
 coverage
