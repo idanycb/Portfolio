@@ -1,18 +1,13 @@
 FROM node:22-alpine AS builder
 WORKDIR /app
 
-# Enable corepack and set pnpm store path in one layer
-RUN corepack enable && corepack prepare pnpm@latest --activate
+RUN npm install -g pnpm@latest
 
-# Copy workspace config and lockfile before fetch so pnpm reads onlyBuiltDependencies consistently
-COPY pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY pnpm-lock.yaml pnpm-workspace.yaml package.json ./
 
-# Use BuildKit cache mount for the pnpm store
 RUN --mount=type=cache,id=pnpm-store,target=/root/.local/share/pnpm/store \
     pnpm fetch
 
-# Now copy the rest and install from the offline store
-COPY package.json ./
 RUN --mount=type=cache,id=pnpm-store,target=/root/.local/share/pnpm/store \
     pnpm install --frozen-lockfile --prefer-offline
 
