@@ -29,9 +29,6 @@
     "react-zoom-pan-pinch": "^4.0.3",
     "remark-gfm": "^4.0.1"
   },
-  "pnpm": {
-    "onlyBuiltDependencies": ["sharp", "unrs-resolver"]
-  },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.2.2",
     "@testing-library/dom": "^10.4.1",
