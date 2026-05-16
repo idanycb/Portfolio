@@ -1,4 +1,4 @@
-FROM node:20-alpine AS builder
+FROM node:22-alpine AS builder
 WORKDIR /app
 
 # Enable corepack and set pnpm store path in one layer
@@ -20,7 +20,7 @@ COPY . .
 RUN pnpm build
 
 # --- Runner ---
-FROM node:20-alpine AS runner
+FROM node:22-alpine AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
