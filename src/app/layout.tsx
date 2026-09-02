@@ -1,37 +1,30 @@
 import type { Viewport } from "next";
-import { Archivo, DM_Sans, IBM_Plex_Mono, Inter, Roboto } from "next/font/google";
+import { Architects_Daughter, Archivo, Courier_Prime } from "next/font/google";
+
+import { InkFilterDefinition } from "@/shared/illustrations";
+
 import "./globals.css";
-
-const dMSans = DM_Sans({
-  variable: "--font-dm-sans",
-  subsets: ["latin"],
-});
-
-const roboto = Roboto({
-  variable: "--font-roboto",
-  subsets: ["latin"],
-  weight: "400",
-});
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
-
-const ibmPlexMono = IBM_Plex_Mono({
-  variable: "--font-ibm-plex-mono",
-  subsets: ["latin"],
-  weight: "400",
-});
 
 const archivo = Archivo({
   variable: "--font-archivo",
   subsets: ["latin"],
 });
 
+const courierPrime = Courier_Prime({
+  variable: "--font-courier-prime",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
+
+const architectsDaughter = Architects_Daughter({
+  variable: "--font-architects-daughter",
+  subsets: ["latin"],
+  weight: "400",
+});
+
 export const metadata = {
-  title: "Daniel Thomas — Full Stack Developer",
-  description: "A portfolio site showcasing projects, skills, and design work.",
+  title: "Daniel Thomas - Backend & AI Software Engineer",
+  description: "Backend and AI software engineer building reliable Java, retrieval, and cloud-native systems.",
   keywords: [
     "Daniel Thomas",
     "Full Stack Developer",
@@ -58,8 +51,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${dMSans.variable} ${inter.variable} ${ibmPlexMono.variable} ${archivo.variable} ${roboto.variable} m-0 overflow-x-hidden leading-normal antialiased`}
+        className={`${archivo.variable} ${courierPrime.variable} ${architectsDaughter.variable} overflow-x-hidden antialiased`}
       >
+        <InkFilterDefinition />
         {children}
       </body>
     </html>

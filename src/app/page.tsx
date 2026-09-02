@@ -1,31 +1,26 @@
-import { AboutMe, Footer, Header } from "@components/common";
-import { HeroPage } from "@features/hero/HeroPage";
-import { LetsConnect } from "@features/lets-connect/LetsConnect";
-import { Projects } from "@features/projects/Projects";
-import { SkillsGallery } from "@features/skills/SkillsGallery";
+import { ArchiveSection } from "@/features/home/archive/ArchiveSection";
+import { ContactSection } from "@/features/home/contact/ContactSection";
+import { ExperienceSection } from "@/features/home/experience/ExperienceSection";
+import { HeroSection } from "@/features/home/hero/HeroSection";
+import { SelectedWorkSection } from "@/features/home/selected-work/SelectedWorkSection";
+import { StackSection } from "@/features/home/stack/StackSection";
+import { SiteFooter } from "@/shared/site-footer";
+import { SiteHeader } from "@/shared/site-header";
 
 export default function Home() {
   return (
-    <div className="relative grid">
-      <a
-        href="#main-content"
-        className="sr-only z-[60] rounded-full bg-black px-4 py-2 text-white focus:not-sr-only focus:fixed focus:top-4 focus:left-4"
-      >
-        Skip to Main Content
-      </a>
-      <Header />
-      <main id="main-content" className="contents">
-        <div className="col-start-1 row-start-1">
-          <HeroPage />
-        </div>
-        <div className="col-start-1">
-          <AboutMe />
-          <Projects />
-          <SkillsGallery />
-          <LetsConnect />
-        </div>
+    <div id="top" className="relative overflow-hidden bg-paper">
+      <a href="#main-content" className="sr-only z-50 bg-ink px-4 py-2 text-paper focus:not-sr-only focus:fixed focus:top-4 focus:left-4">Skip to main content</a>
+      <SiteHeader />
+      <main id="main-content">
+        <HeroSection />
+        <SelectedWorkSection />
+        <ExperienceSection />
+        <StackSection />
+        <ArchiveSection />
+        <ContactSection />
       </main>
-      <Footer />
+      <SiteFooter />
     </div>
   );
 }
