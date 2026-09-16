@@ -168,6 +168,15 @@
     font-size: 1.0625rem;
     line-height: 1.75;
   }
+
+  .case-study-prose::first-letter {
+    float: left;
+    margin: 0.08em 0.12em 0 0;
+    font-family: var(--font-archivo), Arial, sans-serif;
+    font-size: 3.1em;
+    line-height: 0.78;
+    font-weight: 900;
+  }
 }
 
 @keyframes fu {

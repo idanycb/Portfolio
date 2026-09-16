@@ -11,6 +11,7 @@ export type SiteHeaderProps = {
   caseStudyLabel?: string;
   backLabel?: string;
   backLabelShort?: string;
+  progressLabel?: string;
 };
 
 export function SiteHeader({
@@ -18,6 +19,7 @@ export function SiteHeader({
   caseStudyLabel,
   backLabel = "← BACK TO THE ISSUE",
   backLabelShort = "← THE ISSUE",
+  progressLabel = "§1 OF 8",
 }: SiteHeaderProps) {
   const isCaseStudy = variant === "case-study" || Boolean(caseStudyLabel);
 
@@ -58,7 +60,7 @@ export function SiteHeader({
               {caseStudyLabel}
             </span>
             <span className="hidden font-mono text-[0.625rem] font-bold tracking-[0.15em] text-ink md:block">
-              §1 OF 8
+              {progressLabel}
             </span>
           </>
         ) : (

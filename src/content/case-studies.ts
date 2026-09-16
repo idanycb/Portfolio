@@ -15,6 +15,17 @@ export type CaseStudySectionData = {
     bodyShort?: string;
   }[];
   metrics?: readonly { metric: string; method: string; result: string }[];
+  pipeline?: {
+    caption: string;
+    steps: readonly { title: string; detail: string }[];
+  };
+  amendmentDiagram?: {
+    label: string;
+    caption: string;
+    filings: readonly { title: string; state: string }[];
+    question: string;
+    answer: string;
+  };
 };
 
 export type CaseStudy = {
@@ -28,10 +39,23 @@ export type CaseStudy = {
   metadata: readonly { label: string; value: string; valueShort?: string }[];
   tocLabel: string;
   tocLabelShort: string;
+  tocOpenLabel: string;
+  tocCloseLabel: string;
+  tocNavLabel: string;
+  railNavLabel: string;
+  progressLabel: string;
   sections: readonly CaseStudySectionData[];
+  evaluationHeaders: readonly [string, string, string];
+  notesLabel: string;
   notes: readonly string[];
+  nextLabel: string;
+  backToTopLabel: string;
   next: { slug: string; label: string; labelShort?: string; href: string };
-  seo: { title: string; description: string };
+  seo: {
+    title: string;
+    description: string;
+    openGraph: { title: string; description: string; type: "article" };
+  };
 };
 
 export const caseStudies = {
@@ -51,6 +75,11 @@ export const caseStudies = {
     ],
     tocLabel: "ON THIS PAGE",
     tocLabelShort: "ON THIS PAGE · 8 SECTIONS",
+    tocOpenLabel: "OPEN TABLE OF CONTENTS",
+    tocCloseLabel: "CLOSE TABLE OF CONTENTS",
+    tocNavLabel: "Case study table of contents",
+    railNavLabel: "Case study sections",
+    progressLabel: "§1 OF 8",
     sections: [
       {
         id: "s1",
@@ -67,6 +96,17 @@ export const caseStudies = {
         heading: "THE PROBLEM, DRAWN",
         body: "An annual report is not one document. A 10-K/A amends specific sections of its parent filing and leaves the rest standing. Treat the newest file as the truth and you answer confidently from a document that was never complete; treat them as separate documents and you cite text that has since been revised.",
         variant: "prose",
+        amendmentDiagram: {
+          label: "Three related SEC filings resolve into one applicable evidence set.",
+          caption: "AMENDMENTS SUPERSEDE PARTS, NOT WHOLE FILINGS",
+          filings: [
+            { title: "10-K", state: "BASE FILING" },
+            { title: "10-K/A", state: "SECTION UPDATE" },
+            { title: "10-K/A #2", state: "LATER UPDATE" },
+          ],
+          question: "WHICH TEXT APPLIES?",
+          answer: "RESOLVE LINEAGE AT QUERY TIME",
+        },
       },
       {
         id: "s3",
@@ -75,6 +115,16 @@ export const caseStudies = {
         heading: "SYSTEM",
         body: "Ingestion pulls filings from EDGAR, Docling parses them into structured sections, and chunks are embedded into pgvector alongside their filing metadata. Retrieval runs in passes and stops as soon as the evidence is sufficient; generation only ever sees text it can cite.",
         variant: "prose",
+        pipeline: {
+          caption: "INGESTION → RETRIEVAL → CITED ANSWER",
+          steps: [
+            { title: "EDGAR pull", detail: "Source filing and amendment metadata" },
+            { title: "Docling parse", detail: "Structured sections and chunks" },
+            { title: "pgvector + lineage", detail: "Embeddings with filing relationships" },
+            { title: "Progressive retrieval", detail: "Evidence gathered in passes" },
+            { title: "Cited answer", detail: "Claims tied back to filing metadata" },
+          ],
+        },
       },
       {
         id: "s4",
@@ -138,11 +188,15 @@ export const caseStudies = {
         variant: "prose",
       },
     ],
+    evaluationHeaders: ["METRIC", "METHOD", "RESULT"],
+    notesLabel: "NOTES",
     notes: [
       "[1] ADR-1 — AMENDMENT LINEAGE · REPO /DOCS/ADR ↗",
       "[2] ADR-2 — IDEMPOTENT INGESTION · COMMIT 8BE0CD3 ↗",
       "[3] RETRIEVAL NOTES & EVAL HARNESS ↗",
     ],
+    nextLabel: "NEXT CASE STUDY",
+    backToTopLabel: "BACK TO TOP ↑",
     next: {
       slug: "portfolio-gitops",
       label: "PORTFOLIO GITOPS →",
@@ -153,6 +207,12 @@ export const caseStudies = {
       title: "FinDoc Case Study | Daniel Thomas Jesudoss",
       description:
         "Making amended SEC filings answerable, with every claim traceable back to the page it came from.",
+      openGraph: {
+        title: "FinDoc Case Study | Daniel Thomas Jesudoss",
+        description:
+          "Making amended SEC filings answerable, with every claim traceable back to the page it came from.",
+        type: "article",
+      },
     },
   },
 } as const satisfies Record<string, CaseStudy>;

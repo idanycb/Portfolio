@@ -6,7 +6,6 @@ import { CaseStudyPage } from "@/features/case-study/CaseStudyPage";
 import { CaseStudySection } from "@/features/case-study/CaseStudySection";
 import { DecisionBlock } from "@/features/case-study/DecisionBlock";
 import { EvaluationTable } from "@/features/case-study/EvaluationTable";
-import { AmendmentLineageFigure, DocumentSketch, EvolutionArrow, HandDrawnUnderline, RailArrowAnnotation, RetrievalPipelineFigure } from "@/features/case-study/EditorialIllustrations";
 import { SystemFlow, TechnicalFigure } from "@/features/case-study/TechnicalFigure";
 
 const tableClasses = "border-b border-rule px-3 py-3 align-top first:pl-0 last:pr-0";
@@ -20,12 +19,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     DecisionBlock,
     EvaluationTable,
     CaseStudyNotes,
-    AmendmentLineageFigure,
-    DocumentSketch,
-    EvolutionArrow,
-    HandDrawnUnderline,
-    RailArrowAnnotation,
-    RetrievalPipelineFigure,
     h2: ({ children, ...props }) => <h2 className="font-display text-3xl leading-9 font-black tracking-[-0.045em] sm:text-4xl" {...props}>{children}</h2>,
     h3: ({ children, ...props }) => <h3 className="mt-7 font-display text-xl leading-7 font-extrabold tracking-[-0.025em]" {...props}>{children}</h3>,
     p: ({ children, ...props }) => <p className="prose-editorial mt-4 max-w-[43rem]" {...props}>{children}</p>,
