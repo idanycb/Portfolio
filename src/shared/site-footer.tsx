@@ -1,46 +1,140 @@
 import Link from "next/link";
 
-import { siteProfile } from "./site-profile";
+import { homeContent } from "@/content/home";
+
+import { ResponsiveCopy } from "./responsive-copy";
 import { SiteContainer } from "./site-container";
 
-type SiteFooterProps = {
+export type SiteFooterProps = {
+  variant?: "home" | "case-study";
   nextCaseStudy?: {
     href: string;
     label: string;
+    labelShort?: string;
   };
 };
 
-export function SiteFooter({ nextCaseStudy }: SiteFooterProps) {
-  if (nextCaseStudy) {
-    return <footer className="bg-inverse text-paper"><SiteContainer className="flex flex-col gap-5 py-8 sm:flex-row sm:items-end sm:justify-between"><div><span className="font-mono text-[0.625rem] tracking-[0.16em] text-inverse-muted uppercase">Next case study</span><Link href={nextCaseStudy.href} className="mt-2 block font-display text-3xl font-black tracking-[-0.055em] text-paper hover:text-inverse-muted sm:text-4xl">{nextCaseStudy.label} →</Link></div><Link href="/" className="font-mono text-[0.625rem] tracking-[0.16em] text-inverse-muted uppercase hover:text-paper">Back to the issue ↑</Link></SiteContainer></footer>;
+export function SiteFooter({ variant, nextCaseStudy }: SiteFooterProps) {
+  const isCaseStudy = variant === "case-study" || Boolean(nextCaseStudy);
+
+  if (isCaseStudy && nextCaseStudy) {
+    return (
+      <footer className="bg-ink-dark text-paper">
+        <SiteContainer className="flex flex-col gap-8 py-8 md:flex-row md:items-end md:justify-between md:py-[2.125rem]">
+          <div>
+            <span className="font-mono text-[0.625rem] tracking-[0.16em] text-inverse-muted">
+              NEXT CASE STUDY
+            </span>
+            <Link
+              href={nextCaseStudy.href}
+              className="mt-2 block font-display text-3xl leading-[0.95] font-black tracking-[-0.055em] whitespace-pre-line text-paper hover:text-inverse-muted md:text-4xl"
+            >
+              <ResponsiveCopy long={nextCaseStudy.label} short={nextCaseStudy.labelShort} />
+            </Link>
+          </div>
+          <Link
+            href="#top"
+            className="w-fit font-mono text-[0.625rem] tracking-[0.16em] text-inverse-muted hover:text-paper"
+          >
+            <ResponsiveCopy long="BACK TO THE ISSUE ↑" short="BACK TO TOP ↑" />
+          </Link>
+        </SiteContainer>
+      </footer>
+    );
   }
 
   return (
-    <footer className="bg-inverse text-paper">
-      <SiteContainer className="grid gap-9 py-12 sm:grid-cols-2 lg:grid-cols-[1.45fr_0.8fr_1.15fr_1fr] lg:py-14">
+    <footer className="bg-ink-dark text-paper">
+      <SiteContainer className="grid gap-8 py-10 md:grid-cols-[1.45fr_0.8fr_1.15fr_1fr] md:gap-9 md:py-14">
         <div>
-          <Link href="/#top" className="relative inline-block font-display text-3xl font-black tracking-[-0.055em] text-paper hover:text-inverse-muted">
-            {siteProfile.wordmark}<svg aria-hidden viewBox="0 0 150 18" className="absolute -bottom-2 left-0 h-5 w-36 fill-none stroke-current" strokeWidth="2.2" strokeLinecap="round"><path d="M4 9 C40 3, 108 4, 146 10" /></svg>
+          <Link
+            href="/#top"
+            className="inline-flex min-h-11 items-center font-display text-[2.375rem] font-black tracking-[-0.055em] text-paper hover:text-inverse-muted"
+          >
+            {homeContent.profile.wordmark}
           </Link>
-          <p className="mt-5 max-w-xs text-[0.82rem] leading-6 text-inverse-muted">{siteProfile.name}, {siteProfile.role.toLowerCase()}.</p>
+          <p className="mt-4 max-w-xs text-[0.8125rem] leading-[1.7] text-inverse-muted md:mt-6">
+            {homeContent.footer.description}
+          </p>
         </div>
         <nav aria-label="Footer navigation">
-          <p className="font-mono text-[0.625rem] tracking-[0.18em] text-[#6f6a63] uppercase">Site</p>
-          <div className="mt-4 flex flex-col gap-3 font-mono text-[0.6875rem] font-bold tracking-[0.12em] uppercase">{siteProfile.navigation.map((item) => <Link key={item.href} href={item.href} className="w-fit text-paper hover:text-inverse-muted">{item.label}</Link>)}</div>
+          <p className="font-mono text-[0.625rem] tracking-[0.2em] text-inverse-subtle">
+            {homeContent.footer.siteLabel}
+          </p>
+          <div className="mt-3 flex flex-col gap-1 font-mono text-[0.6875rem] font-bold tracking-[0.12em] md:mt-4">
+            {homeContent.navigation
+              .filter((item) => item.href !== "#archive")
+              .map((item) => (
+                <Link
+                  key={item.href}
+                  href={`/${item.href}`}
+                  className="flex min-h-11 w-fit items-center text-paper hover:text-inverse-muted"
+                >
+                  {item.label}
+                </Link>
+              ))}
+          </div>
         </nav>
         <div>
-          <p className="font-mono text-[0.625rem] tracking-[0.18em] text-[#6f6a63] uppercase">Professional</p>
-          <div className="mt-4 flex flex-col gap-3 font-mono text-[0.6875rem] font-bold tracking-[0.12em] uppercase">{siteProfile.social.map((item) => <a key={item.href} href={item.href} target="_blank" rel="noreferrer" className="w-fit text-paper hover:text-inverse-muted">{item.label} ↗</a>)}<a href={`mailto:${siteProfile.email}?subject=Resume%20request`} className="w-fit text-paper hover:text-inverse-muted">Résumé request ↓</a></div>
+          <ResponsiveCopy
+            as="p"
+            long={homeContent.footer.socialLabel}
+            short={homeContent.footer.socialLabelShort}
+            className="font-mono text-[0.625rem] tracking-[0.2em] text-inverse-subtle"
+          />
+          <div className="mt-3 flex flex-col gap-1 font-mono text-[0.6875rem] font-bold tracking-[0.12em] md:mt-4">
+            {homeContent.profile.social.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex min-h-11 w-fit items-center text-paper hover:text-inverse-muted"
+              >
+                <ResponsiveCopy long={item.label} short={item.labelShort} />
+              </a>
+            ))}
+            <Link
+              href="/#contact"
+              className="flex min-h-11 w-fit items-center text-paper hover:text-inverse-muted"
+            >
+              RÉSUMÉ (PDF) ↓
+            </Link>
+          </div>
         </div>
-        <div>
-          <p className="font-mono text-[0.625rem] tracking-[0.18em] text-[#6f6a63] uppercase">Direct</p>
-          <div className="mt-4 flex flex-col gap-3 font-mono text-[0.6875rem] font-bold tracking-[0.12em] uppercase"><a href={`mailto:${siteProfile.email}`} className="w-fit break-all text-paper hover:text-inverse-muted">{siteProfile.email}</a><a href={siteProfile.url} className="w-fit text-paper hover:text-inverse-muted">danycb.com</a></div>
+        <div className="hidden md:block">
+          <p className="font-mono text-[0.625rem] tracking-[0.2em] text-inverse-subtle">
+            {homeContent.footer.directLabel}
+          </p>
+          <div className="mt-4 flex flex-col gap-1 font-mono text-[0.6875rem] font-bold tracking-[0.12em]">
+            <a
+              href={`mailto:${homeContent.profile.email}`}
+              className="flex min-h-11 w-fit items-center break-all text-paper hover:text-inverse-muted"
+            >
+              {homeContent.profile.email.toUpperCase()}
+            </a>
+            <a
+              href="tel:+18178197277"
+              className="flex min-h-11 w-fit items-center text-paper hover:text-inverse-muted"
+            >
+              {homeContent.profile.phone}
+            </a>
+            <a
+              href={homeContent.profile.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex min-h-11 w-fit items-center text-paper hover:text-inverse-muted"
+            >
+              DANYCB.COM
+            </a>
+          </div>
         </div>
       </SiteContainer>
-      <SiteContainer className="flex flex-col gap-3 border-t border-white/15 py-5 font-mono text-[0.625rem] tracking-[0.12em] text-inverse-muted uppercase sm:flex-row sm:items-center sm:justify-between">
-        <span>© 2026 {siteProfile.name}</span>
-        <Link href="/#top" className="w-fit hover:text-paper">
-          Back to top ↑
+      <SiteContainer className="flex flex-col gap-2 border-t border-inverse-subtle py-4 font-mono text-[0.5625rem] leading-[1.8] tracking-[0.16em] text-inverse-subtle md:flex-row md:items-center md:justify-between md:py-5 md:text-[0.59375rem]">
+        <span>{homeContent.footer.copyright}</span>
+        <ResponsiveCopy long={homeContent.footer.notes} short={homeContent.footer.notesShort} />
+        <Link href="#top" className="flex min-h-11 w-fit items-center text-inverse-subtle hover:text-paper">
+          BACK TO TOP ↑
         </Link>
       </SiteContainer>
     </footer>

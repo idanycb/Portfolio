@@ -1,21 +1,58 @@
-import type { ReactNode } from "react";
+import type { ElementType } from "react";
 
-type SectionHeadingProps = {
-  title: ReactNode;
-  eyebrow?: ReactNode;
-  intro?: ReactNode;
+import { ResponsiveCopy } from "./responsive-copy";
+
+export type SectionHeadingProps = {
+  number?: string;
+  title: string;
+  titleShort?: string;
+  meta?: string;
+  metaShort?: string;
   id?: string;
+  level?: 2 | 3;
+  inverse?: boolean;
   className?: string;
 };
 
-export function SectionHeading({ title, eyebrow, intro, id, className = "" }: SectionHeadingProps) {
+export function SectionHeading({
+  number,
+  title,
+  titleShort,
+  meta,
+  metaShort,
+  id,
+  level = 2,
+  inverse = false,
+  className = "",
+}: SectionHeadingProps) {
+  const Heading = `h${level}` as ElementType;
+
   return (
-    <header className={`max-w-3xl ${className}`}>
-      {eyebrow ? <p className="font-mono text-[0.625rem] tracking-[0.18em] text-ink-muted uppercase">{eyebrow}</p> : null}
-      <h2 id={id} className="mt-3 font-display text-4xl leading-[0.95] font-black tracking-[-0.055em] text-ink sm:text-5xl">
-        {title}
-      </h2>
-      {intro ? <p className="mt-5 max-w-[62ch] text-base leading-7 text-ink-soft">{intro}</p> : null}
+    <header className={className}>
+      <div className="flex items-baseline gap-3">
+        {number ? (
+          <span
+            className={`font-mono text-xs font-bold tracking-[0.1em] ${inverse ? "text-inverse-muted" : "text-muted"}`}
+          >
+            {number}
+          </span>
+        ) : null}
+        <ResponsiveCopy
+          as={Heading}
+          id={id}
+          long={title}
+          short={titleShort}
+          className={`scroll-mt-28 whitespace-pre-line font-display font-black ${level === 2 ? "text-section-title" : "text-case-section"} ${inverse ? "text-paper" : "text-ink"}`}
+        />
+      </div>
+      {meta ? (
+        <ResponsiveCopy
+          as="p"
+          long={meta}
+          short={metaShort}
+          className={`mt-3 font-mono text-[0.625rem] tracking-[0.16em] ${inverse ? "text-inverse-muted" : "text-muted"}`}
+        />
+      ) : null}
     </header>
   );
 }

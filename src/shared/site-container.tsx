@@ -6,7 +6,7 @@ type SiteContainerProps = HTMLAttributes<HTMLDivElement> & {
 
 export function SiteContainer({ children, className = "", ...props }: SiteContainerProps) {
   return (
-    <div className={`mx-auto w-full max-w-[1240px] px-5 sm:px-8 lg:px-12 ${className}`} {...props}>
+    <div className={`max-w-site mx-auto w-full px-5 md:px-12 ${className}`} {...props}>
       {children}
     </div>
   );
