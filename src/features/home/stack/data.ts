@@ -1,1 +1,0 @@
-export const stackItems = [["Primary", "Java, Spring Boot, PostgreSQL and pgvector, RAG, LangChain4j, AWS"], ["Product delivery", "TypeScript, React, Next.js, REST APIs, responsive UI"], ["Infrastructure", "Docker, Kubernetes and K3s, FluxCD, CI/CD, Oracle Cloud"], ["Additional", "Python, C and C++, Go, CUDA"]] as const;

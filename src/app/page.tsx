@@ -1,3 +1,4 @@
+import { homeContent } from "@/content/home";
 import { ArchiveSection } from "@/features/home/archive/ArchiveSection";
 import { ContactSection } from "@/features/home/contact/ContactSection";
 import { ExperienceSection } from "@/features/home/experience/ExperienceSection";
@@ -9,16 +10,19 @@ import { SiteHeader } from "@/shared/site-header";
 
 export default function Home() {
   return (
-    <div id="top" className="relative overflow-hidden bg-paper">
-      <a href="#main-content" className="sr-only z-50 bg-ink px-4 py-2 text-paper focus:not-sr-only focus:fixed focus:top-4 focus:left-4">Skip to main content</a>
+    <div id="top" className="bg-paper relative overflow-hidden">
       <SiteHeader />
-      <main id="main-content">
-        <HeroSection />
-        <SelectedWorkSection />
-        <ExperienceSection />
-        <StackSection />
-        <ArchiveSection />
-        <ContactSection />
+      <main id="main-content" tabIndex={-1}>
+        <HeroSection content={homeContent.hero} />
+        <SelectedWorkSection content={homeContent.work} />
+        <ExperienceSection content={homeContent.experience} />
+        <StackSection content={homeContent.stack} />
+        <ArchiveSection content={homeContent.archive} />
+        <ContactSection
+          content={homeContent.contact}
+          email={homeContent.profile.email}
+          phone={homeContent.profile.phone}
+        />
       </main>
       <SiteFooter />
     </div>

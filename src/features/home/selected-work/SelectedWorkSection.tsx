@@ -1,36 +1,30 @@
-import { ActionLink } from "@/shared/action-link";
+import type { HomepageContent } from "@/content/home";
+import { SectionHeading } from "@/shared/section-heading";
 import { SiteContainer } from "@/shared/site-container";
 
-import { selectedWork } from "./data";
+import { WorkCard } from "./WorkCard";
 
-export function SelectedWorkSection() {
+type SelectedWorkSectionProps = { content: HomepageContent["work"] };
+
+export function SelectedWorkSection({ content }: SelectedWorkSectionProps) {
   return (
-    <section id="work" className="scroll-mt-16 pb-16 lg:pb-20">
+    <section
+      id="work"
+      className="border-ink scroll-mt-32 border-b-[1.6px] py-11 pb-12 md:py-20 md:pb-24"
+    >
       <SiteContainer>
-        <div className="relative rounded-[4px] p-6 sm:p-9">
-          <div aria-hidden className="ink-sketch pointer-events-none absolute inset-0 rounded-[4px] border-2 border-ink" />
-          <div className="relative">
-            <SectionTitle number="1" title="Selected work" note="Two projects / shown in full" />
-            <article className="mt-10 grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:gap-14"><ProjectCopy project={selectedWork.findoc} /><FinDocDiagram /></article>
-            <div aria-hidden className="my-10 border-t border-dashed border-ink sm:my-12" />
-            <article className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:gap-14"><GitOpsDiagram /><ProjectCopy project={selectedWork.gitops} /></article>
-          </div>
+        <SectionHeading
+          number="§1"
+          title={content.heading}
+          titleShort={content.headingShort}
+          meta={content.meta}
+        />
+        <div className="border-ink mt-8 border-t-[1.6px] md:mt-10">
+          {content.projects.map((project, index) => (
+            <WorkCard key={project.slug} project={project} index={index} />
+          ))}
         </div>
       </SiteContainer>
     </section>
   );
 }
-
-type Project = typeof selectedWork.findoc | typeof selectedWork.gitops;
-
-function SectionTitle({ number, title, note }: { number: string; title: string; note: string }) {
-  return <header><div className="flex flex-wrap items-end justify-between gap-4"><div className="flex items-baseline gap-4"><span className="font-mono text-xs font-bold tracking-[0.1em] text-ink-muted">§{number}</span><h2 className="font-display text-4xl leading-[0.9] font-black tracking-[-0.05em] uppercase sm:text-5xl">{title}</h2></div><p className="pb-1 font-mono text-[0.625rem] tracking-[0.16em] text-ink-muted uppercase">{note}</p></div><svg aria-hidden viewBox="0 0 1144 18" preserveAspectRatio="none" className="ink-sketch mt-4 h-[18px] w-full fill-none stroke-ink" strokeWidth="2.8" strokeLinecap="round"><path d="M3 11 C160 4, 300 15, 460 9 C620 3, 760 15, 920 9 C1010 6, 1080 7, 1141 10" /></svg></header>;
-}
-
-function ProjectCopy({ project }: { project: Project }) {
-  const isFindoc = project.number === "01";
-  return <div className="text-ink"><div className="flex items-baseline gap-3"><span className="font-display text-4xl font-black tracking-[-0.05em] text-[#b8b2a8]">{project.number}</span><p className="font-mono text-[0.625rem] tracking-[0.18em] text-ink-muted uppercase">{project.category}</p></div><div className="relative mt-2 inline-block"><h3 className="font-display text-5xl leading-[0.84] font-black tracking-[-0.065em] sm:text-6xl lg:text-7xl">{project.title.map((line) => <span key={line} className="block">{line}</span>)}</h3>{isFindoc ? <svg aria-hidden viewBox="0 0 360 132" className="ink-sketch pointer-events-none absolute -top-5 -left-7 h-32 w-[360px] max-w-[115%] fill-none stroke-current" strokeWidth="1.9" strokeLinecap="round"><path d="M64 10 C192 2, 334 20, 340 62 C346 102, 198 118, 98 113 C32 109, 8 88, 15 60 C22 34, 62 17, 136 11" /></svg> : null}</div><p className="mt-7 max-w-xl text-base leading-7 text-ink-soft">{project.description}</p><div className="mt-6 grid gap-3 text-sm leading-6 text-[#4a463f]">{project.details.map(([label, value]) => <p key={label} className="grid gap-2 border-t border-[#e6e2da] pt-3 sm:grid-cols-[6.5rem_1fr]"><span className="font-mono text-[0.625rem] font-bold tracking-[0.14em] text-ink-muted uppercase">{label}</span><span>{value}</span></p>)}</div><p className="mt-6 font-mono text-[0.625rem] leading-6 tracking-[0.12em] text-ink-muted uppercase">{project.stack}</p><div className="mt-7 flex flex-wrap gap-3"><ActionLink href={project.caseStudyHref}>Read case study ↗</ActionLink>{"demoHref" in project ? <ActionLink href={project.demoHref} target="_blank" rel="noreferrer" variant="outline">Live demo</ActionLink> : <ActionLink href={project.repoHref} target="_blank" rel="noreferrer" variant="outline">Repository</ActionLink>}</div>{!isFindoc ? <div className="relative mt-8 pl-16" aria-hidden="true"><svg viewBox="0 0 64 60" className="ink-sketch absolute top-0 left-0 h-14 w-16 fill-none stroke-current" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M6 14 C22 8, 44 16, 54 36" /><path d="M42 32 C47 33, 52 35, 55 37 C54 41, 52 46, 50 51" /></svg><p className="font-annotation text-lg leading-6 -rotate-1 text-[#4a463f]">This website is deployed by the project described here.</p></div> : null}</div>;
-}
-
-function FinDocDiagram() { return <figure className="self-center"><div className="border border-ink bg-paper p-4"><svg aria-hidden viewBox="0 0 472 330" className="h-auto w-full fill-none stroke-ink" strokeLinecap="round" strokeLinejoin="round"><g strokeWidth="1.7"><path d="M16 34 L140 34 L140 82 L16 82 Z M180 34 L302 34 L302 82 L180 82 Z M342 34 L456 34 L456 82 L342 82 Z" /><path d="M144 58 L175 58 M167 52 L176 58 L167 64 M306 58 L337 58 M329 52 L338 58 L329 64 M399 86 L399 148 M393 139 L399 150 L405 139" /><path d="M318 154 C318 151,321 148,326 148 L456 148 C461 148,464 151,464 156 L464 208 C464 213,461 216,456 216 L326 216 C321 216,318 213,318 208 Z" /><path d="M26 166 C26 160,58 156,88 156 C118 156,150 160,150 166 L150 240 C150 247,118 251,88 251 C58 251,26 247,26 240 Z M26 166 C26 173,58 177,88 177 C118 177,150 173,150 166" /><path d="M154 206 C210 203,274 192,314 184 M305 177 L315 183 L305 190 M88 253 L88 292 M82 283 L88 294 L94 283" /></g><g className="fill-ink stroke-none font-annotation text-[15px]"><text x="32" y="64">EDGAR pull</text><text x="194" y="64">Docling parse</text><text x="352" y="64">chunk + embed</text><text x="42" y="200">pgvector</text><text x="42" y="222">+ lineage</text><text x="336" y="178">progressive</text><text x="336" y="199">retrieval</text><text x="30" y="302">cited answer</text></g></svg></div><figcaption className="mt-2 border-t border-ink pt-2 font-mono text-[0.55rem] tracking-[0.14em] text-ink-muted uppercase">Figure 1 / Ingestion to cited answer</figcaption><p className="mt-4 font-annotation text-lg leading-6 -rotate-1">The amendment problem lives in the lineage.</p></figure>; }
-function GitOpsDiagram() { return <figure className="self-center"><div className="border border-ink bg-[#fffdf9] p-4"><svg aria-hidden viewBox="0 0 472 300" className="h-auto w-full fill-none stroke-ink" strokeLinecap="round" strokeLinejoin="round"><g strokeWidth="1.6"><path d="M18 26 C18 21,22 18,28 18 L444 18 C450 18,454 21,454 27 L454 268 C454 274,450 277,444 277 L28 277 C22 277,18 274,18 268 Z" /><path d="M52 66 L172 66 L172 112 L52 112 Z M304 66 L424 66 L424 112 L304 112 Z M52 186 L172 186 L172 232 L52 232 Z M304 186 L424 186 L424 232 L304 232 Z" /><path d="M176 89 L299 89 M291 83 L300 89 L291 95 M112 116 L112 182 M106 173 L112 184 L118 173 M364 116 L364 182 M358 173 L364 184 L370 173 M196 250 C216 262,256 262,276 250 M268 244 L278 249 L272 258" /></g><g className="fill-ink stroke-none font-annotation text-[15px]"><text x="72" y="94">Git repo</text><text x="324" y="94">FluxCD</text><text x="68" y="214">Infisical</text><text x="318" y="214">Traefik + TLS</text><text x="188" y="44" className="fill-ink-muted text-[12px]">K3s / OCI ARM</text><text x="150" y="272" className="fill-ink-muted">reconciles itself</text></g></svg></div><figcaption className="mt-2 flex justify-between border-t border-ink pt-2 font-mono text-[0.55rem] tracking-[0.14em] text-ink-muted uppercase"><span>Fig. 2</span><span>The reconciliation loop</span></figcaption></figure>; }
