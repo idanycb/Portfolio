@@ -65,12 +65,14 @@ export type HomepageContent = {
     image: { src: string; alt: string; sizes: string; aspectRatio: string };
     captionLeft: string;
     captionRight: string;
+    notes: { start: string; portrait: string; portraitShort: string };
   };
   work: {
     heading: string;
     headingShort?: string;
     meta: string;
     projects: readonly WorkProject[];
+    notes: { findoc: string; gitops: string };
   };
   experience: {
     heading: string;
@@ -78,11 +80,14 @@ export type HomepageContent = {
     range: string;
     items: readonly ExperienceItem[];
     certifications: string;
+    note: string;
   };
   stack: {
     heading: string;
     meta: string;
     tiers: readonly { number: string; label: string; body: string; bodyShort?: string }[];
+    note: string;
+    noteShort: string;
   };
   archive: {
     heading: string;
@@ -95,6 +100,7 @@ export type HomepageContent = {
       stackShort?: string;
       href: string;
     }[];
+    note: string;
   };
   contact: {
     label: string;
@@ -102,6 +108,7 @@ export type HomepageContent = {
     body: string;
     prompts: readonly { label: string; labelShort?: string }[];
     actions: readonly LinkTarget[];
+    note: string;
   };
   footer: {
     description: string;
@@ -168,6 +175,11 @@ export const homeContent = {
     },
     captionLeft: "DANY C.B.",
     captionRight: "DALLAS–FORT WORTH",
+    notes: {
+      start: "start here",
+      portrait: "I draw the system before I build it — every diagram here is mine",
+      portraitShort: "I draw the system before I build it — every diagram here is mine",
+    },
   },
   work: {
     heading: "SELECTED WORK",
@@ -180,7 +192,8 @@ export const homeContent = {
         category: "AI / BACKEND · RETRIEVAL",
         title: ["FINDOC"],
         body: "Financial filings are long, amended over time, and hostile to naïve retrieval. FinDoc imports SEC EDGAR filings, parses and indexes their structured sections, retrieves progressively, and answers only with citations tied back to filing metadata. [1]",
-        bodyShort: "Financial filings are long, amended over time, and hostile to naïve retrieval. FinDoc imports SEC EDGAR filings, indexes their structured sections, retrieves progressively, and answers only with citations tied back to filing metadata. [1]",
+        bodyShort:
+          "Financial filings are long, amended over time, and hostile to naïve retrieval. FinDoc imports SEC EDGAR filings, indexes their structured sections, retrieves progressively, and answers only with citations tied back to filing metadata. [1]",
         facts: [
           {
             label: "AMENDMENTS",
@@ -195,7 +208,8 @@ export const homeContent = {
             body: "No citation, no answer. Sub-100 ms vector search, evaluated not asserted.",
           },
         ],
-        stack: "JAVA 21 · SPRING BOOT · POSTGRESQL/PGVECTOR · DOCLING · LANGCHAIN4J · AWS · NEXT.JS",
+        stack:
+          "JAVA 21 · SPRING BOOT · POSTGRESQL/PGVECTOR · DOCLING · LANGCHAIN4J · AWS · NEXT.JS",
         actions: [
           { label: "READ THE CASE STUDY ↗", href: "/work/findoc" },
           {
@@ -211,7 +225,8 @@ export const homeContent = {
         category: "DEVOPS · PLATFORM",
         title: ["PORTFOLIO", "GITOPS"],
         body: "A private K3s cluster on Oracle Cloud ARM, declared entirely in Git. FluxCD reconciles, Infisical holds the secrets under zero-trust, cert-manager and Traefik keep it public and encrypted. Bootstrap is two-phase and documented — after it, nothing is done by hand. [2]",
-        bodyShort: "A private K3s cluster on Oracle Cloud ARM, declared entirely in Git. FluxCD reconciles, Infisical holds the secrets under zero-trust, cert-manager and Traefik keep it public and encrypted. After bootstrap, nothing is done by hand. [2]",
+        bodyShort:
+          "A private K3s cluster on Oracle Cloud ARM, declared entirely in Git. FluxCD reconciles, Infisical holds the secrets under zero-trust, cert-manager and Traefik keep it public and encrypted. After bootstrap, nothing is done by hand. [2]",
         facts: [
           {
             label: "DECLARED",
@@ -233,6 +248,10 @@ export const homeContent = {
         ],
       },
     ],
+    notes: {
+      findoc: "the amendment trail is the hard part — not the model call.",
+      gitops: "this website is deployed by the thing this case study describes",
+    },
   },
   experience: {
     heading: "EXPERIENCE & EDUCATION",
@@ -247,7 +266,8 @@ export const homeContent = {
         role: "FRONTEND DEVELOPMENT INTERN",
         roleShort: "FRONTEND DEV INTERN",
         body: "Selected for a competitive three-month virtual internship under the IBM SkillsBuild Program. Designed and built a web application from the ground up — responsive, cross-browser layouts with clean component structure and semantic markup — working to iterative development, code review and milestone-based delivery.",
-        bodyShort: "Selected for a competitive three-month virtual internship under IBM SkillsBuild. Built a web application from the ground up — responsive, cross-browser layouts with clean component structure — to iterative review and milestone delivery.",
+        bodyShort:
+          "Selected for a competitive three-month virtual internship under IBM SkillsBuild. Built a web application from the ground up — responsive, cross-browser layouts with clean component structure — to iterative review and milestone delivery.",
         stack: "IBM SKILLSBUILD · FRONTEND · CODE REVIEW · MILESTONE DELIVERY",
       },
       {
@@ -269,6 +289,7 @@ export const homeContent = {
     ],
     certifications:
       "ARCHITECTING WITH GOOGLE COMPUTE ENGINE · THE BITS AND BYTES OF COMPUTER NETWORKING · FOUNDATIONS OF PROJECT MANAGEMENT · ADVANCE YOUR SKILLS IN JAVASCRIPT",
+    note: "my first real code review",
   },
   stack: {
     heading: "THE STACK",
@@ -291,6 +312,9 @@ export const homeContent = {
       },
       { number: "04", label: "ADDITIONAL", body: "PYTHON · C / C++ · GO · CUDA" },
     ],
+    note: "ordered by how much of it I've actually run in production — honest, not flattering.",
+    noteShort:
+      "ordered by how much of it I've actually run in production — honest, not flattering.",
   },
   archive: {
     heading: "THE ARCHIVE",
@@ -324,6 +348,7 @@ export const homeContent = {
         href: "https://flair2k22.vercel.app/",
       },
     ],
+    note: "kept because they show the road, not the destination.",
   },
   contact: {
     label: "§5 — CONTACT",
@@ -340,10 +365,15 @@ export const homeContent = {
     ],
     actions: [
       { label: "DOWNLOAD RÉSUMÉ ↓", href: "#contact" },
-      { label: "IDANYCB@GMAIL.COM", labelShort: "IDANYCB@GMAIL.COM ↗", href: "mailto:idanycb@gmail.com" },
+      {
+        label: "IDANYCB@GMAIL.COM",
+        labelShort: "IDANYCB@GMAIL.COM ↗",
+        href: "mailto:idanycb@gmail.com",
+      },
       { label: "SEND IT ↗", href: "#contact" },
       { label: "+1 817 819 7277 ↗", href: "tel:+18178197277" },
     ],
+    note: "I read every one",
   },
   footer: {
     description:

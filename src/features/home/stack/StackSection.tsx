@@ -1,3 +1,4 @@
+import { HomeSectionUnderline, StackMarker, StackNoteArrow } from "@/components/svg/HomeDrawings";
 import type { HomepageContent } from "@/content/home";
 import { ResponsiveCopy } from "@/shared/responsive-copy";
 import { SectionHeading } from "@/shared/section-heading";
@@ -15,14 +16,16 @@ export function StackSection({ content }: StackSectionProps) {
           meta={content.meta}
           className="md:flex md:items-end md:justify-between"
         />
-        <ol className="border-ink mt-7 border-t-[1.6px] md:mt-9">
-          {content.tiers.map((tier) => (
+        <HomeSectionUnderline kind="stack" className="mt-3 md:mt-4" />
+        <ol className="mt-2 md:mt-3">
+          {content.tiers.map((tier, index) => (
             <li
               key={tier.number}
               className="border-rule grid grid-cols-[2.5rem_1fr] gap-x-3 gap-y-2 border-b py-5 last:border-b-0 md:grid-cols-[3.25rem_16.25rem_1fr] md:items-center md:gap-7 md:py-7"
             >
-              <span className="text-ink font-mono text-xs font-bold tracking-[0.04em]">
-                {tier.number}
+              <span className="text-ink relative flex h-[42px] w-[42px] items-center justify-center font-mono text-xs font-bold tracking-[0.04em] md:h-[46px] md:w-[46px]">
+                <StackMarker index={index} />
+                <span className="relative">{tier.number}</span>
               </span>
               <h3 className="font-display text-ink text-[1.375rem] leading-none font-extrabold tracking-[-0.035em] md:text-[1.625rem]">
                 {tier.label}
@@ -35,6 +38,14 @@ export function StackSection({ content }: StackSectionProps) {
             </li>
           ))}
         </ol>
+        <div data-note="" className="ink-note relative mt-4 md:mt-[26px] md:pl-24">
+          <StackNoteArrow className="absolute -top-1.5 left-0 hidden md:block" />
+          <ResponsiveCopy
+            long={content.note}
+            short={content.noteShort}
+            className="font-hand text-lg leading-[1.3] md:text-[19px] md:leading-[1.35]"
+          />
+        </div>
       </SiteContainer>
     </section>
   );

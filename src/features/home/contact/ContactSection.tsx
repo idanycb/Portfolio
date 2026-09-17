@@ -1,3 +1,4 @@
+import { ContactEnvelope, ContactNoteArrow } from "@/components/svg/HomeDrawings";
 import type { HomepageContent } from "@/content/home";
 import { ActionLink } from "@/shared/action-link";
 import { ResponsiveCopy } from "@/shared/responsive-copy";
@@ -12,8 +13,9 @@ export function ContactSection({ content, email, phone }: ContactSectionProps) {
   return (
     <section
       id="contact"
-      className="border-ink scroll-mt-32 border-b-[1.6px] py-11 pb-12 md:py-24 md:pb-[100px]"
+      className="border-ink relative scroll-mt-32 overflow-hidden border-b-[1.6px] py-11 pb-12 md:py-24 md:pb-[100px]"
     >
+      <ContactEnvelope className="pointer-events-none absolute bottom-[-30px] left-11 hidden opacity-[.14] md:block" />
       <SiteContainer className="grid gap-10 md:grid-cols-2 md:gap-[72px]">
         <div>
           <p className="text-muted font-mono text-[0.625rem] font-bold tracking-[0.14em]">
@@ -60,6 +62,12 @@ export function ContactSection({ content, email, phone }: ContactSectionProps) {
                 {phoneAction.label}
               </ActionLink>
             ) : null}
+          </div>
+          <div data-note="" className="ink-note mt-3 flex items-center gap-2">
+            <ContactNoteArrow className="h-[34px] w-[52px] overflow-visible md:h-10 md:w-[66px]" />
+            <span className="font-hand text-copy-muted text-[17px] leading-[1.25] md:text-lg">
+              {content.note}
+            </span>
           </div>
           <div className="border-rule text-copy-muted mt-5 border-t pt-4 font-mono text-[0.6875rem] leading-[1.9] tracking-[0.08em]">
             <a href={`mailto:${email}`} className="hover:text-link-hover block w-fit">

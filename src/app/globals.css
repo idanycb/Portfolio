@@ -1,5 +1,21 @@
 @import "tailwindcss";
 
+/* ── Drawn layer ─────────────────────────────────────────────
+   --ink-wobble : how wobbly the hand-drawn lines are.
+                  0 = clean, 0.9 = design default, 3 = design max.
+   --ink-filter : set to `none` to switch the wobble filter off entirely.
+   To hide the handwritten notes or the grid overlay, uncomment
+   the matching rule below. */
+:root {
+  --ink-wobble: 0.9;
+  --ink-filter: url(#ink);
+}
+.ink {
+  filter: var(--ink-filter);
+}
+/* .ink-note { display: none !important; } */
+/* .ink-grid { display: none !important; } */
+
 :root {
   --paper: #f7f5f0;
   --paper-light: #fffdf9;
@@ -45,6 +61,7 @@
   --animate-fi: fi 700ms ease both;
   --animate-blink: blink 1s steps(1, end) infinite;
   --animate-flt: flt 2.4s ease-in-out infinite;
+  --animate-dw: dw 1s ease forwards;
 }
 
 @layer base {
@@ -107,6 +124,28 @@
       scroll-behavior: auto !important;
       transition-duration: 0.01ms !important;
     }
+
+    [data-anim] {
+      animation-play-state: running !important;
+      stroke-dashoffset: 0 !important;
+    }
+  }
+}
+
+[data-anim] {
+  animation-play-state: paused !important;
+}
+
+[data-anim="on"] {
+  animation-play-state: running !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-anim] {
+    animation: none !important;
+    animation-play-state: running !important;
+    stroke-dashoffset: 0 !important;
+    opacity: 1 !important;
   }
 }
 
@@ -160,8 +199,11 @@
   }
 }
 
-@layer components {
+@utility font-hand {
+  font-family: var(--font-hand), cursive;
+}
 
+@layer components {
   .prose-editorial {
     font-family: Georgia, "Times New Roman", serif;
     color: var(--copy);
@@ -221,5 +263,11 @@
 
   50% {
     transform: translateY(-6px);
+  }
+}
+
+@keyframes dw {
+  to {
+    stroke-dashoffset: 0;
   }
 }

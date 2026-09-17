@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { HeroStartArrow, PortraitNoteArrow } from "@/components/svg/HomeDrawings";
 import type { HomepageContent } from "@/content/home";
 import { ActionLink } from "@/shared/action-link";
 import { SiteContainer } from "@/shared/site-container";
@@ -58,6 +59,12 @@ export function HeroSection({ content }: HeroSectionProps) {
               ),
             )}
           </div>
+          <div data-note="" className="ink-note mt-3.5 flex items-start gap-2 pl-1 md:mt-4">
+            <HeroStartArrow />
+            <span className="font-hand [transform:rotate(-2deg)] pt-4 text-lg leading-[1.25] md:pt-6 md:text-[19px]">
+              {content.notes.start}
+            </span>
+          </div>
         </div>
         <figure className="md:pb-1">
           <div className="border-signature border-ink bg-paper-light relative aspect-[4/5] overflow-hidden">
@@ -75,6 +82,18 @@ export function HeroSection({ content }: HeroSectionProps) {
             <span>{content.captionLeft}</span>
             <span>{content.captionRight}</span>
           </figcaption>
+          <div data-note="" className="ink-note relative mt-5 hidden md:block">
+            <PortraitNoteArrow className="absolute -top-[54px] -left-3" />
+            <p className="font-hand [transform:rotate(-1.4deg)] text-[19px] leading-[1.35] whitespace-pre-line">
+              {content.notes.portrait}
+            </p>
+          </div>
+          <p
+            data-note=""
+            className="ink-note font-hand mt-[18px] [transform:rotate(-1deg)] text-lg leading-[1.3] md:hidden"
+          >
+            {content.notes.portraitShort}
+          </p>
         </figure>
       </SiteContainer>
     </section>

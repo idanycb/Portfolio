@@ -1,3 +1,4 @@
+import { ArchiveOutline, HomeSectionUnderline } from "@/components/svg/HomeDrawings";
 import type { HomepageContent } from "@/content/home";
 import { ResponsiveCopy } from "@/shared/responsive-copy";
 import { SectionHeading } from "@/shared/section-heading";
@@ -19,15 +20,17 @@ export function ArchiveSection({ content }: ArchiveSectionProps) {
           inverse
           className="md:flex md:items-end md:justify-between"
         />
+        <HomeSectionUnderline kind="archive" className="text-paper mt-3 md:mt-4" />
         <div className="mt-8 grid grid-cols-2 gap-3 md:mt-9 md:grid-cols-4 md:gap-6">
-          {content.projects.map((project) => (
+          {content.projects.map((project, index) => (
             <a
               key={project.title}
               href={project.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="border-signature border-inverse-subtle hover:bg-ink-soft flex min-h-33 flex-col p-4 transition-colors md:min-h-[11.375rem] md:p-5"
+              className="border-signature border-inverse-subtle hover:bg-ink-soft relative flex min-h-33 flex-col p-4 transition-colors md:min-h-[11.375rem] md:border-0 md:p-5"
             >
+              <ArchiveOutline index={index} />
               <span className="text-inverse-subtle font-mono text-[0.59375rem] tracking-[0.18em]">
                 {project.year}
               </span>
@@ -45,6 +48,12 @@ export function ArchiveSection({ content }: ArchiveSectionProps) {
             </a>
           ))}
         </div>
+        <p
+          data-note=""
+          className="ink-note font-hand text-inverse-muted mt-5 [transform:rotate(-.5deg)] text-[17px] leading-[1.3] md:mt-[26px] md:[transform:rotate(-.6deg)] md:text-lg"
+        >
+          {content.note}
+        </p>
       </SiteContainer>
     </section>
   );

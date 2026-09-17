@@ -7,12 +7,14 @@ export type CaseStudySectionData = {
   headingShort?: string;
   body?: string;
   bodyShort?: string;
+  note?: string;
   variant: "prose" | "decisions" | "evaluation" | "band";
   decisions?: readonly {
     number: string;
     heading: string;
     body: string;
     bodyShort?: string;
+    note?: string;
   }[];
   metrics?: readonly { metric: string; method: string; result: string }[];
   pipeline?: {
@@ -44,6 +46,7 @@ export type CaseStudy = {
   tocNavLabel: string;
   railNavLabel: string;
   progressLabel: string;
+  railNote: string;
   sections: readonly CaseStudySectionData[];
   evaluationHeaders: readonly [string, string, string];
   notesLabel: string;
@@ -80,6 +83,7 @@ export const caseStudies = {
     tocNavLabel: "Case study table of contents",
     railNavLabel: "Case study sections",
     progressLabel: "§1 OF 8",
+    railNote: "the rail tracks where you are",
     sections: [
       {
         id: "s1",
@@ -125,6 +129,7 @@ export const caseStudies = {
             { title: "Cited answer", detail: "Claims tied back to filing metadata" },
           ],
         },
+        note: "lineage is resolved here, at query time",
       },
       {
         id: "s4",
@@ -137,6 +142,7 @@ export const caseStudies = {
             number: "1",
             heading: "Amendment lineage over latest-wins",
             body: "A 10-K/A supersedes parts of its parent, not the whole document. Retrieval resolves lineage at query time rather than at ingest — slower to write, correct to read. [1]",
+            note: "cost: query-time complexity. worth it.",
           },
           {
             number: "2",
@@ -178,6 +184,7 @@ export const caseStudies = {
         heading: "WHAT CHANGED SINCE V1",
         body: "v1 used Unstructured.io and Groq over generic multi-tenant documents. v2 replaced ingestion with Docling, narrowed the domain to SEC filings, added amendment lineage and citation provenance, and introduced retrieval evaluation. The architecture changed because the problem got sharper.",
         variant: "band",
+        note: "this section turns “outdated” into “evolving”",
       },
       {
         id: "s8",

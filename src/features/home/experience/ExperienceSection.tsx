@@ -1,3 +1,4 @@
+import { ExperienceIcon, HomeSectionUnderline } from "@/components/svg/HomeDrawings";
 import type { HomepageContent } from "@/content/home";
 import { ResponsiveCopy } from "@/shared/responsive-copy";
 import { SectionHeading } from "@/shared/section-heading";
@@ -18,8 +19,9 @@ export function ExperienceSection({ content }: ExperienceSectionProps) {
           titleShort={content.headingShort}
           meta={content.range}
         />
-        <ol className="border-rule mt-8 border-t md:mt-10">
-          {content.items.map((item) => (
+        <HomeSectionUnderline kind="experience" className="mt-3 md:mt-4" />
+        <ol className="mt-6 md:mt-8">
+          {content.items.map((item, index) => (
             <li
               key={item.organization}
               className="border-rule grid gap-3 border-b py-6 md:grid-cols-[11rem_1fr] md:gap-8 md:py-9"
@@ -34,27 +36,38 @@ export function ExperienceSection({ content }: ExperienceSectionProps) {
                   />
                 ) : null}
               </div>
-              <div>
-                <h3 className="font-display text-ink max-w-3xl text-[clamp(1.375rem,2.4vw,2.375rem)] leading-[1.04] font-black tracking-[-0.045em]">
-                  {item.organization}
-                </h3>
-                <ResponsiveCopy
-                  long={item.role}
-                  short={item.roleShort}
-                  className="text-copy-muted mt-2 font-mono text-[0.65625rem] font-bold tracking-[0.13em]"
-                />
-                {item.body ? (
+              <div className="flex gap-5">
+                <ExperienceIcon index={index} />
+                <div className="min-w-0">
+                  <h3 className="font-display text-ink max-w-3xl text-[clamp(1.375rem,2.4vw,2.375rem)] leading-[1.04] font-black tracking-[-0.045em]">
+                    {item.organization}
+                  </h3>
                   <ResponsiveCopy
-                    long={item.body}
-                    short={item.bodyShort}
-                    className="text-copy mt-3 max-w-3xl text-[0.90625rem] leading-[1.6]"
+                    long={item.role}
+                    short={item.roleShort}
+                    className="text-copy-muted mt-2 font-mono text-[0.65625rem] font-bold tracking-[0.13em]"
                   />
-                ) : null}
-                {item.stack ? (
-                  <p className="text-muted mt-3 font-mono text-[0.59375rem] leading-[1.8] tracking-[0.1em]">
-                    {item.stack}
-                  </p>
-                ) : null}
+                  {item.body ? (
+                    <ResponsiveCopy
+                      long={item.body}
+                      short={item.bodyShort}
+                      className="text-copy mt-3 max-w-3xl text-[0.90625rem] leading-[1.6]"
+                    />
+                  ) : null}
+                  {item.stack ? (
+                    <p className="text-muted mt-3 font-mono text-[0.59375rem] leading-[1.8] tracking-[0.1em]">
+                      {item.stack}
+                    </p>
+                  ) : null}
+                  {index === 0 ? (
+                    <p
+                      data-note=""
+                      className="ink-note font-hand text-copy-muted mt-2.5 text-[17px] leading-[1.2]"
+                    >
+                      {content.note}
+                    </p>
+                  ) : null}
+                </div>
               </div>
             </li>
           ))}

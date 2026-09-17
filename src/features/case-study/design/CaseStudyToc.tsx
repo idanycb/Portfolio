@@ -44,7 +44,7 @@ export function CaseStudyToc({
   const closeFromLink = () => setOpen(false);
 
   return (
-    <div className="border-b-[1.5px] border-ink bg-band md:hidden">
+    <div className="border-ink bg-band border-b-[1.5px] md:hidden">
       <div className="flex min-h-14 items-center justify-between gap-4 px-5">
         <ResponsiveCopy
           long={label}
@@ -62,7 +62,12 @@ export function CaseStudyToc({
           {open ? closeLabel : openLabel}
         </button>
       </div>
-      <nav id={panelId} aria-label={navLabel} hidden={!open} className="border-t border-rule px-5 py-4">
+      <nav
+        id={panelId}
+        aria-label={navLabel}
+        hidden={!open}
+        className="border-rule border-t px-5 py-4"
+      >
         <ol className="grid grid-cols-2 gap-x-5 gap-y-1">
           {items.map((item, index) => (
             <li key={item.href}>
@@ -70,7 +75,7 @@ export function CaseStudyToc({
                 ref={index === 0 ? firstLinkRef : undefined}
                 href={item.href}
                 onClick={closeFromLink}
-                className="flex min-h-11 items-center gap-2 font-mono text-[0.6875rem] font-bold tracking-[0.08em] text-ink"
+                className="text-ink flex min-h-11 items-center gap-2 font-mono text-[0.6875rem] font-bold tracking-[0.08em]"
               >
                 <span className="text-muted">{index + 1}</span>
                 <ResponsiveCopy long={item.label} short={item.labelShort} />

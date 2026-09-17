@@ -1,3 +1,4 @@
+import { HomeSectionUnderline, WorkDivider } from "@/components/svg/HomeDrawings";
 import type { HomepageContent } from "@/content/home";
 import { SectionHeading } from "@/shared/section-heading";
 import { SiteContainer } from "@/shared/site-container";
@@ -19,9 +20,17 @@ export function SelectedWorkSection({ content }: SelectedWorkSectionProps) {
           titleShort={content.headingShort}
           meta={content.meta}
         />
-        <div className="border-ink mt-8 border-t-[1.6px] md:mt-10">
+        <HomeSectionUnderline kind="work" className="mt-3 md:mt-4" />
+        <div className="mt-6 md:mt-10">
           {content.projects.map((project, index) => (
-            <WorkCard key={project.slug} project={project} index={index} />
+            <div key={project.slug}>
+              <WorkCard
+                project={project}
+                index={index}
+                note={index === 0 ? content.notes.findoc : content.notes.gitops}
+              />
+              {index === 0 ? <WorkDivider /> : null}
+            </div>
           ))}
         </div>
       </SiteContainer>

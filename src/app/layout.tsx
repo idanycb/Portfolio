@@ -1,5 +1,5 @@
 import type { Viewport } from "next";
-import { Archivo, Courier_Prime } from "next/font/google";
+import { Architects_Daughter, Archivo, Courier_Prime } from "next/font/google";
 
 import { InkFilterDefinition } from "@/shared/illustrations";
 
@@ -15,6 +15,12 @@ const courierPrime = Courier_Prime({
   variable: "--font-courier-prime",
   subsets: ["latin"],
   weight: ["400", "700"],
+});
+
+const architectsDaughter = Architects_Daughter({
+  variable: "--font-hand",
+  subsets: ["latin"],
+  weight: "400",
 });
 
 export const metadata = {
@@ -46,7 +52,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${archivo.variable} ${courierPrime.variable} overflow-x-hidden antialiased`}
+        className={`${archivo.variable} ${courierPrime.variable} ${architectsDaughter.variable} overflow-x-hidden antialiased`}
       >
         <InkFilterDefinition />
         {children}

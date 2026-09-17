@@ -1,3 +1,4 @@
+import { FinDocHomeDiagram, GitOpsHomeDiagram, WorkNoteArrow } from "@/components/svg/HomeDrawings";
 import type { WorkProject } from "@/content/home";
 import { ActionLink } from "@/shared/action-link";
 import { ResponsiveCopy } from "@/shared/responsive-copy";
@@ -5,11 +6,12 @@ import { ResponsiveCopy } from "@/shared/responsive-copy";
 type WorkCardProps = {
   project: WorkProject;
   index: number;
+  note: string;
 };
 
-export function WorkCard({ project, index }: WorkCardProps) {
+export function WorkCard({ project, index, note }: WorkCardProps) {
   return (
-    <article className="border-rule-light grid gap-6 border-b py-8 last:border-b-0 md:grid-cols-2 md:gap-12 md:py-14">
+    <article className="grid gap-7 py-2 md:grid-cols-2 md:gap-12 md:py-4">
       <div className={index % 2 === 1 ? "md:order-2" : ""}>
         <div className="flex items-baseline gap-3">
           <span className="font-display text-subtle text-[2.125rem] leading-none font-black tracking-[-0.05em]">
@@ -34,6 +36,21 @@ export function WorkCard({ project, index }: WorkCardProps) {
         />
       </div>
       <div className={index % 2 === 1 ? "md:order-1" : ""}>
+        <figure className="border-signature border-ink bg-paper-light p-3 md:p-[22px]">
+          {index === 0 ? <FinDocHomeDiagram /> : <GitOpsHomeDiagram />}
+        </figure>
+        <div data-note="" className="ink-note relative mt-3 md:mt-4">
+          {index === 1 ? <WorkNoteArrow className="absolute top-0 left-0 hidden md:block" /> : null}
+          <p
+            className={`font-hand text-copy-muted text-lg leading-[1.3] md:text-[19px] md:leading-[1.35] ${
+              index === 1
+                ? "[transform:rotate(-.8deg)] md:[transform:none] md:pl-[74px]"
+                : "[transform:rotate(-.6deg)] md:[transform:rotate(-.8deg)]"
+            }`}
+          >
+            {note}
+          </p>
+        </div>
         <dl className="grid gap-3 md:mt-1">
           {project.facts.map((fact) => (
             <div key={fact.label} className="border-rule-light border-t pt-2.5">
