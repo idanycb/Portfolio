@@ -10,7 +10,7 @@ export function ExperienceSection({ content }: ExperienceSectionProps) {
   return (
     <section
       id="experience"
-      className="border-ink bg-band scroll-mt-32 border-b-[1.6px] py-11 pb-12 md:py-20 md:pb-24"
+      className="border-ink bg-band scroll-mt-32 border-b-[1.6px] py-11 pb-12 layout:py-20 layout:pb-24"
     >
       <SiteContainer>
         <SectionHeading
@@ -19,33 +19,33 @@ export function ExperienceSection({ content }: ExperienceSectionProps) {
           titleShort={content.headingShort}
           meta={content.range}
         />
-        <HomeSectionUnderline kind="experience" className="mt-3 md:mt-4" />
-        <ol className="mt-6 md:mt-8">
+        <HomeSectionUnderline kind="experience" className="mt-3 layout:mt-4" />
+        <ol className="mt-6 layout:mt-8">
           {content.items.map((item, index) => (
             <li
               key={item.organization}
-              className="border-rule grid gap-3 border-b py-6 md:grid-cols-[11rem_1fr] md:gap-8 md:py-9"
+              className="border-rule grid gap-3 border-b py-6 layout:grid-cols-[11rem_1fr] layout:gap-8 layout:py-9"
             >
-              <div className="text-ink font-mono text-[0.65625rem] leading-[1.65] font-bold tracking-[0.13em]">
+              <div className="text-ink font-mono text-xs leading-[1.65] font-bold tracking-[0.13em]">
                 <ResponsiveCopy long={item.dates} short={item.datesShort} />
                 {item.meta ? (
                   <ResponsiveCopy
                     long={item.meta}
                     short={item.metaShort}
-                    className="text-muted mt-1 hidden md:block"
+                    className="text-muted mt-1 hidden layout:block"
                   />
                 ) : null}
               </div>
               <div className="flex gap-5">
                 <ExperienceIcon index={index} />
                 <div className="min-w-0">
-                  <h3 className="font-display text-ink max-w-3xl text-[clamp(1.375rem,2.4vw,2.375rem)] leading-[1.04] font-black tracking-[-0.045em]">
+                  <h3 className="font-display text-ink max-w-3xl text-balance text-[clamp(1.375rem,2.4vw,2.375rem)] leading-[1.04] font-black tracking-[-0.045em]">
                     {item.organization}
                   </h3>
                   <ResponsiveCopy
                     long={item.role}
                     short={item.roleShort}
-                    className="text-copy-muted mt-2 font-mono text-[0.65625rem] font-bold tracking-[0.13em]"
+                    className="text-copy-muted mt-2 font-mono text-xs font-bold tracking-[0.13em]"
                   />
                   {item.body ? (
                     <ResponsiveCopy
@@ -55,7 +55,7 @@ export function ExperienceSection({ content }: ExperienceSectionProps) {
                     />
                   ) : null}
                   {item.stack ? (
-                    <p className="text-muted mt-3 font-mono text-[0.59375rem] leading-[1.8] tracking-[0.1em]">
+                    <p className="text-muted mt-3 font-mono text-xs leading-[1.8] tracking-[0.1em]">
                       {item.stack}
                     </p>
                   ) : null}
@@ -72,9 +72,9 @@ export function ExperienceSection({ content }: ExperienceSectionProps) {
             </li>
           ))}
         </ol>
-        <div className="border-rule mt-8 border-t pt-4 md:mt-11 md:grid md:grid-cols-[11rem_1fr] md:gap-8">
-          <p className="text-muted font-mono text-[0.625rem] tracking-[0.18em]">CERTIFICATIONS</p>
-          <p className="text-copy-muted mt-3 font-mono text-[0.6875rem] leading-[1.9] tracking-[0.09em] md:mt-0">
+        <div className="border-rule mt-8 border-t pt-4 layout:mt-11 layout:grid layout:grid-cols-[11rem_1fr] layout:gap-8">
+          <p className="text-muted font-mono text-xs tracking-[0.18em]">CERTIFICATIONS</p>
+          <p className="text-copy-muted mt-3 font-mono text-xs leading-[1.9] tracking-[0.09em] layout:mt-0">
             {content.certifications}
           </p>
         </div>

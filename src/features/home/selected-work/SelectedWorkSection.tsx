@@ -11,7 +11,7 @@ export function SelectedWorkSection({ content }: SelectedWorkSectionProps) {
   return (
     <section
       id="work"
-      className="border-ink scroll-mt-32 border-b-[1.6px] py-11 pb-12 md:py-20 md:pb-24"
+      className="border-ink scroll-mt-32 border-b-[1.6px] py-11 pb-12 layout:py-20 layout:pb-24"
     >
       <SiteContainer>
         <SectionHeading
@@ -20,8 +20,8 @@ export function SelectedWorkSection({ content }: SelectedWorkSectionProps) {
           titleShort={content.headingShort}
           meta={content.meta}
         />
-        <HomeSectionUnderline kind="work" className="mt-3 md:mt-4" />
-        <div className="mt-6 md:mt-10">
+        <HomeSectionUnderline kind="work" className="mt-3 layout:mt-4" />
+        <div className="mt-6 layout:mt-10">
           {content.projects.map((project, index) => (
             <div key={project.slug}>
               <WorkCard

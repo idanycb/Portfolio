@@ -15,7 +15,7 @@ export default function Home() {
       <PageDrawnLayer />
       <div
         data-grid=""
-        className="ink-grid pointer-events-none absolute inset-0 z-0 hidden opacity-50 md:block"
+        className="ink-grid pointer-events-none absolute inset-0 z-0 hidden opacity-50 layout:block"
         aria-hidden="true"
       >
         <div className="max-w-site mx-auto grid h-full grid-cols-6 px-12">

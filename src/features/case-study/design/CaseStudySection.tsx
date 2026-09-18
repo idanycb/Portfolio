@@ -8,24 +8,29 @@ import { ResponsiveCopy } from "@/shared/responsive-copy";
 
 import { AmendmentDiagram, PipelineDiagram } from "./CaseStudyDiagrams";
 
+function keepLastWordsTogether(value: string | undefined) {
+  if (!value || value.trim().split(/\s+/).length < 3) return value;
+  return value.replace(/ ([^ ]+)$/, "\u00a0$1");
+}
+
 function Prose({ body, bodyShort }: { body: string; bodyShort?: string }) {
   return (
     <ResponsiveCopy
       long={body}
       short={bodyShort}
-      className="case-study-prose text-copy mt-5 max-w-[47rem] font-serif text-[0.96875rem] leading-[1.72] md:text-base md:leading-[1.75]"
+      className="case-study-prose text-copy mt-5 max-w-[47rem] font-serif text-[0.96875rem] leading-[1.72] layout:text-base layout:leading-[1.75]"
     />
   );
 }
 
 function Decisions({ decisions }: { decisions: NonNullable<CaseStudySectionData["decisions"]> }) {
   return (
-    <ol className="mt-7 space-y-8 md:space-y-9">
+    <ol className="mt-7 space-y-8 layout:space-y-9">
       {decisions.map((decision, index) => (
-        <li key={decision.number} className="grid gap-3 md:grid-cols-[4.125rem_1fr] md:gap-6">
+        <li key={decision.number} className="grid gap-3 layout:grid-cols-[4.125rem_1fr] layout:gap-6">
           <DecisionCircle number={decision.number} index={index} />
           <div>
-            <h3 className="text-[1.1875rem] leading-[1.2] font-extrabold md:text-[1.3125rem]">
+            <h3 className="text-balance text-[1.1875rem] leading-[1.2] font-extrabold layout:text-[1.3125rem]">
               {decision.heading}
             </h3>
             <ResponsiveCopy
@@ -57,7 +62,7 @@ function Evaluation({
 }) {
   return (
     <div className="mt-7">
-      <div className="border-ink text-muted hidden grid-cols-[1.35fr_1fr_0.8fr] border-b-[1.5px] pb-2 font-mono text-[0.625rem] font-bold tracking-[0.14em] md:grid">
+      <div className="border-ink text-muted hidden grid-cols-[1.35fr_1fr_0.8fr] border-b-[1.5px] pb-2 font-mono text-xs font-bold tracking-[0.14em] layout:grid">
         {headers.map((header) => (
           <span key={header}>{header}</span>
         ))}
@@ -65,27 +70,27 @@ function Evaluation({
       {metrics.map((metric) => (
         <dl
           key={metric.metric}
-          className="border-rule grid gap-3 border-b py-5 md:grid-cols-[1.35fr_1fr_0.8fr] md:gap-0"
+          className="border-rule grid gap-3 border-b py-5 layout:grid-cols-[1.35fr_1fr_0.8fr] layout:gap-0"
         >
           <div>
-            <dt className="text-muted font-mono text-[0.5625rem] tracking-[0.12em] md:hidden">
+            <dt className="text-muted font-mono text-xs tracking-[0.12em] layout:hidden">
               {headers[0]}
             </dt>
-            <dd className="text-copy mt-1 font-serif text-[0.96875rem] md:mt-0">{metric.metric}</dd>
+            <dd className="text-copy mt-1 font-serif text-[0.96875rem] layout:mt-0">{metric.metric}</dd>
           </div>
           <div>
-            <dt className="text-muted font-mono text-[0.5625rem] tracking-[0.12em] md:hidden">
+            <dt className="text-muted font-mono text-xs tracking-[0.12em] layout:hidden">
               {headers[1]}
             </dt>
-            <dd className="mt-1 font-mono text-[0.6875rem] font-bold tracking-[0.08em] md:mt-0">
+            <dd className="mt-1 font-mono text-xs font-bold tracking-[0.08em] layout:mt-0">
               {metric.method}
             </dd>
           </div>
           <div>
-            <dt className="text-muted font-mono text-[0.5625rem] tracking-[0.12em] md:hidden">
+            <dt className="text-muted font-mono text-xs tracking-[0.12em] layout:hidden">
               {headers[2]}
             </dt>
-            <dd className="mt-1 font-mono text-[0.75rem] font-bold md:mt-0">{metric.result}</dd>
+            <dd className="mt-1 font-mono text-[0.75rem] font-bold layout:mt-0">{metric.result}</dd>
           </div>
         </dl>
       ))}
@@ -105,19 +110,19 @@ export function CaseStudySection({
     <section
       id={section.id}
       aria-labelledby={`${section.id}-title`}
-      className={`scroll-mt-28 ${band ? "border-ink bg-band relative -mx-5 overflow-hidden border-y-[1.5px] px-5 py-[2.125rem] md:-mx-12 md:px-12 md:py-12" : "border-rule border-t pt-7 first:border-t-0 first:pt-0"}`}
+      className={`scroll-mt-28 ${band ? "border-ink bg-band relative -mx-5 overflow-hidden border-y-[1.5px] px-5 py-[2.125rem] layout:-mx-12 layout:px-12 layout:py-12" : "border-rule border-t pt-7 first:border-t-0 first:pt-0"}`}
     >
       {band ? <SectionSevenArrow /> : null}
-      <header className="flex items-start gap-4">
-        <span className="text-muted shrink-0 pt-1 font-mono text-[0.6875rem] font-bold tracking-[0.08em]">
+      <header className="flex items-start gap-2 layout:gap-4">
+        <span className="text-muted shrink-0 pt-1 font-mono text-xs font-bold tracking-[0.08em]">
           {section.number}
         </span>
         <ResponsiveCopy
           as="h2"
           id={`${section.id}-title`}
-          long={section.heading}
-          short={section.headingShort}
-          className="text-case-section font-display font-black"
+          long={keepLastWordsTogether(section.heading)}
+          short={keepLastWordsTogether(section.headingShort)}
+          className="text-case-section font-display text-pretty font-black"
         />
       </header>
       {section.id !== "s7" ? (
@@ -129,7 +134,7 @@ export function CaseStudySection({
       {section.note && section.id === "s3" ? (
         <p
           data-note=""
-          className="ink-note font-hand text-copy-muted mt-3.5 text-[17px] leading-[1.3] md:hidden"
+          className="ink-note font-hand text-copy-muted mt-3.5 text-[17px] leading-[1.3] layout:hidden"
         >
           {section.note}
         </p>

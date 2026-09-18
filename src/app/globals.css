@@ -57,6 +57,7 @@
   --font-mono: var(--font-courier-prime);
   --font-serif: Georgia, "Times New Roman", serif;
   --container-site: 77.5rem;
+  --breakpoint-layout: 60rem;
   --animate-fu: fu 800ms cubic-bezier(0.33, 1, 0.68, 1) both;
   --animate-fi: fi 700ms ease both;
   --animate-blink: blink 1s steps(1, end) infinite;
@@ -162,7 +163,7 @@
   line-height: 0.8;
   letter-spacing: -0.068em;
 
-  @media (width >= 48rem) {
+  @media (width >= 60rem) {
     font-size: clamp(6rem, 15vw, 13rem);
     line-height: 0.78;
   }
@@ -173,7 +174,7 @@
   line-height: 0.9;
   letter-spacing: -0.05em;
 
-  @media (width >= 48rem) {
+  @media (width >= 60rem) {
     font-size: clamp(2.25rem, 4.6vw, 3.625rem);
   }
 }
@@ -183,17 +184,17 @@
   line-height: 0.88;
   letter-spacing: -0.058em;
 
-  @media (width >= 48rem) {
+  @media (width >= 60rem) {
     font-size: clamp(3.5rem, 7vw, 5.375rem);
   }
 }
 
 @utility text-case-section {
-  font-size: 1.625rem;
+  font-size: clamp(1.375rem, 7.2vw, 1.625rem);
   line-height: 1.02;
   letter-spacing: -0.035em;
 
-  @media (width >= 48rem) {
+  @media (width >= 60rem) {
     font-size: clamp(1.625rem, 3vw, 2.125rem);
     line-height: 1;
   }
@@ -269,5 +270,32 @@
 @keyframes dw {
   to {
     stroke-dashoffset: 0;
+  }
+}
+
+.archive-shell {
+  container-name: archive;
+  container-type: inline-size;
+}
+
+.archive-outline {
+  display: none;
+}
+
+@container archive (width >= 68rem) {
+  .archive-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  .archive-card {
+    min-height: 0;
+    aspect-ratio: 1.5;
+    padding: 1.25rem;
+    border-width: 0;
+  }
+
+  .archive-outline {
+    display: block;
   }
 }

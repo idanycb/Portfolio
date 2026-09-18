@@ -44,12 +44,12 @@ export function CaseStudyToc({
   const closeFromLink = () => setOpen(false);
 
   return (
-    <div className="border-ink bg-band border-b-[1.5px] md:hidden">
+    <div className="border-ink bg-band border-b-[1.5px] layout:hidden">
       <div className="flex min-h-14 items-center justify-between gap-4 px-5">
         <ResponsiveCopy
           long={label}
           short={labelShort}
-          className="font-mono text-[0.625rem] font-bold tracking-[0.14em]"
+          className="font-mono text-xs font-bold tracking-[0.14em]"
         />
         <button
           ref={buttonRef}
@@ -57,7 +57,7 @@ export function CaseStudyToc({
           aria-expanded={open}
           aria-controls={panelId}
           onClick={() => setOpen((value) => !value)}
-          className="flex min-h-11 min-w-11 items-center justify-end font-mono text-[0.625rem] font-bold tracking-[0.12em]"
+          className="flex min-h-11 min-w-11 items-center justify-end font-mono text-xs font-bold tracking-[0.12em]"
         >
           {open ? closeLabel : openLabel}
         </button>
@@ -75,7 +75,7 @@ export function CaseStudyToc({
                 ref={index === 0 ? firstLinkRef : undefined}
                 href={item.href}
                 onClick={closeFromLink}
-                className="text-ink flex min-h-11 items-center gap-2 font-mono text-[0.6875rem] font-bold tracking-[0.08em]"
+                className="text-ink flex min-h-11 items-center gap-2 font-mono text-xs font-bold tracking-[0.08em]"
               >
                 <span className="text-muted">{index + 1}</span>
                 <ResponsiveCopy long={item.label} short={item.labelShort} />

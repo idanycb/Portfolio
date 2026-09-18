@@ -13,21 +13,21 @@ export function ContactSection({ content, email, phone }: ContactSectionProps) {
   return (
     <section
       id="contact"
-      className="border-ink relative scroll-mt-32 overflow-hidden border-b-[1.6px] py-11 pb-12 md:py-24 md:pb-[100px]"
+      className="border-ink relative scroll-mt-32 overflow-hidden border-b-[1.6px] py-11 pb-12 layout:py-24 layout:pb-[100px]"
     >
-      <ContactEnvelope className="pointer-events-none absolute bottom-[-30px] left-11 hidden opacity-[.14] md:block" />
-      <SiteContainer className="grid gap-10 md:grid-cols-2 md:gap-[72px]">
-        <div>
-          <p className="text-muted font-mono text-[0.625rem] font-bold tracking-[0.14em]">
+      <ContactEnvelope className="pointer-events-none absolute bottom-[-70px] left-11 hidden opacity-[.14] layout:block" />
+      <SiteContainer className="grid gap-10 layout:grid-cols-2 layout:gap-[72px]">
+        <div className="min-w-0">
+          <p className="text-muted font-mono text-xs font-bold tracking-[0.14em]">
             {content.label}
           </p>
-          <h2 className="font-display text-ink mt-4 text-[3.25rem] leading-[0.84] font-black tracking-[-0.062em] whitespace-pre-line md:mt-5 md:text-[clamp(3.5rem,7.4vw,5.75rem)]">
+          <h2 className="font-display text-ink mt-4 text-[clamp(2.625rem,13vw,3.25rem)] leading-[0.84] font-black tracking-[-0.062em] whitespace-pre-line layout:mt-5 layout:text-[clamp(3.5rem,7.4vw,5.75rem)]">
             {content.heading}
           </h2>
-          <p className="text-copy mt-6 max-w-md text-[1.0625rem] leading-[1.5] font-semibold md:mt-7">
+          <p className="text-copy mt-6 max-w-md text-[1.0625rem] leading-[1.5] font-semibold layout:mt-7">
             {content.body}
           </p>
-          <div className="mt-6 hidden flex-wrap items-center gap-4 md:flex">
+          <div className="mt-6 hidden flex-wrap items-center gap-4 layout:flex">
             {content.actions.slice(0, 2).map((action) => (
               <ActionLink
                 key={action.label}
@@ -39,43 +39,50 @@ export function ContactSection({ content, email, phone }: ContactSectionProps) {
             ))}
           </div>
         </div>
-        <div className="md:pt-9">
-          <p className="text-muted font-mono text-[0.625rem] tracking-[0.18em]">GET IN TOUCH</p>
+        <div className="min-w-0 layout:pt-9">
+          <p className="text-muted font-mono text-xs tracking-[0.18em]">GET IN TOUCH</p>
           <ul className="border-ink mt-4 border-t">
             {content.prompts.map((prompt) => (
               <li
                 key={prompt.label}
-                className="border-rule text-copy-muted border-b py-4 font-mono text-[0.625rem] tracking-[0.14em]"
+                className="border-rule text-copy-muted border-b py-4 font-mono text-xs tracking-[0.14em]"
               >
                 <ResponsiveCopy long={prompt.label} short={prompt.labelShort} />
               </li>
             ))}
           </ul>
-          <div className="mt-5 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap">
+          <div className="mt-5 flex flex-wrap gap-2.5">
             {emailAction ? (
-              <ActionLink href={emailAction.href} className="w-full sm:w-auto">
+              <ActionLink href={emailAction.href} className="flex-[1_1_13rem]">
                 {emailAction.labelShort ?? emailAction.label}
               </ActionLink>
             ) : null}
             {phoneAction ? (
-              <ActionLink href={phoneAction.href} variant="outline" className="w-full sm:w-auto">
+              <ActionLink
+                href={phoneAction.href}
+                variant="outline"
+                className="flex-[1_1_13rem]"
+              >
                 {phoneAction.label}
               </ActionLink>
             ) : null}
           </div>
           <div data-note="" className="ink-note mt-3 flex items-center gap-2">
-            <ContactNoteArrow className="h-[34px] w-[52px] overflow-visible md:h-10 md:w-[66px]" />
-            <span className="font-hand text-copy-muted text-[17px] leading-[1.25] md:text-lg">
+            <ContactNoteArrow className="h-[34px] w-[52px] overflow-visible layout:h-10 layout:w-[66px]" />
+            <span className="font-hand text-copy-muted text-[17px] leading-[1.25] layout:text-lg">
               {content.note}
             </span>
           </div>
-          <div className="border-rule text-copy-muted mt-5 border-t pt-4 font-mono text-[0.6875rem] leading-[1.9] tracking-[0.08em]">
-            <a href={`mailto:${email}`} className="hover:text-link-hover block w-fit">
+          <div className="border-rule text-copy-muted mt-5 flex flex-col items-start border-t pt-2 font-mono text-xs leading-[1.9] tracking-[0.08em]">
+            <a
+              href={`mailto:${email}`}
+              className="hover:text-link-hover inline-flex min-h-11 min-w-11 items-center"
+            >
               {email.toUpperCase()}
             </a>
             <a
               href={`tel:${phone.replaceAll(" ", "")}`}
-              className="hover:text-link-hover mt-1 block w-fit"
+              className="hover:text-link-hover inline-flex min-h-11 min-w-11 items-center"
             >
               {phone}
             </a>

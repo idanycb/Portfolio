@@ -37,15 +37,15 @@ export function CaseStudyPage({ caseStudy }: { caseStudy: CaseStudy }) {
           closeLabel={caseStudy.tocCloseLabel}
           navLabel={caseStudy.tocNavLabel}
         />
-        <SiteContainer className="md:grid md:grid-cols-[14.375rem_minmax(0,1fr)] md:px-0">
+        <SiteContainer className="layout:grid layout:grid-cols-[14.375rem_minmax(0,1fr)] layout:px-0">
           <CaseStudyNav
             items={navigation}
             label={caseStudy.tocLabel}
             navLabel={caseStudy.railNavLabel}
             note={caseStudy.railNote}
           />
-          <article className="min-w-0 px-5 py-[2.375rem] md:px-12 md:py-[3.25rem]">
-            <div className="space-y-14 md:space-y-[4.75rem]">
+          <article className="min-w-0 px-5 py-[2.375rem] layout:px-12 layout:py-[3.25rem]">
+            <div className="space-y-14 layout:space-y-[4.75rem]">
               {caseStudy.sections.map((section) => (
                 <CaseStudySection
                   key={section.id}
@@ -58,10 +58,10 @@ export function CaseStudyPage({ caseStudy }: { caseStudy: CaseStudy }) {
               className="border-ink mt-14 border-t-[1.5px] pt-4"
               aria-label={caseStudy.notesLabel}
             >
-              <p className="text-muted font-mono text-[0.625rem] font-bold tracking-[0.16em]">
+              <p className="text-muted font-mono text-xs font-bold tracking-[0.16em]">
                 {caseStudy.notesLabel}
               </p>
-              <ul className="text-copy-muted mt-3 space-y-2 font-mono text-[0.6875rem] leading-5 tracking-[0.04em]">
+              <ul className="text-copy-muted mt-3 space-y-2 font-mono text-xs leading-5 tracking-[0.04em]">
                 {caseStudy.notes.map((note) => (
                   <li key={note}>{note}</li>
                 ))}
@@ -71,21 +71,21 @@ export function CaseStudyPage({ caseStudy }: { caseStudy: CaseStudy }) {
         </SiteContainer>
       </main>
       <footer className="bg-ink-dark text-paper">
-        <SiteContainer className="flex flex-col gap-8 py-8 md:flex-row md:items-end md:justify-between md:py-[2.125rem]">
+        <SiteContainer className="flex flex-col gap-8 py-8 layout:flex-row layout:items-end layout:justify-between layout:py-[2.125rem]">
           <div>
-            <span className="text-inverse-muted font-mono text-[0.625rem] tracking-[0.16em]">
+            <span className="text-inverse-muted font-mono text-xs tracking-[0.16em]">
               {caseStudy.nextLabel}
             </span>
             <Link
               href={caseStudy.next.href}
-              className="font-display text-paper hover:text-inverse-muted mt-2 block text-3xl leading-[0.95] font-black tracking-[-0.055em] whitespace-pre-line md:text-4xl"
+              className="font-display text-paper hover:text-inverse-muted mt-2 block text-3xl leading-[0.95] font-black tracking-[-0.055em] whitespace-pre-line layout:text-4xl"
             >
               <ResponsiveCopy long={caseStudy.next.label} short={caseStudy.next.labelShort} />
             </Link>
           </div>
           <Link
             href="#top"
-            className="text-inverse-muted hover:text-paper flex min-h-11 w-fit items-center font-mono text-[0.625rem] tracking-[0.16em]"
+            className="text-inverse-muted hover:text-paper flex min-h-11 w-fit items-center font-mono text-xs tracking-[0.16em]"
           >
             {caseStudy.backToTopLabel}
           </Link>

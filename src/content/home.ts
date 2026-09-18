@@ -170,7 +170,7 @@ export const homeContent = {
     image: {
       src: "/images/placeholders/dany-portrait.svg",
       alt: "Placeholder for a grayscale portrait of Daniel Thomas Jesudoss",
-      sizes: "(min-width: 768px) 36vw, calc(100vw - 40px)",
+      sizes: "(min-width: 960px) 36vw, calc(100vw - 40px)",
       aspectRatio: "4 / 5",
     },
     captionLeft: "DANY C.B.",

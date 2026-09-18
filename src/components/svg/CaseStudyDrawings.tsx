@@ -8,13 +8,13 @@ export function CaseHeroDocument() {
       width="300"
       height="230"
       viewBox="0 0 300 230"
-      className="pointer-events-none absolute top-3 -right-3 h-[118px] w-[150px] overflow-visible opacity-[.13] md:top-5 md:right-[26px] md:h-[230px] md:w-[300px] md:opacity-[.17]"
+      className="pointer-events-none absolute -top-2 right-2 h-[52px] w-[68px] overflow-visible opacity-[.13] layout:top-5 layout:right-[26px] layout:h-[clamp(10.5rem,15.3vw,14.375rem)] layout:w-[clamp(13.75rem,20vw,18.75rem)] layout:opacity-[.17]"
       aria-hidden="true"
     >
       <g
         fill="none"
         stroke="currentColor"
-        className="ink [stroke-width:2.6] md:[stroke-width:1.8]"
+        className="ink [stroke-width:2.6] layout:[stroke-width:1.8]"
         strokeLinecap="round"
         strokeLinejoin="round"
       >
@@ -74,7 +74,7 @@ export function CaseSectionUnderline({ id }: { id: keyof typeof desktop }) {
         height="12"
         viewBox="0 0 340 12"
         preserveAspectRatio="none"
-        className="mt-2.5 block overflow-visible md:hidden"
+        className="mt-2.5 block overflow-visible layout:hidden"
         aria-hidden="true"
       >
         <path
@@ -100,7 +100,7 @@ export function CaseSectionUnderline({ id }: { id: keyof typeof desktop }) {
         height={dashed ? "16" : "14"}
         viewBox={`0 0 850 ${dashed ? 16 : 14}`}
         preserveAspectRatio="none"
-        className="mt-3 hidden md:block"
+        className="mt-3 hidden layout:block"
         aria-hidden="true"
       >
         <path
@@ -160,7 +160,7 @@ export function DecisionCircle({ number, index }: { number: string; index: numbe
         width="46"
         height="46"
         viewBox="0 0 66 66"
-        className="overflow-visible md:hidden"
+        className="overflow-visible layout:hidden"
         aria-hidden="true"
       >
         {circle(true)}
@@ -169,7 +169,7 @@ export function DecisionCircle({ number, index }: { number: string; index: numbe
         width="66"
         height="66"
         viewBox="0 0 66 66"
-        className="hidden overflow-visible md:block"
+        className="hidden overflow-visible layout:block"
         aria-hidden="true"
       >
         {circle(false)}
@@ -184,7 +184,7 @@ export function SectionSevenArrow() {
       width="110"
       height="86"
       viewBox="0 0 110 86"
-      className="pointer-events-none absolute top-[22px] right-11 hidden opacity-45 md:block"
+      className="pointer-events-none absolute top-3 right-0 hidden h-16 w-[82px] opacity-45 layout:block"
       aria-hidden="true"
     >
       <g

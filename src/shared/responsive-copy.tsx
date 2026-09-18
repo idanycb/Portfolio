@@ -27,8 +27,8 @@ export function ResponsiveCopy({
 
   return (
     <Component className={className} {...props}>
-      <span className={`whitespace-pre-line md:hidden ${shortClassName}`}>{short}</span>
-      <span className={`hidden whitespace-pre-line md:inline ${longClassName}`}>{long}</span>
+      <span className={`whitespace-pre-line layout:hidden ${shortClassName}`}>{short}</span>
+      <span className={`hidden whitespace-pre-line layout:inline ${longClassName}`}>{long}</span>
     </Component>
   );
 }

@@ -29,7 +29,7 @@ export function HeroStartArrow() {
         width="46"
         height="40"
         viewBox="0 0 46 40"
-        className="overflow-visible md:hidden"
+        className="overflow-visible layout:hidden"
         aria-hidden="true"
       >
         <g
@@ -58,7 +58,7 @@ export function HeroStartArrow() {
         width="64"
         height="58"
         viewBox="0 0 64 58"
-        className="hidden md:block"
+        className="hidden layout:block"
         aria-hidden="true"
       >
         <g
@@ -202,7 +202,7 @@ export function HomeSectionUnderline({
         height={isArchive ? "12" : "14"}
         viewBox={mobile.viewBox}
         preserveAspectRatio="none"
-        className={`block overflow-visible md:hidden ${className}`}
+        className={`block overflow-visible layout:hidden ${className}`}
         aria-hidden="true"
       >
         <path
@@ -223,7 +223,7 @@ export function HomeSectionUnderline({
         height={isArchive ? "16" : "18"}
         viewBox={desktop.viewBox}
         preserveAspectRatio="none"
-        className={`hidden md:block ${className}`}
+        className={`hidden layout:block ${className}`}
         aria-hidden="true"
       >
         <path
@@ -251,7 +251,7 @@ export function WorkDivider() {
         height="14"
         viewBox="0 0 340 14"
         preserveAspectRatio="none"
-        className="my-[34px] block overflow-visible md:hidden"
+        className="my-[34px] block overflow-visible layout:hidden"
         aria-hidden="true"
       >
         <path
@@ -271,7 +271,7 @@ export function WorkDivider() {
         height="18"
         viewBox="0 0 1072 18"
         preserveAspectRatio="none"
-        className="my-10 hidden md:block"
+        className="my-10 hidden layout:block"
         aria-hidden="true"
       >
         <path
@@ -309,7 +309,7 @@ function DiagramShell({
 export function FinDocHomeDiagram() {
   return (
     <>
-      <DiagramShell viewBox="0 0 300 462" className="block md:hidden">
+      <DiagramShell viewBox="0 0 300 462" className="block layout:hidden">
         <title>FinDoc ingestion, retrieval, and cited-answer pipeline</title>
         <g
           className="ink"
@@ -430,7 +430,7 @@ export function FinDocHomeDiagram() {
           </text>
         </g>
       </DiagramShell>
-      <DiagramShell viewBox="0 0 472 330" className="hidden md:block">
+      <DiagramShell viewBox="0 0 472 330" className="hidden layout:block">
         <title>FinDoc ingestion, retrieval, and cited-answer pipeline</title>
         <g
           className="ink"
@@ -616,7 +616,7 @@ export function FinDocHomeDiagram() {
 export function GitOpsHomeDiagram() {
   return (
     <>
-      <DiagramShell viewBox="0 0 300 308" className="block md:hidden">
+      <DiagramShell viewBox="0 0 300 308" className="block layout:hidden">
         <title>GitOps deployment loop</title>
         <g
           className="ink"
@@ -724,7 +724,7 @@ export function GitOpsHomeDiagram() {
           </text>
         </g>
       </DiagramShell>
-      <DiagramShell viewBox="0 0 472 300" className="hidden md:block">
+      <DiagramShell viewBox="0 0 472 300" className="hidden layout:block">
         <title>GitOps deployment loop</title>
         <g
           className="ink"
@@ -1057,7 +1057,7 @@ export function ExperienceIcon({ index }: { index: number }) {
       width={dimensions[0]}
       height={dimensions[1]}
       viewBox={`0 0 ${dimensions[0]} ${dimensions[1]}`}
-      className="hidden shrink-0 md:block"
+      className="hidden shrink-0 layout:block"
       aria-hidden="true"
     >
       <g
@@ -1086,11 +1086,11 @@ export function StackMarker({ index }: { index: number }) {
       width="46"
       height="46"
       viewBox="0 0 46 46"
-      className="absolute inset-0 h-[42px] w-[42px] overflow-visible md:h-[46px] md:w-[46px]"
+      className="absolute inset-0 h-[42px] w-[42px] overflow-visible layout:h-[46px] layout:w-[46px]"
       aria-hidden="true"
     >
       <path
-        className="ink [stroke-width:1.6] md:[stroke-width:1.5]"
+        className="ink [stroke-width:1.6] layout:[stroke-width:1.5]"
         d={stackPaths[index]}
         fill="none"
         stroke="currentColor"
@@ -1149,7 +1149,7 @@ export function ArchiveOutline({ index }: { index: number }) {
       height="100%"
       viewBox="0 0 264 158"
       preserveAspectRatio="none"
-      className="pointer-events-none absolute inset-0 hidden overflow-visible md:block"
+      className="archive-outline pointer-events-none absolute inset-0 overflow-visible"
       aria-hidden="true"
     >
       <path

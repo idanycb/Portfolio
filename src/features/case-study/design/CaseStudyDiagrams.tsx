@@ -11,8 +11,8 @@ export function AmendmentDiagram({
 }) {
   return (
     <figure className="mt-7">
-      <div className="border-signature border-ink bg-paper-light p-3 md:p-[26px]">
-        <svg width="100%" viewBox="0 0 300 360" className="block md:hidden" role="img">
+      <div className="border-signature border-ink bg-paper-light p-3 layout:p-[26px]">
+        <svg width="100%" viewBox="0 0 300 360" className="block layout:hidden" role="img">
           <title>{diagram.label}</title>
           <g
             className="ink"
@@ -100,7 +100,7 @@ export function AmendmentDiagram({
             </text>
           </g>
         </svg>
-        <svg width="100%" height="280" viewBox="0 0 800 280" className="hidden md:block" role="img">
+        <svg width="100%" height="280" viewBox="0 0 800 280" className="hidden layout:block" role="img">
           <title>{diagram.label}</title>
           <g
             className="ink"
@@ -224,7 +224,7 @@ export function AmendmentDiagram({
           </g>
         </svg>
       </div>
-      <figcaption className="border-ink text-muted mt-2.5 flex justify-between border-t pt-1.5 font-mono text-[0.59375rem] tracking-[0.16em]">
+      <figcaption className="border-ink text-muted mt-2.5 flex justify-between border-t pt-1.5 font-mono text-xs tracking-[0.16em]">
         <span>FIG. 1</span>
         <span className="text-copy-muted">{diagram.caption}</span>
       </figcaption>
@@ -239,8 +239,8 @@ export function PipelineDiagram({
 }) {
   return (
     <figure className="mt-7">
-      <div className="border-signature border-ink bg-paper-light p-3 md:p-[26px]">
-        <svg width="100%" viewBox="0 0 300 462" className="block md:hidden" role="img">
+      <div className="border-signature border-ink bg-paper-light p-3 layout:p-[26px]">
+        <svg width="100%" viewBox="0 0 300 462" className="block layout:hidden" role="img">
           <title>{pipeline.caption}</title>
           <g
             className="ink"
@@ -361,7 +361,7 @@ export function PipelineDiagram({
             </text>
           </g>
         </svg>
-        <svg width="100%" height="330" viewBox="0 0 800 330" className="hidden md:block" role="img">
+        <svg width="100%" height="330" viewBox="0 0 800 330" className="hidden layout:block" role="img">
           <title>{pipeline.caption}</title>
           <g
             className="ink"
@@ -541,7 +541,7 @@ export function PipelineDiagram({
           </g>
         </svg>
       </div>
-      <figcaption className="border-ink text-muted mt-2.5 flex justify-between border-t pt-1.5 font-mono text-[0.59375rem] tracking-[0.16em]">
+      <figcaption className="border-ink text-muted mt-2.5 flex justify-between border-t pt-1.5 font-mono text-xs tracking-[0.16em]">
         <span>FIG. 2</span>
         <span className="text-copy-muted">{pipeline.caption}</span>
       </figcaption>

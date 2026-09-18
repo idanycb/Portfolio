@@ -50,7 +50,7 @@ export function SectionHeading({
           as="p"
           long={meta}
           short={metaShort}
-          className={`mt-3 font-mono text-[0.625rem] tracking-[0.16em] ${inverse ? "text-inverse-muted" : "text-muted"}`}
+          className={`mt-3 font-mono text-xs tracking-[0.16em] ${inverse ? "text-inverse-muted" : "text-muted"}`}
         />
       ) : null}
     </header>
