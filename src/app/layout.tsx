@@ -1,8 +1,6 @@
 import type { Viewport } from "next";
 import { Architects_Daughter, Archivo, Courier_Prime } from "next/font/google";
 
-import { InkFilterDefinition } from "@/shared/illustrations";
-
 import "./globals.css";
 
 const archivo = Archivo({
@@ -54,7 +52,6 @@ export default function RootLayout({
       <body
         className={`${archivo.variable} ${courierPrime.variable} ${architectsDaughter.variable} overflow-x-hidden antialiased`}
       >
-        <InkFilterDefinition />
         {children}
       </body>
     </html>

@@ -17,7 +17,7 @@ export function CaseStudyHero({ title, eyebrow, summary, metadata, artwork, unde
     <section className="overflow-hidden border-b border-ink" aria-labelledby="case-study-title">
       <SiteContainer className="relative py-12 sm:py-16 lg:py-[4.5rem]">
         {artwork}
-        <p className="font-mono text-[0.625rem] tracking-[0.2em] text-ink-muted uppercase">{eyebrow}</p>
+        <p className="font-mono text-[0.625rem] tracking-[0.2em] text-muted uppercase">{eyebrow}</p>
         <h1 id="case-study-title" className="relative mt-3 inline-block max-w-4xl font-display text-6xl leading-[0.86] font-black tracking-[-0.065em] uppercase sm:text-8xl lg:text-[7.75rem]">
           {title}
           {underline}

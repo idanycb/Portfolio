@@ -27,11 +27,11 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ol: ({ children, ...props }) => <ol className="prose-editorial mt-4 max-w-[43rem] list-decimal space-y-2 pl-5" {...props}>{children}</ol>,
     li: ({ children, ...props }) => <li {...props}>{children}</li>,
     table: ({ children, ...props }) => <div className="my-6 overflow-x-auto"><table className="w-full min-w-[34rem] border-collapse text-left font-serif text-[0.95rem] leading-6 text-ink-soft" {...props}>{children}</table></div>,
-    thead: ({ children, ...props }) => <thead className="border-b-2 border-ink font-mono text-[0.61rem] tracking-[0.14em] text-ink-muted uppercase" {...props}>{children}</thead>,
+    thead: ({ children, ...props }) => <thead className="border-b-2 border-ink font-mono text-[0.61rem] tracking-[0.14em] text-muted uppercase" {...props}>{children}</thead>,
     th: ({ children, ...props }) => <th className={tableClasses} {...props}>{children}</th>,
     td: ({ children, ...props }) => <td className={tableClasses} {...props}>{children}</td>,
     hr: () => <hr className="my-12 border-rule" />,
-    code: ({ children, ...props }) => <code className="bg-[#efece5] px-1 font-mono text-[0.85em] text-ink" {...props}>{children}</code>,
+    code: ({ children, ...props }) => <code className="bg-band px-1 font-mono text-[0.85em] text-ink" {...props}>{children}</code>,
     ...components,
   };
 }
