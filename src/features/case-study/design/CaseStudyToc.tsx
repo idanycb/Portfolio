@@ -49,7 +49,7 @@ export function CaseStudyToc({
         <ResponsiveCopy
           long={label}
           short={labelShort}
-          className="text-muted font-mono text-xs tracking-[0.18em]"
+          className="text-muted font-mono text-[0.59375rem] layout:text-[0.625rem] tracking-[0.18em]"
         />
         <button
           ref={buttonRef}
@@ -58,7 +58,7 @@ export function CaseStudyToc({
           aria-controls={panelId}
           onClick={() => setOpen((value) => !value)}
           aria-label={open ? closeLabel : openLabel}
-          className="flex min-h-11 min-w-11 items-center justify-end font-mono text-xs font-bold tracking-[0.12em]"
+          className="flex min-h-11 min-w-11 items-center justify-end font-mono text-[0.6875rem] layout:text-[0.71875rem] font-bold tracking-[0.12em]"
         >
           {open ? "HIDE ✕" : "SHOW ▾"}
         </button>

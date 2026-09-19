@@ -21,29 +21,29 @@ export function ArchiveSection({ content }: ArchiveSectionProps) {
           className="layout:flex layout:items-end layout:justify-between"
         />
         <HomeSectionUnderline kind="archive" className="text-paper mt-3 layout:mt-4" />
-        <div className="archive-grid mt-8 grid grid-cols-2 gap-3 layout:mt-9">
+        <div className="archive-grid mt-[26px] grid grid-cols-2 gap-3.5 layout:mt-[34px]">
           {content.projects.map((project, index) => (
             <a
               key={project.title}
               href={project.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="archive-card border-signature border-inverse-subtle hover:bg-ink-soft relative flex min-h-33 flex-col p-4 transition-colors"
+              className="archive-card border-inverse-subtle hover:bg-ink-soft relative flex min-h-[132px] flex-col border-[1.4px] px-3.5 pt-4 pb-[18px] transition-colors"
             >
               <ArchiveOutline index={index} />
-              <span className="text-inverse-subtle font-mono text-xs tracking-[0.18em]">
+              <span className="text-inverse-subtle font-mono text-[0.5625rem] tracking-[0.18em] layout:text-[0.59375rem]">
                 {project.year}
               </span>
               <ResponsiveCopy
                 as="h3"
                 long={project.title}
                 short={project.titleShort}
-                className="font-display text-paper mt-3 text-[1.25rem] leading-[1.05] font-black tracking-[-0.04em] whitespace-pre-line layout:text-[1.4375rem]"
+                className="font-display text-paper mt-2.5 text-[1.1875rem] leading-[1.05] font-black tracking-[-0.035em] whitespace-pre-line layout:text-[1.4375rem]"
               />
               <ResponsiveCopy
                 long={project.stack}
                 short={project.stackShort}
-                className="text-inverse-muted mt-auto pt-5 font-mono text-xs leading-[1.8] tracking-[0.1em]"
+                className="text-inverse-muted mt-auto pt-3 font-mono text-[0.5625rem] leading-[1.7] tracking-[0.1em] layout:pt-4 layout:text-[0.625rem] layout:leading-[1.8]"
               />
             </a>
           ))}

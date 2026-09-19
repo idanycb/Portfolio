@@ -17,7 +17,7 @@ export function CaseStudyNav({
   return (
     <aside className="border-ink bg-band hidden border-r-[1.5px] px-8 py-9 layout:block">
       <div className="sticky top-8">
-        <p className="text-muted font-mono text-xs tracking-[0.16em]">{label}</p>
+        <p className="text-muted font-mono text-[0.59375rem] tracking-[0.16em]">{label}</p>
         <nav aria-label={navLabel} className="mt-5">
           <ol className="space-y-1">
             {items.map((item, index) => (

@@ -225,7 +225,7 @@ export function AmendmentDiagram({
           </g>
         </svg>
       </div>
-      <figcaption className="border-ink text-muted mt-2.5 flex justify-between border-t pt-1.5 font-mono text-xs tracking-[0.16em]">
+      <figcaption className="border-ink text-muted mt-2.5 flex justify-between border-t pt-1.5 font-mono text-[0.5625rem] layout:text-[0.59375rem] tracking-[0.16em]">
         <span>FIG. 1</span>
         <span className="text-copy-muted">{diagram.caption}</span>
       </figcaption>
@@ -542,7 +542,7 @@ export function PipelineDiagram({
           </g>
         </svg>
       </div>
-      <figcaption className="border-ink text-muted mt-2.5 flex justify-between border-t pt-1.5 font-mono text-xs tracking-[0.16em]">
+      <figcaption className="border-ink text-muted mt-2.5 flex justify-between border-t pt-1.5 font-mono text-[0.5625rem] layout:text-[0.59375rem] tracking-[0.16em]">
         <span>FIG. 2</span>
         <ResponsiveCopy
           long={pipeline.caption}

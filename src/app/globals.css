@@ -300,13 +300,15 @@
 @container archive (width >= 68rem) {
   .archive-grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 1.5rem;
+    gap: 26px;
   }
 
+  /* In the wide composition the hand-drawn outline IS the card border, so the
+     CSS border is removed and the card fills on hover (export: #1c1c1c). */
   .archive-card {
-    min-height: 0;
-    aspect-ratio: 1.5;
-    padding: 1.25rem;
+    min-height: 182px;
+    aspect-ratio: auto;
+    padding: 24px 22px 22px;
     border-width: 0;
   }
 

@@ -36,7 +36,7 @@ export function SiteHeader({
         {isCaseStudy ? (
           <Link
             href="/"
-            className="text-ink hover:text-link-hover flex min-h-11 shrink-0 items-center font-mono text-xs font-bold tracking-[0.14em] layout:tracking-[0.15em]"
+            className="text-ink hover:text-link-hover flex min-h-11 shrink-0 items-center font-mono text-[0.65625rem] font-bold tracking-[0.14em] layout:text-[0.6875rem] layout:tracking-[0.16em]"
           >
             <ResponsiveCopy long={backLabel} short={backLabelShort} />
           </Link>
@@ -51,16 +51,16 @@ export function SiteHeader({
             <ResponsiveCopy
               long={homeContent.profile.headerMeta}
               short={homeContent.profile.headerMetaShort}
-              className="text-muted truncate font-mono text-xs tracking-[0.16em]"
+              className="text-muted truncate font-mono text-[0.53125rem] tracking-[0.16em] layout:text-[0.625rem] layout:tracking-[0.18em]"
             />
           </div>
         )}
         {isCaseStudy ? (
           <>
-            <span className="text-muted min-w-0 text-right font-mono text-xs tracking-[0.04em] whitespace-nowrap layout:tracking-[0.14em]">
+            <span className="text-muted min-w-0 text-right font-mono text-[0.5625rem] tracking-[0.18em] whitespace-nowrap layout:text-[0.625rem] layout:tracking-[0.2em]">
               {caseStudyLabel}
             </span>
-            <span className="text-ink hidden font-mono text-xs font-bold tracking-[0.15em] layout:block">
+            <span className="text-muted hidden font-mono text-[0.625rem] tracking-[0.16em] layout:block">
               {progressLabel}
             </span>
           </>
@@ -69,7 +69,7 @@ export function SiteHeader({
             <MobileNav items={homeContent.navigation} />
             <nav
               aria-label="Primary navigation"
-              className="hidden shrink-0 items-center justify-end gap-7 font-mono text-xs font-bold tracking-[0.16em] whitespace-nowrap layout:flex"
+              className="hidden shrink-0 items-center justify-end gap-[30px] font-mono text-[0.6875rem] font-bold tracking-[0.16em] whitespace-nowrap layout:flex"
             >
               {homeContent.navigation
                 .filter((item) => item.href !== "#archive")

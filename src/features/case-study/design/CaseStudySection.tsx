@@ -62,7 +62,7 @@ function Evaluation({
 }) {
   return (
     <div className="mt-7">
-      <div className="border-ink text-muted hidden grid-cols-[1.35fr_1fr_0.8fr] border-b-[1.5px] pb-2 font-mono text-xs font-bold tracking-[0.14em] layout:grid">
+      <div className="border-ink text-muted hidden grid-cols-[1.35fr_1fr_0.8fr] border-b-[1.5px] pb-2 font-mono text-[0.59375rem] font-bold tracking-[0.14em] layout:grid">
         {headers.map((header) => (
           <span key={header}>{header}</span>
         ))}
@@ -73,24 +73,24 @@ function Evaluation({
           className="border-rule grid gap-3 border-b py-5 layout:grid-cols-[1.35fr_1fr_0.8fr] layout:gap-0"
         >
           <div>
-            <dt className="text-muted font-mono text-xs tracking-[0.12em] layout:hidden">
+            <dt className="text-muted font-mono text-[0.5625rem] layout:text-[0.59375rem] tracking-[0.12em] layout:hidden">
               {headers[0]}
             </dt>
             <dd className="text-ink mt-1 text-[0.9375rem] layout:mt-0">{metric.metric}</dd>
           </div>
           <div>
-            <dt className="text-muted font-mono text-xs tracking-[0.12em] layout:hidden">
+            <dt className="text-muted font-mono text-[0.5625rem] layout:text-[0.59375rem] tracking-[0.12em] layout:hidden">
               {headers[1]}
             </dt>
-            <dd className="text-muted mt-1 font-mono text-xs tracking-[0.08em] layout:mt-0">
+            <dd className="text-muted mt-1 font-mono text-[0.625rem] layout:text-[0.71875rem] tracking-[0.08em] layout:mt-0">
               {metric.method}
             </dd>
           </div>
           <div>
-            <dt className="text-muted font-mono text-xs tracking-[0.12em] layout:hidden">
+            <dt className="text-muted font-mono text-[0.5625rem] layout:text-[0.59375rem] tracking-[0.12em] layout:hidden">
               {headers[2]}
             </dt>
-            <dd className="mt-1 font-mono text-[0.75rem] font-bold layout:mt-0">{metric.result}</dd>
+            <dd className="mt-1 font-mono text-[0.6875rem] layout:text-[0.71875rem] font-bold layout:mt-0">{metric.result}</dd>
           </div>
         </dl>
       ))}
@@ -114,7 +114,7 @@ export function CaseStudySection({
     >
       {band ? <SectionSevenArrow /> : null}
       <header className="flex items-start gap-2 layout:gap-4">
-        <span className="text-muted shrink-0 pt-1 font-mono text-xs font-bold tracking-[0.1em]">
+        <span className="text-muted shrink-0 pt-1 font-mono text-[0.71875rem] layout:text-xs font-bold tracking-[0.1em]">
           {section.number}
         </span>
         <ResponsiveCopy

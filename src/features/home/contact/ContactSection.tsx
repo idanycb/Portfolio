@@ -24,7 +24,7 @@ export function ContactSection({ content, email, phone }: ContactSectionProps) {
           <h2 className="font-display text-ink mt-4 text-[clamp(2.625rem,13vw,3.25rem)] leading-[0.84] font-black tracking-[-0.062em] whitespace-pre-line layout:mt-5 layout:text-[clamp(3.5rem,7.4vw,5.75rem)]">
             {content.heading}
           </h2>
-          <p className="text-copy mt-6 max-w-md text-[1.0625rem] leading-[1.5] font-semibold layout:mt-7">
+          <p className="text-copy mt-6 max-w-md text-base leading-[1.5] font-semibold layout:mt-7 layout:text-[1.0625rem]">
             {content.body}
           </p>
           <div className="mt-6 hidden flex-wrap items-center gap-4 layout:flex">
@@ -40,31 +40,35 @@ export function ContactSection({ content, email, phone }: ContactSectionProps) {
           </div>
         </div>
         <div className="min-w-0 layout:pt-9">
-          <p className="text-muted font-mono text-xs tracking-[0.18em]">GET IN TOUCH</p>
+          <p className="text-muted font-mono text-[0.59375rem] tracking-[0.18em] layout:text-[0.625rem]">GET IN TOUCH</p>
           <ul className="border-ink mt-4 border-t">
             {content.prompts.map((prompt) => (
               <li
                 key={prompt.label}
-                className="border-rule text-copy-muted border-b py-4 font-mono text-xs tracking-[0.14em]"
+                className="border-rule text-copy-muted border-b py-4 font-mono text-[0.59375rem] tracking-[0.14em] layout:text-[0.625rem]"
               >
                 <ResponsiveCopy long={prompt.label} short={prompt.labelShort} />
               </li>
             ))}
           </ul>
           <div className="mt-5 flex flex-wrap gap-2.5">
+            {/* The exports render these as plain mono links — underlined on
+                desktop — rather than filled buttons. */}
             {emailAction ? (
-              <ActionLink href={emailAction.href} className="flex-[1_1_13rem]">
+              <a
+                href={emailAction.href}
+                className="text-ink hover:text-link-hover inline-flex min-h-11 items-center font-mono text-xs font-bold tracking-[0.06em] layout:min-h-0 layout:border-b-[1.6px] layout:border-ink layout:pb-0.5 layout:text-[0.8125rem]"
+              >
                 {emailAction.labelShort ?? emailAction.label}
-              </ActionLink>
+              </a>
             ) : null}
             {phoneAction ? (
-              <ActionLink
+              <a
                 href={phoneAction.href}
-                variant="outline"
-                className="flex-[1_1_13rem]"
+                className="text-ink hover:text-link-hover inline-flex min-h-11 items-center font-mono text-xs font-bold tracking-[0.06em] layout:min-h-0 layout:border-b-[1.6px] layout:border-ink layout:pb-0.5 layout:text-[0.8125rem]"
               >
                 {phoneAction.label}
-              </ActionLink>
+              </a>
             ) : null}
           </div>
           <div data-note="" className="ink-note mt-3 flex items-center gap-2">

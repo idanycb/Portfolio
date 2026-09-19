@@ -11,7 +11,7 @@ export function CaseStudyHero({ caseStudy }: { caseStudy: CaseStudy }) {
     >
       <CaseHeroDocument />
       <SiteContainer className="animate-fu py-[2.125rem] layout:py-[4.5rem]">
-        <p className="text-muted font-mono text-xs tracking-[0.22em]">
+        <p className="text-muted font-mono text-[0.59375rem] layout:text-[0.625rem] tracking-[0.22em]">
           {caseStudy.eyebrow}
         </p>
         <h1
@@ -29,7 +29,7 @@ export function CaseStudyHero({ caseStudy }: { caseStudy: CaseStudy }) {
               key={item.label}
               className="border-rule border-b py-4 pr-4 layout:border-r layout:border-b-0 layout:pl-5 layout:first:pl-0 layout:last:border-r-0"
             >
-              <dt className="text-muted font-mono text-xs tracking-[0.18em]">
+              <dt className="text-muted font-mono text-[0.5625rem] layout:text-[0.59375rem] tracking-[0.18em]">
                 {item.label}
               </dt>
               <dd className="text-ink mt-1.5 text-sm font-bold layout:text-[0.9375rem]">

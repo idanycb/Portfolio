@@ -57,7 +57,7 @@ export function MobileNav({
         type="button"
         aria-controls={navId}
         aria-expanded={isOpen}
-        className="flex min-h-11 min-w-11 items-center justify-center gap-2 bg-ink px-4 font-mono text-xs font-bold tracking-[0.16em] text-paper transition-colors hover:bg-ink-soft hover:text-paper active:translate-y-px"
+        className="flex min-h-11 min-w-11 items-center justify-center gap-2 bg-ink px-4 font-mono text-[0.65625rem] font-bold tracking-[0.16em] text-paper transition-colors hover:bg-ink-soft hover:text-paper active:translate-y-px"
         onClick={() => setIsOpen((open) => !open)}
       >
         <span>{isOpen ? closeLabel : openLabel}</span>

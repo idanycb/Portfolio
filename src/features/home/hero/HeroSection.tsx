@@ -12,7 +12,7 @@ export function HeroSection({ content }: HeroSectionProps) {
     <section className="border-ink border-b-[1.6px] py-[34px] pb-11 layout:py-[72px] layout:pb-24">
       <SiteContainer className="grid gap-8 layout:grid-cols-[minmax(0,1.6fr)_minmax(19rem,1fr)] layout:items-end layout:gap-16">
         <div>
-          <p className="animate-fi text-muted font-mono text-xs tracking-[0.24em]">
+          <p className="animate-fi text-muted font-mono text-[0.59375rem] tracking-[0.24em]">
             {content.eyebrow}
           </p>
           <h1 className="text-home-hero animate-fu font-display text-ink mt-1.5 font-black">
@@ -28,7 +28,7 @@ export function HeroSection({ content }: HeroSectionProps) {
             <p className="text-copy-muted text-sm leading-[1.55] layout:text-[0.9375rem]">
               {content.education}
             </p>
-            <p className="text-ink mt-2.5 font-mono text-xs leading-[1.9] font-bold tracking-[0.1em] layout:text-xs">
+            <p className="text-ink mt-2.5 font-mono text-[0.71875rem] leading-[1.9] font-bold tracking-[0.1em] layout:text-[0.78125rem]">
               {content.skills.join(" · ")}
             </p>
           </div>
@@ -78,7 +78,7 @@ export function HeroSection({ content }: HeroSectionProps) {
               className="object-cover grayscale"
             />
           </div>
-          <figcaption className="border-ink text-muted mt-2 flex justify-between border-t pt-1.5 font-mono text-xs tracking-[0.14em]">
+          <figcaption className="border-ink text-muted mt-2 flex justify-between border-t pt-1.5 font-mono text-[0.5625rem] tracking-[0.14em] layout:text-[0.59375rem]">
             <span>{content.captionLeft}</span>
             <span>{content.captionRight}</span>
           </figcaption>

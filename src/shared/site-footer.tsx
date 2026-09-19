@@ -22,19 +22,19 @@ export function SiteFooter({ variant, nextCaseStudy }: SiteFooterProps) {
       <footer className="bg-ink-dark text-paper">
         <SiteContainer className="flex flex-col gap-8 py-8 layout:flex-row layout:items-end layout:justify-between layout:py-[2.125rem]">
           <div>
-            <span className="font-mono text-xs tracking-[0.16em] text-inverse-muted">
+            <span className="font-mono text-[0.5625rem] tracking-[0.16em] text-inverse-muted layout:text-[0.625rem]">
               NEXT CASE STUDY
             </span>
             <Link
               href={nextCaseStudy.href}
-              className="mt-2 block font-display text-3xl leading-[0.95] font-black tracking-[-0.05em] whitespace-pre-line text-paper layout:text-[1.875rem] hover:text-inverse-muted layout:text-4xl"
+              className="mt-2 block font-display text-3xl leading-[0.95] font-black tracking-[-0.05em] whitespace-pre-line text-paper hover:text-inverse-muted"
             >
               <ResponsiveCopy long={nextCaseStudy.label} short={nextCaseStudy.labelShort} />
             </Link>
           </div>
           <Link
             href="#top"
-            className="inline-flex min-h-11 min-w-11 items-center font-mono text-xs tracking-[0.16em] text-inverse-muted hover:text-paper"
+            className="inline-flex min-h-11 min-w-11 items-center font-mono text-[0.5625rem] tracking-[0.16em] text-inverse-muted layout:text-[0.59375rem] hover:text-paper"
           >
             <ResponsiveCopy long="BACK TO THE ISSUE ↑" short="BACK TO TOP ↑" />
           </Link>
@@ -49,7 +49,7 @@ export function SiteFooter({ variant, nextCaseStudy }: SiteFooterProps) {
         <div>
           <Link
             href="/#top"
-            className="inline-flex min-h-11 items-center font-display text-[2.375rem] font-black tracking-[-0.055em] text-paper hover:text-inverse-muted"
+            className="inline-flex min-h-11 items-center font-display text-[2.375rem] font-black tracking-[-0.055em] text-paper layout:text-[2.75rem] hover:text-inverse-muted"
           >
             {homeContent.profile.wordmark}
           </Link>
@@ -58,10 +58,10 @@ export function SiteFooter({ variant, nextCaseStudy }: SiteFooterProps) {
           </p>
         </div>
         <nav aria-label="Footer navigation">
-          <p className="font-mono text-xs tracking-[0.2em] text-inverse-subtle">
+          <p className="font-mono text-[0.5625rem] tracking-[0.2em] text-inverse-subtle layout:text-[0.625rem]">
             {homeContent.footer.siteLabel}
           </p>
-          <div className="mt-3 flex flex-col gap-1 font-mono text-xs font-bold tracking-[0.12em] layout:mt-4">
+          <div className="mt-3 flex flex-col gap-1 font-mono text-[0.6875rem] font-bold tracking-[0.12em] layout:mt-4 layout:text-[0.71875rem]">
             {homeContent.navigation
               .filter((item) => item.href !== "#archive")
               .map((item) => (
@@ -80,9 +80,9 @@ export function SiteFooter({ variant, nextCaseStudy }: SiteFooterProps) {
             as="p"
             long={homeContent.footer.socialLabel}
             short={homeContent.footer.socialLabelShort}
-            className="font-mono text-xs tracking-[0.2em] text-inverse-subtle"
+            className="font-mono text-[0.5625rem] tracking-[0.2em] text-inverse-subtle layout:text-[0.625rem]"
           />
-          <div className="mt-3 flex flex-col gap-1 font-mono text-xs font-bold tracking-[0.12em] layout:mt-4">
+          <div className="mt-3 flex flex-col gap-1 font-mono text-[0.6875rem] font-bold tracking-[0.12em] layout:mt-4 layout:text-[0.71875rem]">
             {homeContent.profile.social.map((item) => (
               <a
                 key={item.href}
@@ -103,10 +103,10 @@ export function SiteFooter({ variant, nextCaseStudy }: SiteFooterProps) {
           </div>
         </div>
         <div className="hidden layout:block">
-          <p className="font-mono text-xs tracking-[0.2em] text-inverse-subtle">
+          <p className="font-mono text-[0.5625rem] tracking-[0.2em] text-inverse-subtle layout:text-[0.625rem]">
             {homeContent.footer.directLabel}
           </p>
-          <div className="mt-4 flex flex-col gap-1 font-mono text-xs font-bold tracking-[0.12em]">
+          <div className="mt-4 flex flex-col gap-1 font-mono text-[0.6875rem] font-bold tracking-[0.12em] layout:text-[0.71875rem]">
             <a
               href={`mailto:${homeContent.profile.email}`}
               className="flex min-h-11 min-w-11 w-fit items-center break-all text-paper hover:text-inverse-muted"
@@ -130,7 +130,7 @@ export function SiteFooter({ variant, nextCaseStudy }: SiteFooterProps) {
           </div>
         </div>
       </SiteContainer>
-      <SiteContainer className="flex flex-col gap-2 border-t border-inverse-subtle py-4 font-mono text-xs leading-[1.8] tracking-[0.16em] text-inverse-subtle layout:flex-row layout:items-center layout:justify-between layout:py-5 layout:text-xs">
+      <SiteContainer className="flex flex-col gap-2 border-t border-inverse-subtle py-4 font-mono text-[0.5625rem] leading-[1.8] tracking-[0.16em] text-inverse-subtle layout:text-[0.59375rem] layout:flex-row layout:items-center layout:justify-between layout:py-5 layout:text-xs">
         <span>{homeContent.footer.copyright}</span>
         <ResponsiveCopy long={homeContent.footer.notes} short={homeContent.footer.notesShort} />
         <Link href="#top" className="flex min-h-11 min-w-11 w-fit items-center text-inverse-subtle hover:text-paper">

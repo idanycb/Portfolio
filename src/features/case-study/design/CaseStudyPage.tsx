@@ -58,7 +58,7 @@ export function CaseStudyPage({ caseStudy }: { caseStudy: CaseStudy }) {
               className="border-ink mt-14 border-t-[1.5px] pt-4"
               aria-label={caseStudy.notesLabel}
             >
-              <p className="text-muted font-mono text-xs tracking-[0.16em]">
+              <p className="text-muted font-mono text-[0.5625rem] layout:text-[0.59375rem] tracking-[0.16em]">
                 {caseStudy.notesLabel}
               </p>
               <ul className="text-copy-muted mt-3 space-y-2 font-mono text-xs leading-5 tracking-[0.04em]">
@@ -73,19 +73,19 @@ export function CaseStudyPage({ caseStudy }: { caseStudy: CaseStudy }) {
       <footer className="bg-ink-dark text-paper">
         <SiteContainer className="flex flex-col gap-8 py-8 layout:flex-row layout:items-end layout:justify-between layout:py-[2.125rem]">
           <div>
-            <span className="text-inverse-muted font-mono text-xs tracking-[0.16em]">
+            <span className="text-inverse-muted font-mono text-[0.5625rem] layout:text-[0.59375rem] tracking-[0.16em]">
               {caseStudy.nextLabel}
             </span>
             <Link
               href={caseStudy.next.href}
-              className="font-display text-paper hover:text-inverse-muted mt-2 block text-3xl leading-[0.95] font-black tracking-[-0.055em] whitespace-pre-line layout:text-4xl"
+              className="font-display text-paper hover:text-inverse-muted mt-2 block text-3xl leading-[0.95] font-black tracking-[-0.055em] whitespace-pre-line"
             >
               <ResponsiveCopy long={caseStudy.next.label} short={caseStudy.next.labelShort} />
             </Link>
           </div>
           <Link
             href="#top"
-            className="text-inverse-muted hover:text-paper flex min-h-11 w-fit items-center font-mono text-xs tracking-[0.16em]"
+            className="text-inverse-muted hover:text-paper flex min-h-11 w-fit items-center font-mono text-[0.5625rem] tracking-[0.16em] layout:text-[0.59375rem]"
           >
             {caseStudy.backToTopLabel}
           </Link>
