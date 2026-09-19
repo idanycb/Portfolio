@@ -41,15 +41,15 @@ export function HeroStartArrow() {
           strokeLinejoin="round"
         >
           <path
-            d="M38 34 C28 27, 20 18, 16 7"
-            strokeDasharray="50"
-            strokeDashoffset="50"
+            d="M34 34 C24 26, 16 16, 12 6"
+            strokeDasharray="60"
+            strokeDashoffset="60"
             style={{ animation: "dw .7s 1.1s cubic-bezier(.33,1,.68,1) forwards" }}
           />
           <path
-            d="M8 17 C11 13, 13 9, 16 6 C19 10, 22 14, 26 18"
-            strokeDasharray="38"
-            strokeDashoffset="38"
+            d="M5 16 C7 11, 10 8, 12 5 C15 9, 18 13, 22 17"
+            strokeDasharray="44"
+            strokeDashoffset="44"
             style={{ animation: "dw .3s 1.75s ease forwards" }}
           />
         </g>

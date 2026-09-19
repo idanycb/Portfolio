@@ -36,15 +36,15 @@ export function SiteHeader({
         {isCaseStudy ? (
           <Link
             href="/"
-            className="text-ink hover:text-link-hover flex min-h-11 shrink-0 items-center font-mono text-xs font-bold tracking-[0.1em] layout:tracking-[0.15em]"
+            className="text-ink hover:text-link-hover flex min-h-11 shrink-0 items-center font-mono text-xs font-bold tracking-[0.14em] layout:tracking-[0.15em]"
           >
             <ResponsiveCopy long={backLabel} short={backLabelShort} />
           </Link>
         ) : (
-          <div className="flex min-w-0 items-center gap-4">
+          <div className="flex min-w-0 flex-col items-start gap-0.5 layout:flex-row layout:items-baseline layout:gap-[18px]">
             <Link
               href="/#top"
-              className="font-display text-ink hover:text-link-hover flex min-h-11 shrink-0 items-center text-xl font-black tracking-[-0.05em] layout:text-[1.375rem]"
+              className="font-display text-ink hover:text-link-hover flex min-h-11 shrink-0 items-center text-xl font-black tracking-[-0.045em] layout:text-[1.375rem]"
             >
               {homeContent.profile.wordmark}
             </Link>

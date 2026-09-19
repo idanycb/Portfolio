@@ -30,7 +30,7 @@ function Decisions({ decisions }: { decisions: NonNullable<CaseStudySectionData[
         <li key={decision.number} className="grid gap-3 layout:grid-cols-[4.125rem_1fr] layout:gap-6">
           <DecisionCircle number={decision.number} index={index} />
           <div>
-            <h3 className="text-balance text-[1.1875rem] leading-[1.2] font-extrabold layout:text-[1.3125rem]">
+            <h3 className="text-balance text-[1.1875rem] leading-[1.2] font-extrabold tracking-[-0.02em] layout:text-[1.3125rem]">
               {decision.heading}
             </h3>
             <ResponsiveCopy
@@ -76,13 +76,13 @@ function Evaluation({
             <dt className="text-muted font-mono text-xs tracking-[0.12em] layout:hidden">
               {headers[0]}
             </dt>
-            <dd className="text-copy mt-1 font-serif text-[0.96875rem] layout:mt-0">{metric.metric}</dd>
+            <dd className="text-ink mt-1 text-[0.9375rem] layout:mt-0">{metric.metric}</dd>
           </div>
           <div>
             <dt className="text-muted font-mono text-xs tracking-[0.12em] layout:hidden">
               {headers[1]}
             </dt>
-            <dd className="mt-1 font-mono text-xs font-bold tracking-[0.08em] layout:mt-0">
+            <dd className="text-muted mt-1 font-mono text-xs tracking-[0.08em] layout:mt-0">
               {metric.method}
             </dd>
           </div>
@@ -114,7 +114,7 @@ export function CaseStudySection({
     >
       {band ? <SectionSevenArrow /> : null}
       <header className="flex items-start gap-2 layout:gap-4">
-        <span className="text-muted shrink-0 pt-1 font-mono text-xs font-bold tracking-[0.08em]">
+        <span className="text-muted shrink-0 pt-1 font-mono text-xs font-bold tracking-[0.1em]">
           {section.number}
         </span>
         <ResponsiveCopy

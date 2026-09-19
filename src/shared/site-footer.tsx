@@ -27,7 +27,7 @@ export function SiteFooter({ variant, nextCaseStudy }: SiteFooterProps) {
             </span>
             <Link
               href={nextCaseStudy.href}
-              className="mt-2 block font-display text-3xl leading-[0.95] font-black tracking-[-0.055em] whitespace-pre-line text-paper hover:text-inverse-muted layout:text-4xl"
+              className="mt-2 block font-display text-3xl leading-[0.95] font-black tracking-[-0.05em] whitespace-pre-line text-paper layout:text-[1.875rem] hover:text-inverse-muted layout:text-4xl"
             >
               <ResponsiveCopy long={nextCaseStudy.label} short={nextCaseStudy.labelShort} />
             </Link>

@@ -14,6 +14,7 @@ export function ExperienceSection({ content }: ExperienceSectionProps) {
     >
       <SiteContainer>
         <SectionHeading
+          compact
           number="§2"
           title={content.heading}
           titleShort={content.headingShort}
@@ -26,32 +27,41 @@ export function ExperienceSection({ content }: ExperienceSectionProps) {
               key={item.organization}
               className="border-rule grid gap-3 border-b py-6 layout:grid-cols-[11rem_1fr] layout:gap-8 layout:py-9"
             >
-              <div className="text-ink font-mono text-xs leading-[1.65] font-bold tracking-[0.13em]">
+              <div className="text-ink font-mono text-xs leading-[1.65] font-bold tracking-[0.13em] layout:text-[0.8125rem]">
                 <ResponsiveCopy long={item.dates} short={item.datesShort} />
                 {item.meta ? (
                   <ResponsiveCopy
                     long={item.meta}
                     short={item.metaShort}
-                    className="text-muted mt-1 hidden layout:block"
+                    className="text-muted mt-1 hidden font-normal layout:block"
                   />
                 ) : null}
               </div>
               <div className="flex gap-5">
                 <ExperienceIcon index={index} />
                 <div className="min-w-0">
-                  <h3 className="font-display text-ink max-w-3xl text-balance text-[clamp(1.375rem,2.4vw,2.375rem)] leading-[1.04] font-black tracking-[-0.045em]">
+                  {/* The exports size the work entry larger than the education entries. */}
+                  <h3
+                    className={`font-display text-ink max-w-3xl text-balance font-black ${
+                      index === 0
+                        ? "text-[1.875rem] leading-[1] tracking-[-0.045em] layout:text-[2.375rem]"
+                        : "text-[1.375rem] leading-[1.1] tracking-[-0.04em] layout:max-w-[37.5rem] layout:text-[1.875rem] layout:leading-[1.06] layout:tracking-[-0.045em]"
+                    }`}
+                  >
                     {item.organization}
                   </h3>
                   <ResponsiveCopy
                     long={item.role}
                     short={item.roleShort}
-                    className="text-copy-muted mt-2 font-mono text-xs font-bold tracking-[0.13em]"
+                    className="text-copy-muted mt-2 font-mono text-xs font-bold tracking-[0.13em] layout:text-[0.8125rem]"
                   />
                   {item.body ? (
                     <ResponsiveCopy
                       long={item.body}
                       short={item.bodyShort}
-                      className="text-copy mt-3 max-w-3xl text-[0.90625rem] leading-[1.6]"
+                      className={`mt-3 max-w-3xl text-[0.90625rem] leading-[1.6] ${
+                        index === 0 ? "text-copy" : "text-copy-muted"
+                      }`}
                     />
                   ) : null}
                   {item.stack ? (

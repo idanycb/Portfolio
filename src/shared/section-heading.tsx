@@ -11,6 +11,8 @@ export type SectionHeadingProps = {
   id?: string;
   level?: 2 | 3;
   inverse?: boolean;
+  /** Use the one-step-smaller title scale the exports give two-line headings. */
+  compact?: boolean;
   className?: string;
 };
 
@@ -23,6 +25,7 @@ export function SectionHeading({
   id,
   level = 2,
   inverse = false,
+  compact = false,
   className = "",
 }: SectionHeadingProps) {
   const Heading = `h${level}` as ElementType;
@@ -32,7 +35,7 @@ export function SectionHeading({
       <div className="flex items-baseline gap-3">
         {number ? (
           <span
-            className={`font-mono text-xs font-bold tracking-[0.1em] ${inverse ? "text-inverse-muted" : "text-muted"}`}
+            className={`font-mono text-xs font-bold tracking-[0.1em] layout:text-[0.8125rem] ${inverse ? "text-inverse-muted" : "text-muted"}`}
           >
             {number}
           </span>
@@ -42,7 +45,7 @@ export function SectionHeading({
           id={id}
           long={title}
           short={titleShort}
-          className={`scroll-mt-28 whitespace-pre-line font-display font-black ${level === 2 ? "text-section-title" : "text-case-section"} ${inverse ? "text-paper" : "text-ink"}`}
+          className={`scroll-mt-28 whitespace-pre-line font-display font-black ${level === 2 ? (compact ? "text-section-title-compact" : "text-section-title") : "text-case-section"} ${inverse ? "text-paper" : "text-ink"}`}
         />
       </div>
       {meta ? (

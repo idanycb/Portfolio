@@ -58,7 +58,7 @@ export function CaseStudyPage({ caseStudy }: { caseStudy: CaseStudy }) {
               className="border-ink mt-14 border-t-[1.5px] pt-4"
               aria-label={caseStudy.notesLabel}
             >
-              <p className="text-muted font-mono text-xs font-bold tracking-[0.16em]">
+              <p className="text-muted font-mono text-xs tracking-[0.16em]">
                 {caseStudy.notesLabel}
               </p>
               <ul className="text-copy-muted mt-3 space-y-2 font-mono text-xs leading-5 tracking-[0.04em]">

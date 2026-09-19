@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 
 import type { CaseStudySectionData } from "@/content/case-studies";
+import { ResponsiveCopy } from "@/shared/responsive-copy";
 
 const paused = (animation: string): CSSProperties => ({ animation, animationPlayState: "paused" });
 
@@ -543,7 +544,11 @@ export function PipelineDiagram({
       </div>
       <figcaption className="border-ink text-muted mt-2.5 flex justify-between border-t pt-1.5 font-mono text-xs tracking-[0.16em]">
         <span>FIG. 2</span>
-        <span className="text-copy-muted">{pipeline.caption}</span>
+        <ResponsiveCopy
+          long={pipeline.caption}
+          short={pipeline.captionShort}
+          className="text-copy-muted"
+        />
       </figcaption>
     </figure>
   );

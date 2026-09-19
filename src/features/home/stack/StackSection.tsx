@@ -33,7 +33,7 @@ export function StackSection({ content }: StackSectionProps) {
               <ResponsiveCopy
                 long={tier.body}
                 short={tier.bodyShort}
-                className="text-copy col-span-2 font-mono text-xs leading-[1.85] tracking-[0.09em] layout:col-span-1 layout:text-sm"
+                className="text-copy col-span-2 font-mono text-[0.78125rem] leading-[1.8] tracking-[0.07em] layout:col-span-1 layout:text-sm layout:leading-[1.9] layout:tracking-[0.09em]"
               />
             </li>
           ))}

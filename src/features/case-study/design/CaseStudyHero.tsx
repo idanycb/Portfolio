@@ -11,12 +11,12 @@ export function CaseStudyHero({ caseStudy }: { caseStudy: CaseStudy }) {
     >
       <CaseHeroDocument />
       <SiteContainer className="animate-fu py-[2.125rem] layout:py-[4.5rem]">
-        <p className="text-muted font-mono text-xs font-bold tracking-[0.18em]">
+        <p className="text-muted font-mono text-xs tracking-[0.22em]">
           {caseStudy.eyebrow}
         </p>
         <h1
           id="case-study-title"
-          className="font-display mt-3 text-[clamp(4rem,22vw,5.5rem)] leading-[0.8] font-black tracking-[-0.065em] layout:text-[clamp(4.5rem,8.7vw,7.75rem)] layout:leading-[0.82]"
+          className="font-display mt-3 text-[clamp(4rem,19vw,5.5rem)] leading-[0.88] font-black tracking-[-0.06em] layout:text-[clamp(4.5rem,10vw,7.75rem)] layout:leading-[0.86] layout:tracking-[-0.062em]"
         >
           {caseStudy.title}
         </h1>
@@ -29,10 +29,10 @@ export function CaseStudyHero({ caseStudy }: { caseStudy: CaseStudy }) {
               key={item.label}
               className="border-rule border-b py-4 pr-4 layout:border-r layout:border-b-0 layout:pl-5 layout:first:pl-0 layout:last:border-r-0"
             >
-              <dt className="text-muted font-mono text-xs font-bold tracking-[0.16em]">
+              <dt className="text-muted font-mono text-xs tracking-[0.18em]">
                 {item.label}
               </dt>
-              <dd className="text-ink mt-1.5 text-[0.8125rem] font-semibold">
+              <dd className="text-ink mt-1.5 text-sm font-bold layout:text-[0.9375rem]">
                 <ResponsiveCopy long={item.value} short={item.valueShort} />
               </dd>
             </div>

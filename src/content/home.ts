@@ -19,6 +19,9 @@ export type WorkProject = {
   facts: readonly { label: string; body: string; bodyShort?: string }[];
   stack: string;
   stackShort?: string;
+  figureLabel: string;
+  figureCaption: string;
+  figureCaptionShort?: string;
   actions: readonly LinkTarget[];
 };
 
@@ -189,6 +192,9 @@ export const homeContent = {
       {
         slug: "findoc",
         number: "01",
+        figureLabel: "FIG. 1",
+        figureCaption: "INGESTION → RETRIEVAL → CITED ANSWER",
+        figureCaptionShort: "INGESTION → CITED ANSWER",
         category: "AI / BACKEND · RETRIEVAL",
         title: ["FINDOC"],
         body: "Financial filings are long, amended over time, and hostile to naïve retrieval. FinDoc imports SEC EDGAR filings, parses and indexes their structured sections, retrieves progressively, and answers only with citations tied back to filing metadata. [1]",
@@ -222,6 +228,8 @@ export const homeContent = {
       {
         slug: "portfolio-gitops",
         number: "02",
+        figureLabel: "FIG. 2",
+        figureCaption: "THE RECONCILIATION LOOP",
         category: "DEVOPS · PLATFORM",
         title: ["PORTFOLIO", "GITOPS"],
         body: "A private K3s cluster on Oracle Cloud ARM, declared entirely in Git. FluxCD reconciles, Infisical holds the secrets under zero-trust, cert-manager and Traefik keep it public and encrypted. Bootstrap is two-phase and documented — after it, nothing is done by hand. [2]",

@@ -18,7 +18,7 @@ export function HeroSection({ content }: HeroSectionProps) {
           <h1 className="text-home-hero animate-fu font-display text-ink mt-1.5 font-black">
             {content.title}
           </h1>
-          <h2 className="animate-fu font-display text-ink mt-7 max-w-xl text-balance text-[1.6875rem] leading-[1.1] font-extrabold tracking-[-0.03em] layout:mt-10 layout:text-[clamp(1.875rem,3vw,2.75rem)]">
+          <h2 className="animate-fu font-display text-ink mt-7 max-w-xl text-balance text-[1.6875rem] leading-[1.1] font-extrabold tracking-[-0.03em] layout:mt-10 layout:text-[clamp(1.875rem,3.4vw,2.75rem)] layout:leading-[1.08] layout:tracking-[-0.035em]">
             {content.subtitle}
           </h2>
           <p className="animate-fu text-copy mt-3.5 max-w-xl text-[1.0625rem] leading-[1.5] layout:mt-4 layout:text-[1.3125rem]">

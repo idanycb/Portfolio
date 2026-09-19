@@ -5,6 +5,8 @@ export type ActionLinkProps = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "hre
   children: ReactNode;
   href: string;
   variant?: "solid" | "outline" | "text";
+  /** Hero actions are 13px in the exports; the work-card actions are 12.5px. */
+  size?: "default" | "compact";
 };
 
 const variants = {
@@ -20,13 +22,19 @@ export function ActionLink({
   rel,
   target,
   variant = "solid",
+  size = "default",
   ...props
 }: ActionLinkProps) {
   const isInternal = href.startsWith("/") || href.startsWith("#");
   const externalTarget = !isInternal && href.startsWith("http") ? (target ?? "_blank") : target;
   const safeRel = externalTarget === "_blank" ? (rel ?? "noopener noreferrer") : rel;
   const framing = variant === "text" ? "" : "px-5 py-3";
-  const classes = `inline-flex min-h-11 w-fit items-center justify-center whitespace-nowrap font-display text-xs font-bold tracking-[0.02em] transition-[color,background-color,transform] duration-150 active:translate-y-px ${framing} ${variants[variant]} ${className}`;
+  // Desktop hero actions carry .02em tracking in the export; everything else has none.
+  const sizing =
+    size === "compact"
+      ? "text-[0.78125rem] tracking-normal"
+      : "text-[0.8125rem] tracking-normal layout:tracking-[0.02em]";
+  const classes = `inline-flex min-h-11 w-fit items-center justify-center whitespace-nowrap font-display font-extrabold ${sizing} transition-[color,background-color,transform] duration-150 active:translate-y-px ${framing} ${variants[variant]} ${className}`;
 
   return isInternal ? (
     <Link className={classes} href={href} {...props}>

@@ -30,6 +30,7 @@
   --muted: #8a8580;
   --inverse-muted: #9d978e;
   --connector: #b0aaa0;
+  --numeral: #b8b2a8;
   --subtle: #cfc9bf;
   --rule: #dcd7ce;
   --rule-light: #e6e2da;
@@ -49,6 +50,7 @@
   --color-muted: var(--muted);
   --color-inverse-muted: var(--inverse-muted);
   --color-connector: var(--connector);
+  --color-numeral: var(--numeral);
   --color-subtle: var(--subtle);
   --color-rule: var(--rule);
   --color-rule-light: var(--rule-light);
@@ -179,6 +181,19 @@
   }
 }
 
+/* EXPERIENCE & EDUCATION is set one step smaller than the other section titles
+   in both exports, because it is the only two-line heading. */
+@utility text-section-title-compact {
+  font-size: 2.125rem;
+  line-height: 0.94;
+  letter-spacing: -0.05em;
+
+  @media (width >= 60rem) {
+    font-size: clamp(2.125rem, 4.2vw, 3.25rem);
+    line-height: 0.9;
+  }
+}
+
 @utility text-work-title {
   font-size: clamp(2.75rem, 13.8vw, 3.375rem);
   line-height: 0.88;
@@ -192,7 +207,7 @@
 @utility text-case-section {
   font-size: clamp(1.375rem, 7.2vw, 1.625rem);
   line-height: 1.02;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.04em;
 
   @media (width >= 60rem) {
     font-size: clamp(1.625rem, 3vw, 2.125rem);

@@ -19,6 +19,7 @@ export type CaseStudySectionData = {
   metrics?: readonly { metric: string; method: string; result: string }[];
   pipeline?: {
     caption: string;
+    captionShort?: string;
     steps: readonly { title: string; detail: string }[];
   };
   amendmentDiagram?: {
@@ -102,7 +103,7 @@ export const caseStudies = {
         variant: "prose",
         amendmentDiagram: {
           label: "Three related SEC filings resolve into one applicable evidence set.",
-          caption: "AMENDMENTS SUPERSEDE PARTS, NOT WHOLE FILINGS",
+          caption: "THE AMENDMENT PROBLEM",
           filings: [
             { title: "10-K", state: "BASE FILING" },
             { title: "10-K/A", state: "SECTION UPDATE" },
@@ -121,6 +122,7 @@ export const caseStudies = {
         variant: "prose",
         pipeline: {
           caption: "INGESTION → RETRIEVAL → CITED ANSWER",
+          captionShort: "INGESTION → CITED ANSWER",
           steps: [
             { title: "EDGAR pull", detail: "Source filing and amendment metadata" },
             { title: "Docling parse", detail: "Structured sections and chunks" },

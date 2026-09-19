@@ -88,8 +88,9 @@ export function CaseSectionUnderline({ id }: { id: keyof typeof desktop }) {
           strokeDashoffset={dashed ? undefined : "360"}
           data-anim=""
           style={{
+            // The mobile export uses one duration for every underline, unlike desktop.
             ...paused(
-              `${dashed ? "fi" : "dw"} ${d[1]} ${dashed ? "ease" : "cubic-bezier(.33,1,.68,1)"} forwards`,
+              `${dashed ? "fi .8s ease" : "dw 1.1s cubic-bezier(.33,1,.68,1)"} forwards`,
             ),
             opacity: dashed ? 0 : undefined,
           }}
