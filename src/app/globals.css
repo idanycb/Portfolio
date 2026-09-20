@@ -57,7 +57,7 @@
   --font-display: var(--font-archivo);
   --font-sans: var(--font-archivo);
   --font-mono: var(--font-courier-prime);
-  --font-serif: Georgia, "Times New Roman", serif;
+  --font-serif: var(--font-source-serif), Georgia, "Times New Roman", serif;
   --container-site: 77.5rem;
   --breakpoint-layout: 60rem;
   --animate-fu: fu 800ms cubic-bezier(0.33, 1, 0.68, 1) both;
@@ -221,7 +221,7 @@
 
 @layer components {
   .prose-editorial {
-    font-family: Georgia, "Times New Roman", serif;
+    font-family: var(--font-source-serif), Georgia, "Times New Roman", serif;
     color: var(--copy);
     font-size: 1.0625rem;
     line-height: 1.75;
