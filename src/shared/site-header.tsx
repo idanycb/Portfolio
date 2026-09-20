@@ -41,7 +41,7 @@ export function SiteHeader({
             <ResponsiveCopy long={backLabel} short={backLabelShort} />
           </Link>
         ) : (
-          <div className="flex min-w-0 flex-col items-start gap-0.5 layout:flex-row layout:items-baseline layout:gap-[18px]">
+          <div className="flex min-w-0 flex-col items-start gap-0.5 layout:flex-row layout:items-center layout:gap-[18px]">
             <Link
               href="/#top"
               className="font-display text-ink hover:text-link-hover block shrink-0 py-1 text-xl leading-[1.1] font-black tracking-[-0.045em] layout:py-0 layout:text-[1.375rem]"
