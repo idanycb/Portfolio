@@ -1,5 +1,5 @@
 import type { Viewport } from "next";
-import { Architects_Daughter, Archivo, Courier_Prime, Source_Serif_4 } from "next/font/google";
+import { Architects_Daughter, Archivo, IBM_Plex_Mono, Source_Serif_4 } from "next/font/google";
 
 import "./globals.css";
 
@@ -9,8 +9,13 @@ const archivo = Archivo({
   weight: ["400", "500", "600", "700", "800", "900"],
 });
 
-const courierPrime = Courier_Prime({
-  variable: "--font-courier-prime",
+// The exports use Courier Prime, a typewriter face: light-stroked, wide, and
+// slab-serifed. Against Archivo Black it read thin and dated, and at the
+// 9.5-12px label sizes it washed out in the muted greys. IBM Plex Mono keeps
+// the technical-document character but on a grotesque skeleton that matches
+// Archivo's construction, with sturdier strokes at small sizes.
+const plexMono = IBM_Plex_Mono({
+  variable: "--font-plex-mono",
   subsets: ["latin"],
   weight: ["400", "700"],
 });
@@ -60,7 +65,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${archivo.variable} ${courierPrime.variable} ${architectsDaughter.variable} ${sourceSerif.variable} overflow-x-hidden antialiased`}
+        className={`${archivo.variable} ${plexMono.variable} ${architectsDaughter.variable} ${sourceSerif.variable} overflow-x-hidden antialiased`}
       >
         {children}
       </body>

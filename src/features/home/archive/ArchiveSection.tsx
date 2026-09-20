@@ -28,7 +28,7 @@ export function ArchiveSection({ content }: ArchiveSectionProps) {
               href={project.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="archive-card border-inverse-subtle hover:bg-ink-soft relative flex min-h-[132px] flex-col border-[1.4px] px-3.5 pt-4 pb-[18px] transition-colors"
+              className="archive-card text-paper border-inverse-subtle hover:bg-ink-soft relative flex min-h-[132px] flex-col border-[1.4px] px-3.5 pt-4 pb-[18px] transition-colors"
             >
               <ArchiveOutline index={index} />
               <span className="text-inverse-subtle font-mono text-[0.5625rem] tracking-[0.18em] layout:text-[0.59375rem]">

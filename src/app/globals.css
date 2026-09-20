@@ -56,7 +56,7 @@
   --color-rule-light: var(--rule-light);
   --font-display: var(--font-archivo);
   --font-sans: var(--font-archivo);
-  --font-mono: var(--font-courier-prime);
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
   --font-serif: var(--font-source-serif), Georgia, "Times New Roman", serif;
   --container-site: 77.5rem;
   --breakpoint-layout: 60rem;
