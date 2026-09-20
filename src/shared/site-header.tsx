@@ -44,14 +44,14 @@ export function SiteHeader({
           <div className="flex min-w-0 flex-col items-start gap-0.5 layout:flex-row layout:items-baseline layout:gap-[18px]">
             <Link
               href="/#top"
-              className="font-display text-ink hover:text-link-hover flex min-h-11 shrink-0 items-center text-xl font-black tracking-[-0.045em] layout:text-[1.375rem]"
+              className="font-display text-ink hover:text-link-hover block shrink-0 py-1 text-xl leading-[1.1] font-black tracking-[-0.045em] layout:py-0 layout:text-[1.375rem]"
             >
               {homeContent.profile.wordmark}
             </Link>
             <ResponsiveCopy
               long={homeContent.profile.headerMeta}
               short={homeContent.profile.headerMetaShort}
-              className="text-muted truncate font-mono text-[0.53125rem] tracking-[0.16em] layout:text-[0.625rem] layout:tracking-[0.18em]"
+              className="text-muted font-mono text-[0.53125rem] leading-[1.1] tracking-[0.16em] layout:text-[0.625rem] layout:tracking-[0.18em] layout:whitespace-nowrap"
             />
           </div>
         )}
@@ -69,7 +69,7 @@ export function SiteHeader({
             <MobileNav items={homeContent.navigation} />
             <nav
               aria-label="Primary navigation"
-              className="hidden shrink-0 items-center justify-end gap-[30px] font-mono text-[0.6875rem] font-bold tracking-[0.16em] whitespace-nowrap layout:flex"
+              className="hidden shrink-0 items-center justify-end gap-[30px] font-mono text-[0.6875rem] leading-[1.2] font-bold tracking-[0.16em] whitespace-nowrap layout:flex"
             >
               {homeContent.navigation
                 .filter((item) => item.href !== "#archive")
@@ -77,11 +77,13 @@ export function SiteHeader({
                   <Link
                     key={item.href}
                     href={`/${item.href}`}
-                    className="text-ink hover:text-link-hover relative flex min-h-11 items-center"
+                    className={`text-ink hover:text-link-hover relative ${
+                      item.href === "#contact" ? "px-2.5 py-1.5" : ""
+                    }`}
                   >
                     {item.label}
                     {item.href === "#contact" ? (
-                      <ContactNavCircle className="pointer-events-none absolute -top-0.5 -left-4 overflow-visible" />
+                      <ContactNavCircle className="pointer-events-none absolute -top-2 -left-4 overflow-visible" />
                     ) : null}
                   </Link>
                 ))}
