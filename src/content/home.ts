@@ -7,6 +7,33 @@ export type LinkTarget = {
   download?: boolean;
 };
 
+export type ContactTopic = "role" | "collaboration" | "other";
+
+export type ContactFormContent = {
+  heading: string;
+  fields: {
+    name: { label: string };
+    email: { label: string };
+    topic: { label: string };
+    message: { label: string };
+  };
+  topics: readonly { value: ContactTopic; label: string }[];
+  submitLabel: string;
+  pendingLabel: string;
+  successMessage: string;
+  validationErrorMessage: string;
+  genericErrorMessage: string;
+  rateLimitMessage: string;
+  fieldErrors: {
+    name: string;
+    email: string;
+    disposableEmail: string;
+    unreachableEmail: string;
+    topic: string;
+    message: string;
+  };
+};
+
 export type WorkProject = {
   slug: string;
   number: string;
@@ -47,7 +74,6 @@ export type HomepageContent = {
     headerMeta: string;
     headerMetaShort: string;
     email: string;
-    phone: string;
     website: string;
     social: readonly LinkTarget[];
   };
@@ -109,7 +135,7 @@ export type HomepageContent = {
     label: string;
     heading: string;
     body: string;
-    prompts: readonly { label: string; labelShort?: string }[];
+    form: ContactFormContent;
     actions: readonly LinkTarget[];
     note: string;
   };
@@ -134,7 +160,6 @@ export const homeContent = {
     headerMeta: "DANIEL THOMAS JESUDOSS · DALLAS–FORT WORTH",
     headerMetaShort: "BACKEND & AI ENGINEER · DFW",
     email: "idanycb@gmail.com",
-    phone: "+1 817 819 7277",
     website: "https://www.danycb.com",
     social: [
       {
@@ -167,13 +192,14 @@ export const homeContent = {
     skills: ["JAVA", "SPRING BOOT", "RAG", "POSTGRESQL", "AWS", "NEXT.JS", "KUBERNETES"],
     actions: [
       { label: "VIEW PROJECTS ↗", href: "#work" },
-      { label: "DOWNLOAD RÉSUMÉ ↓", href: "#contact" },
-      { label: "CONTACT ME", href: "#contact", hrefMobile: "mailto:idanycb@gmail.com" },
+      { label: "DOWNLOAD RÉSUMÉ ↓", href: "/daniel-thomas-jesudoss-resume.pdf", download: true },
+      { label: "CONTACT ME", href: "#contact", hrefMobile: "#contact" },
     ],
     image: {
-      src: "/images/placeholders/dany-portrait.svg",
-      alt: "Placeholder for a grayscale portrait of Daniel Thomas Jesudoss",
-      sizes: "(min-width: 960px) 36vw, calc(100vw - 40px)",
+      src: "/images/dany-portrait.png",
+      alt: "Grayscale portrait of Daniel Thomas Jesudoss wearing glasses, with headphones around his neck",
+      sizes:
+        "(min-width: 960px) min(27vw, 21rem), (min-width: 640px) 30vw, min(calc(100vw - 40px), 24rem)",
       aspectRatio: "4 / 5",
     },
     captionLeft: "DANY C.B.",
@@ -247,7 +273,7 @@ export const homeContent = {
         ],
         stack: "K3S · FLUXCD · INFISICAL · CERT-MANAGER · TRAEFIK · OCI · GITHUB ACTIONS",
         actions: [
-          { label: "READ THE CASE STUDY ↗", href: "/projects/portfolio-gitops" },
+          { label: "READ THE CASE STUDY ↗", href: "/work/portfolio-gitops" },
           {
             label: "REPO",
             href: "https://github.com/idanycb/portfolio-gitops",
@@ -362,24 +388,40 @@ export const homeContent = {
     label: "§5 — CONTACT",
     heading: "LET'S\nBUILD\nSOMETHING.",
     body: "Open to backend, AI-platform and full-stack roles — Dallas–Fort Worth and remote.",
-    prompts: [
-      { label: "NAME" },
-      { label: "EMAIL" },
-      {
-        label: "WHAT'S THIS ABOUT — ROLE / COLLABORATION / OTHER ▾",
-        labelShort: "ROLE / COLLABORATION / OTHER ▾",
+    form: {
+      heading: "GET IN TOUCH",
+      fields: {
+        name: { label: "NAME" },
+        email: { label: "EMAIL" },
+        topic: { label: "WHAT'S THIS ABOUT?" },
+        message: { label: "MESSAGE" },
       },
-      { label: "MESSAGE" },
-    ],
+      topics: [
+        { value: "role", label: "ROLE" },
+        { value: "collaboration", label: "COLLABORATION" },
+        { value: "other", label: "OTHER" },
+      ],
+      submitLabel: "SEND MESSAGE ↗",
+      pendingLabel: "SENDING…",
+      successMessage: "MESSAGE SENT — I'LL GET BACK TO YOU SOON.",
+      validationErrorMessage: "CHECK THE MARKED FIELDS AND TRY AGAIN.",
+      genericErrorMessage: "SOMETHING WENT WRONG. TRY AGAIN OR EMAIL IDANYCB@GMAIL.COM DIRECTLY.",
+      rateLimitMessage: "TOO MANY MESSAGES. TRY AGAIN IN 10 MINUTES OR EMAIL ME DIRECTLY.",
+      fieldErrors: {
+        name: "ENTER YOUR NAME.",
+        email: "ENTER A VALID EMAIL ADDRESS.",
+        disposableEmail: "USE A PERMANENT EMAIL ADDRESS.",
+        unreachableEmail: "THIS EMAIL DOMAIN CANNOT RECEIVE MAIL.",
+        topic: "CHOOSE ROLE, COLLABORATION, OR OTHER.",
+        message: "MESSAGE MUST BE BETWEEN 10 AND 5000 CHARACTERS.",
+      },
+    },
     actions: [
-      { label: "DOWNLOAD RÉSUMÉ ↓", href: "#contact" },
+      { label: "DOWNLOAD RÉSUMÉ ↓", href: "/daniel-thomas-jesudoss-resume.pdf", download: true },
       {
-        label: "IDANYCB@GMAIL.COM",
-        labelShort: "IDANYCB@GMAIL.COM ↗",
+        label: "IDANYCB@GMAIL.COM ↗",
         href: "mailto:idanycb@gmail.com",
       },
-      { label: "SEND IT ↗", href: "#contact" },
-      { label: "+1 817 819 7277 ↗", href: "tel:+18178197277" },
     ],
     note: "I read every one",
   },

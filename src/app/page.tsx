@@ -15,7 +15,7 @@ export default function Home() {
       <PageDrawnLayer />
       <div
         data-grid=""
-        className="ink-grid pointer-events-none absolute inset-0 z-0 hidden opacity-50 layout:block"
+        className="ink-grid layout:block pointer-events-none absolute inset-0 z-0 hidden opacity-50"
         aria-hidden="true"
       >
         <div className="max-w-site mx-auto grid h-full grid-cols-6 px-12">
@@ -33,11 +33,7 @@ export default function Home() {
           <ExperienceSection content={homeContent.experience} />
           <StackSection content={homeContent.stack} />
           <ArchiveSection content={homeContent.archive} />
-          <ContactSection
-            content={homeContent.contact}
-            email={homeContent.profile.email}
-            phone={homeContent.profile.phone}
-          />
+          <ContactSection content={homeContent.contact} />
         </main>
         <SiteFooter />
       </div>
