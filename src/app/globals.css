@@ -4,11 +4,17 @@
    --ink-wobble : how wobbly the hand-drawn lines are.
                   0 = clean, 0.9 = design default, 3 = design max.
    --ink-filter : set to `none` to switch the wobble filter off entirely.
+   --ink-stroke : line-weight multiplier for every hand-drawn mark
+                  (via `inkStroke()`) and every ink rule (`border-signature`).
+                  1 = design default.
+   --ink-rule   : the ink rule's width; follows --ink-stroke unless pinned.
    To hide the handwritten notes or the grid overlay, uncomment
    the matching rule below. */
 :root {
   --ink-wobble: 0.9;
   --ink-filter: url(#ink);
+  --ink-stroke: 1;
+  --ink-rule: calc(1.6px * var(--ink-stroke));
 }
 .ink {
   filter: var(--ink-filter);
@@ -59,12 +65,11 @@
   --font-mono: var(--font-plex-mono), ui-monospace, monospace;
   --font-serif: var(--font-source-serif), Georgia, "Times New Roman", serif;
   --container-site: 77.5rem;
+  --border-width-signature: var(--ink-rule);
+  --breakpoint-tablet: 40rem;
   --breakpoint-layout: 60rem;
   --animate-fu: fu 800ms cubic-bezier(0.33, 1, 0.68, 1) both;
   --animate-fi: fi 700ms ease both;
-  --animate-blink: blink 1s steps(1, end) infinite;
-  --animate-flt: flt 2.4s ease-in-out infinite;
-  --animate-dw: dw 1s ease forwards;
 }
 
 @layer base {
@@ -152,18 +157,16 @@
   }
 }
 
-@utility border-signature {
-  border-width: 1.6px;
-}
-
-@utility max-w-site {
-  max-width: 77.5rem;
-}
-
+/* Tablet steps (40rem) run the desktop formula down from 60rem, floored at the
+   mobile maximum, so sizes meet at both breakpoints instead of jumping. */
 @utility text-home-hero {
   font-size: clamp(4.75rem, 22vw, 6.5rem);
   line-height: 0.8;
   letter-spacing: -0.068em;
+
+  @media (width >= 40rem) {
+    font-size: clamp(6.5rem, 17vw, 9rem);
+  }
 
   @media (width >= 60rem) {
     font-size: clamp(6rem, 15vw, 13rem);
@@ -175,6 +178,10 @@
   font-size: clamp(2.125rem, 9.7vw, 2.375rem);
   line-height: 0.9;
   letter-spacing: -0.05em;
+
+  @media (width >= 40rem) {
+    font-size: clamp(2.375rem, 4.6vw, 2.75rem);
+  }
 
   @media (width >= 60rem) {
     font-size: clamp(2.25rem, 4.6vw, 3.625rem);
@@ -188,6 +195,10 @@
   line-height: 0.94;
   letter-spacing: -0.05em;
 
+  @media (width >= 40rem) {
+    font-size: clamp(2.125rem, 4.2vw, 2.5rem);
+  }
+
   @media (width >= 60rem) {
     font-size: clamp(2.125rem, 4.2vw, 3.25rem);
     line-height: 0.9;
@@ -199,6 +210,10 @@
   line-height: 0.88;
   letter-spacing: -0.058em;
 
+  @media (width >= 40rem) {
+    font-size: clamp(3.375rem, 7vw, 4.25rem);
+  }
+
   @media (width >= 60rem) {
     font-size: clamp(3.5rem, 7vw, 5.375rem);
   }
@@ -208,6 +223,10 @@
   font-size: clamp(1.375rem, 7.2vw, 1.625rem);
   line-height: 1.02;
   letter-spacing: -0.04em;
+
+  @media (width >= 40rem) {
+    font-size: clamp(1.625rem, 3vw, 2.125rem);
+  }
 
   @media (width >= 60rem) {
     font-size: clamp(1.625rem, 3vw, 2.125rem);
@@ -245,6 +264,18 @@
 
   to {
     opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Transform-only on purpose: the hero portrait is the LCP element, and an
+   opacity fade would delay the paint that LCP measures. */
+@keyframes rise {
+  from {
+    transform: translateY(1.5rem);
+  }
+
+  to {
     transform: translateY(0);
   }
 }

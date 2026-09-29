@@ -35,7 +35,7 @@ export function SectionHeading({
       <div className="flex items-baseline gap-3">
         {number ? (
           <span
-            className={`font-mono text-xs font-bold tracking-[0.1em] layout:text-[0.8125rem] ${inverse ? "text-inverse-muted" : "text-muted"}`}
+            className={`layout:text-[0.8125rem] font-mono text-xs font-bold tracking-[0.1em] ${inverse ? "text-inverse-muted" : "text-muted"}`}
           >
             {number}
           </span>
@@ -45,7 +45,8 @@ export function SectionHeading({
           id={id}
           long={title}
           short={titleShort}
-          className={`scroll-mt-28 whitespace-pre-line font-display font-black ${level === 2 ? (compact ? "text-section-title-compact" : "text-section-title") : "text-case-section"} ${inverse ? "text-paper" : "text-ink"}`}
+          at="tablet"
+          className={`font-display scroll-mt-28 font-black whitespace-pre-line ${level === 2 ? (compact ? "text-section-title-compact" : "text-section-title") : "text-case-section"} ${inverse ? "text-paper" : "text-ink"}`}
         />
       </div>
       {meta ? (
@@ -53,7 +54,8 @@ export function SectionHeading({
           as="p"
           long={meta}
           short={metaShort}
-          className={`mt-3 font-mono text-[0.59375rem] tracking-[0.16em] layout:text-[0.625rem] ${inverse ? "text-inverse-muted" : "text-muted"}`}
+          at="tablet"
+          className={`layout:text-[0.625rem] mt-3 font-mono text-[0.59375rem] tracking-[0.16em] ${inverse ? "text-inverse-muted" : "text-muted"}`}
         />
       ) : null}
     </header>

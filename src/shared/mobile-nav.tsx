@@ -1,7 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+
+import { HashLink } from "./hash-link";
 
 export type MobileNavItem = {
   number: string;
@@ -57,37 +58,50 @@ export function MobileNav({
         type="button"
         aria-controls={navId}
         aria-expanded={isOpen}
-        className="flex min-h-11 min-w-11 items-center justify-center gap-2 bg-ink px-4 font-mono text-[0.65625rem] font-bold tracking-[0.16em] text-paper transition-colors hover:bg-ink-soft hover:text-paper active:translate-y-px"
+        className="group flex min-h-11 min-w-11 items-center justify-center font-mono text-[0.65625rem] font-bold tracking-[0.16em]"
         onClick={() => setIsOpen((open) => !open)}
       >
-        <span>{isOpen ? closeLabel : openLabel}</span>
-        <span aria-hidden className="relative block h-3.5 w-3.5">
-          <span
-            className={`absolute top-1/2 left-0 block h-px w-3.5 bg-current transition-transform ${isOpen ? "rotate-45" : "-translate-y-1"}`}
-          />
-          <span
-            className={`absolute top-1/2 left-0 block h-px w-3.5 bg-current transition-transform ${isOpen ? "-rotate-45" : "translate-y-1"}`}
-          />
+        <span className="bg-ink text-paper group-hover:bg-ink-soft flex h-8 items-center gap-2 px-3.5 transition-colors">
+          {/* Both labels share one grid cell so the box is always as wide as the longer one. */}
+          <span className="grid">
+            <span className={`col-start-1 row-start-1 ${isOpen ? "invisible" : ""}`}>
+              {openLabel}
+            </span>
+            <span className={`col-start-1 row-start-1 ${isOpen ? "" : "invisible"}`}>
+              {closeLabel}
+            </span>
+          </span>
+          <span aria-hidden className="relative block h-3 w-3">
+            <span
+              className={`absolute top-[calc(50%-0.75px)] left-0 block h-[1.5px] w-3 bg-current transition-transform ${isOpen ? "rotate-45" : "-translate-y-1"}`}
+            />
+            <span
+              className={`absolute top-[calc(50%-0.75px)] left-0 block h-[1.5px] w-3 bg-current transition-opacity ${isOpen ? "opacity-0" : ""}`}
+            />
+            <span
+              className={`absolute top-[calc(50%-0.75px)] left-0 block h-[1.5px] w-3 bg-current transition-transform ${isOpen ? "-rotate-45" : "translate-y-1"}`}
+            />
+          </span>
         </span>
       </button>
       <nav
         id={navId}
         aria-label="Mobile primary navigation"
         hidden={!isOpen}
-        className="fixed inset-x-0 top-[69px] z-30 border-b-[1.5px] border-ink bg-band"
+        className="border-ink bg-band border-b-signature fixed inset-x-0 top-[69px] z-30"
       >
         <div className="grid grid-cols-1 px-5 py-2">
           {items.map((item, index) => (
-            <Link
+            <HashLink
               ref={index === 0 ? firstLinkRef : undefined}
               key={item.href}
               href={item.href}
-              className="flex min-h-11 items-center gap-4 border-b border-rule py-3 font-mono text-xs font-bold tracking-[0.12em] text-ink last:border-b-0 hover:text-link-hover"
+              className="border-rule text-ink hover:text-link-hover flex min-h-11 items-center gap-4 border-b py-3 font-mono text-xs font-bold tracking-[0.12em] last:border-b-0"
               onClick={closeAndReturnFocus}
             >
               <span className="text-muted">{item.number}</span>
               <span>{item.labelShort ?? item.label}</span>
-            </Link>
+            </HashLink>
           ))}
         </div>
       </nav>

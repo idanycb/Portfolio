@@ -38,7 +38,8 @@ const architectsDaughter = Architects_Daughter({
 
 export const metadata = {
   title: "Daniel Thomas - Backend & AI Software Engineer",
-  description: "Backend and AI software engineer building reliable Java, retrieval, and cloud-native systems.",
+  description:
+    "Backend and AI software engineer building reliable Java, retrieval, and cloud-native systems.",
   keywords: [
     "Daniel Thomas",
     "Full Stack Developer",

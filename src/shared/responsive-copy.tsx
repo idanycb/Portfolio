@@ -6,6 +6,14 @@ export type ResponsiveCopyProps = HTMLAttributes<HTMLElement> & {
   as?: ElementType;
   longClassName?: string;
   shortClassName?: string;
+  /** Where the long copy takes over. Tablet has room for most long copy. */
+  at?: "tablet" | "layout";
+};
+
+// Literal class strings so Tailwind can see them.
+const switchClasses = {
+  tablet: { short: "tablet:hidden", long: "tablet:inline hidden" },
+  layout: { short: "layout:hidden", long: "layout:inline hidden" },
 };
 
 export function ResponsiveCopy({
@@ -15,6 +23,7 @@ export function ResponsiveCopy({
   className = "",
   longClassName = "",
   shortClassName = "",
+  at = "layout",
   ...props
 }: ResponsiveCopyProps) {
   if (short === undefined) {
@@ -27,8 +36,12 @@ export function ResponsiveCopy({
 
   return (
     <Component className={className} {...props}>
-      <span className={`whitespace-pre-line layout:hidden ${shortClassName}`}>{short}</span>
-      <span className={`hidden whitespace-pre-line layout:inline ${longClassName}`}>{long}</span>
+      <span className={`${switchClasses[at].short} whitespace-pre-line ${shortClassName}`}>
+        {short}
+      </span>
+      <span className={`${switchClasses[at].long} whitespace-pre-line ${longClassName}`}>
+        {long}
+      </span>
     </Component>
   );
 }

@@ -12,11 +12,15 @@ type MetaListProps = {
 
 export function MetaList({ items, className = "" }: MetaListProps) {
   return (
-    <dl className={`grid gap-x-6 gap-y-5 border-y border-rule py-5 sm:grid-cols-2 lg:grid-cols-4 ${className}`}>
+    <dl
+      className={`border-rule tablet:grid-cols-2 layout:grid-cols-4 grid gap-x-6 gap-y-5 border-y py-5 ${className}`}
+    >
       {items.map((item, index) => (
         <div key={index}>
-          <dt className="font-mono text-[0.625rem] tracking-[0.16em] text-muted uppercase">{item.label}</dt>
-          <dd className="mt-1.5 text-sm leading-5 text-ink-soft">{item.value}</dd>
+          <dt className="text-muted font-mono text-[0.625rem] tracking-[0.16em] uppercase">
+            {item.label}
+          </dt>
+          <dd className="text-ink-soft mt-1.5 text-sm leading-5">{item.value}</dd>
         </div>
       ))}
     </dl>

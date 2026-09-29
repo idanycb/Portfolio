@@ -1,5 +1,6 @@
-import Link from "next/link";
 import type { AnchorHTMLAttributes, ReactNode } from "react";
+
+import { HashLink } from "./hash-link";
 
 export type ActionLinkProps = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href"> & {
   children: ReactNode;
@@ -25,7 +26,8 @@ export function ActionLink({
   size = "default",
   ...props
 }: ActionLinkProps) {
-  const isInternal = href.startsWith("/") || href.startsWith("#");
+  // Downloads bypass next/link: a file is not a route to prefetch or navigate to.
+  const isInternal = (href.startsWith("/") || href.startsWith("#")) && !props.download;
   const externalTarget = !isInternal && href.startsWith("http") ? (target ?? "_blank") : target;
   const safeRel = externalTarget === "_blank" ? (rel ?? "noopener noreferrer") : rel;
   const framing = variant === "text" ? "" : "px-5 py-3";
@@ -37,9 +39,9 @@ export function ActionLink({
   const classes = `inline-flex min-h-11 w-fit items-center justify-center whitespace-nowrap font-display font-extrabold ${sizing} transition-[color,background-color,transform] duration-150 active:translate-y-px ${framing} ${variants[variant]} ${className}`;
 
   return isInternal ? (
-    <Link className={classes} href={href} {...props}>
+    <HashLink className={classes} href={href} {...props}>
       {children}
-    </Link>
+    </HashLink>
   ) : (
     <a className={classes} href={href} rel={safeRel} target={externalTarget} {...props}>
       {children}
