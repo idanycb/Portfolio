@@ -1,9 +1,27 @@
 import type { CSSProperties } from "react";
 
 import type { CaseStudySectionData } from "@/content/case-studies";
+import { inkStroke } from "@/shared/drawn-layer/ink-stroke";
 import { ResponsiveCopy } from "@/shared/responsive-copy";
 
 const paused = (animation: string): CSSProperties => ({ animation, animationPlayState: "paused" });
+
+function SvgStepLabel({ title, x, y }: { title: string; x: number; y: number }) {
+  const words = title.split(" ");
+  const splitAt =
+    title.length > 15 && words.length > 1 ? Math.ceil(words.length / 2) : words.length;
+  const lines = [words.slice(0, splitAt).join(" "), words.slice(splitAt).join(" ")].filter(Boolean);
+
+  return (
+    <text x={x} y={y} textAnchor="middle">
+      {lines.map((line, index) => (
+        <tspan key={line} x={x} dy={index === 0 ? 0 : 22}>
+          {line}
+        </tspan>
+      ))}
+    </text>
+  );
+}
 
 export function AmendmentDiagram({
   diagram,
@@ -12,8 +30,8 @@ export function AmendmentDiagram({
 }) {
   return (
     <figure className="mt-7">
-      <div className="border-signature border-ink bg-paper-light p-3 layout:p-[26px]">
-        <svg width="100%" viewBox="0 0 300 360" className="block layout:hidden" role="img">
+      <div className="border-signature border-ink bg-paper-light tablet:p-[26px] p-3">
+        <svg width="100%" viewBox="0 0 300 360" className="tablet:hidden block" role="img">
           <title>{diagram.label}</title>
           <g
             className="ink"
@@ -24,59 +42,64 @@ export function AmendmentDiagram({
           >
             <path
               d="M16 24 L134 24 L134 172 L16 172 Z"
-              strokeWidth="1.7"
               strokeDasharray="540"
               strokeDashoffset="540"
               data-anim=""
-              style={paused("dw .85s cubic-bezier(.33,1,.68,1) forwards")}
+              style={{
+                ...paused("dw .85s cubic-bezier(.33,1,.68,1) forwards"),
+                strokeWidth: inkStroke(1.7),
+              }}
             />
             <path
               d="M62 52 L180 52 L180 200 L62 200 Z"
-              strokeWidth="1.7"
               strokeDasharray="540"
               strokeDashoffset="540"
               data-anim=""
-              style={paused("dw .85s .24s cubic-bezier(.33,1,.68,1) forwards")}
+              style={{
+                ...paused("dw .85s .24s cubic-bezier(.33,1,.68,1) forwards"),
+                strokeWidth: inkStroke(1.7),
+              }}
             />
             <path
               d="M108 80 L226 80 L226 228 L108 228 Z"
-              strokeWidth="1.7"
               strokeDasharray="540"
               strokeDashoffset="540"
               data-anim=""
-              style={paused("dw .85s .48s cubic-bezier(.33,1,.68,1) forwards")}
+              style={{
+                ...paused("dw .85s .48s cubic-bezier(.33,1,.68,1) forwards"),
+                strokeWidth: inkStroke(1.7),
+              }}
             />
             <path
               d="M128 128 L206 128 M128 150 L206 150 M128 172 L176 172"
-              strokeWidth="1.3"
               strokeDasharray="220"
               strokeDashoffset="220"
               data-anim=""
-              style={paused("dw .7s 1.05s ease forwards")}
+              style={{ ...paused("dw .7s 1.05s ease forwards"), strokeWidth: inkStroke(1.3) }}
             />
             <path
               d="M46 272 C46 256, 66 244, 96 244 L206 244 C236 244, 256 256, 256 272 C256 288, 236 300, 206 300 L96 300 C66 300, 46 288, 46 272 Z"
-              strokeWidth="1.8"
               strokeDasharray="700"
               strokeDashoffset="700"
               data-anim=""
-              style={paused("dw 1.2s 1.1s cubic-bezier(.33,1,.68,1) forwards")}
+              style={{
+                ...paused("dw 1.2s 1.1s cubic-bezier(.33,1,.68,1) forwards"),
+                strokeWidth: inkStroke(1.8),
+              }}
             />
             <path
               d="M168 232 L168 240 M162 231 L168 242 L174 231"
-              strokeWidth="1.6"
               strokeDasharray="40"
               strokeDashoffset="40"
               data-anim=""
-              style={paused("dw .3s 2.1s ease forwards")}
+              style={{ ...paused("dw .3s 2.1s ease forwards"), strokeWidth: inkStroke(1.6) }}
             />
             <path
               d="M266 254 L282 240 M272 272 L290 272 M266 290 L282 304"
-              strokeWidth="1.5"
               strokeDasharray="80"
               strokeDashoffset="80"
               data-anim=""
-              style={paused("dw .4s 2.3s ease forwards")}
+              style={{ ...paused("dw .4s 2.3s ease forwards"), strokeWidth: inkStroke(1.5) }}
             />
           </g>
           <g
@@ -101,7 +124,13 @@ export function AmendmentDiagram({
             </text>
           </g>
         </svg>
-        <svg width="100%" height="280" viewBox="0 0 800 280" className="hidden layout:block" role="img">
+        <svg
+          width="100%"
+          height="280"
+          viewBox="0 0 800 280"
+          className="tablet:block hidden"
+          role="img"
+        >
           <title>{diagram.label}</title>
           <g
             className="ink"
@@ -112,91 +141,95 @@ export function AmendmentDiagram({
           >
             <path
               d="M36 50 L152 50 L152 220 L36 220 Z"
-              strokeWidth="1.8"
               strokeDasharray="580"
               strokeDashoffset="580"
               data-anim=""
-              style={paused("dw .9s cubic-bezier(.33,1,.68,1) forwards")}
+              style={{
+                ...paused("dw .9s cubic-bezier(.33,1,.68,1) forwards"),
+                strokeWidth: inkStroke(1.8),
+              }}
             />
             <path
               d="M188 68 L304 68 L304 238 L188 238 Z"
-              strokeWidth="1.8"
               strokeDasharray="580"
               strokeDashoffset="580"
               data-anim=""
-              style={paused("dw .9s .26s cubic-bezier(.33,1,.68,1) forwards")}
+              style={{
+                ...paused("dw .9s .26s cubic-bezier(.33,1,.68,1) forwards"),
+                strokeWidth: inkStroke(1.8),
+              }}
             />
             <path
               d="M340 86 L456 86 L456 256 L340 256 Z"
-              strokeWidth="1.8"
               strokeDasharray="580"
               strokeDashoffset="580"
               data-anim=""
-              style={paused("dw .9s .52s cubic-bezier(.33,1,.68,1) forwards")}
+              style={{
+                ...paused("dw .9s .52s cubic-bezier(.33,1,.68,1) forwards"),
+                strokeWidth: inkStroke(1.8),
+              }}
             />
             <path
               d="M56 96 L132 96 M56 120 L132 120 M56 144 L106 144"
-              strokeWidth="1.4"
               strokeDasharray="210"
               strokeDashoffset="210"
               data-anim=""
-              style={paused("dw .7s .7s ease forwards")}
+              style={{ ...paused("dw .7s .7s ease forwards"), strokeWidth: inkStroke(1.4) }}
             />
             <path
               d="M208 114 L284 114 M208 138 L284 138"
-              strokeWidth="1.4"
               strokeDasharray="160"
               strokeDashoffset="160"
               data-anim=""
-              style={paused("dw .6s .95s ease forwards")}
+              style={{ ...paused("dw .6s .95s ease forwards"), strokeWidth: inkStroke(1.4) }}
             />
             <path
               d="M528 152 C528 122, 556 100, 596 100 L680 100 C720 100, 748 124, 748 154 C748 184, 720 206, 680 206 L596 206 C556 206, 528 182, 528 152 Z"
-              strokeWidth="1.8"
               strokeDasharray="700"
               strokeDashoffset="700"
               data-anim=""
-              style={paused("dw 1.3s .9s cubic-bezier(.33,1,.68,1) forwards")}
+              style={{
+                ...paused("dw 1.3s .9s cubic-bezier(.33,1,.68,1) forwards"),
+                strokeWidth: inkStroke(1.8),
+              }}
             />
             <path
               d="M466 156 L520 152"
-              strokeWidth="1.6"
               strokeDasharray="56"
               strokeDashoffset="56"
               data-anim=""
-              style={paused("dw .3s 1.8s ease forwards")}
+              style={{ ...paused("dw .3s 1.8s ease forwards"), strokeWidth: inkStroke(1.6) }}
             />
             <path
               d="M510 145 L521 152 L510 159"
-              strokeWidth="1.6"
               strokeDasharray="28"
               strokeDashoffset="28"
               data-anim=""
-              style={paused("dw .18s 2.1s ease forwards")}
+              style={{ ...paused("dw .18s 2.1s ease forwards"), strokeWidth: inkStroke(1.6) }}
             />
             <path
               d="M96 226 C118 250, 208 256, 268 248"
-              strokeWidth="1.5"
               strokeDasharray="200"
               strokeDashoffset="200"
               data-anim=""
-              style={paused("dw .7s 2.2s cubic-bezier(.33,1,.68,1) forwards")}
+              style={{
+                ...paused("dw .7s 2.2s cubic-bezier(.33,1,.68,1) forwards"),
+                strokeWidth: inkStroke(1.5),
+              }}
             />
             <path
               d="M258 241 L270 248 L259 256"
-              strokeWidth="1.5"
               strokeDasharray="28"
               strokeDashoffset="28"
               data-anim=""
-              style={paused("dw .18s 2.85s ease forwards")}
+              style={{ ...paused("dw .18s 2.85s ease forwards"), strokeWidth: inkStroke(1.5) }}
             />
             <path
               d="M760 132 L774 118 M766 148 L786 148 M760 172 L774 186"
-              strokeWidth="1.5"
               strokeDasharray="80"
               strokeDashoffset="80"
               data-anim=""
-              style={paused("dw .4s 2.4s ease forwards")}
+              style={{ ...paused("dw .4s 2.4s ease forwards"), strokeWidth: inkStroke(1.5) }}
             />
           </g>
           <g
@@ -225,7 +258,7 @@ export function AmendmentDiagram({
           </g>
         </svg>
       </div>
-      <figcaption className="border-ink text-muted mt-2.5 flex justify-between border-t pt-1.5 font-mono text-[0.5625rem] layout:text-[0.59375rem] tracking-[0.16em]">
+      <figcaption className="border-ink text-muted layout:text-[0.59375rem] mt-2.5 flex justify-between border-t pt-1.5 font-mono text-[0.5625rem] tracking-[0.16em]">
         <span>FIG. 1</span>
         <span className="text-copy-muted">{diagram.caption}</span>
       </figcaption>
@@ -240,14 +273,15 @@ export function PipelineDiagram({
 }) {
   return (
     <figure className="mt-7">
-      <div className="border-signature border-ink bg-paper-light p-3 layout:p-[26px]">
-        <svg width="100%" viewBox="0 0 300 462" className="block layout:hidden" role="img">
+      <div className="border-signature border-ink bg-paper-light tablet:p-[26px] p-3">
+        <svg width="100%" viewBox="0 0 300 462" className="tablet:hidden block" role="img">
           <title>{pipeline.caption}</title>
+          <desc>{pipeline.steps.map((step) => `${step.title}: ${step.detail}`).join(". ")}</desc>
           <g
             className="ink"
             stroke="currentColor"
             fill="none"
-            strokeWidth="1.7"
+            style={{ strokeWidth: inkStroke(1.7) }}
             strokeLinecap="round"
             strokeLinejoin="round"
           >
@@ -338,32 +372,28 @@ export function PipelineDiagram({
           </g>
           <g
             className="font-hand fill-current text-[16px]"
-            textAnchor="middle"
             data-anim=""
             style={{ ...paused("fi .7s .9s ease forwards"), opacity: 0 }}
           >
-            <text x="150" y="43">
-              EDGAR pull
-            </text>
-            <text x="150" y="119">
-              Docling parse
-            </text>
-            <text x="150" y="195">
-              chunk + embed
-            </text>
-            <text x="150" y="276">
-              pgvector + lineage
-            </text>
-            <text x="150" y="374">
-              progressive retrieval
-            </text>
-            <text x="150" y="445">
-              cited answer
-            </text>
+            {pipeline.steps.map((step, index) => (
+              <SvgStepLabel
+                key={step.title}
+                title={step.title}
+                x={150}
+                y={[43, 119, 195, 276, 374, 445][index]}
+              />
+            ))}
           </g>
         </svg>
-        <svg width="100%" height="330" viewBox="0 0 800 330" className="hidden layout:block" role="img">
+        <svg
+          width="100%"
+          height="330"
+          viewBox="0 0 800 330"
+          className="tablet:block hidden"
+          role="img"
+        >
           <title>{pipeline.caption}</title>
+          <desc>{pipeline.steps.map((step) => `${step.title}: ${step.detail}`).join(". ")}</desc>
           <g
             className="ink"
             stroke="currentColor"
@@ -373,131 +403,133 @@ export function PipelineDiagram({
           >
             <path
               d="M30 40 L206 40 L206 96 L30 96 Z"
-              strokeWidth="1.8"
               strokeDasharray="470"
               strokeDashoffset="470"
               data-anim=""
-              style={paused("dw .85s cubic-bezier(.33,1,.68,1) forwards")}
+              style={{
+                ...paused("dw .85s cubic-bezier(.33,1,.68,1) forwards"),
+                strokeWidth: inkStroke(1.8),
+              }}
             />
             <path
               d="M312 40 L488 40 L488 96 L312 96 Z"
-              strokeWidth="1.8"
               strokeDasharray="470"
               strokeDashoffset="470"
               data-anim=""
-              style={paused("dw .85s .25s cubic-bezier(.33,1,.68,1) forwards")}
+              style={{
+                ...paused("dw .85s .25s cubic-bezier(.33,1,.68,1) forwards"),
+                strokeWidth: inkStroke(1.8),
+              }}
             />
             <path
               d="M594 40 L770 40 L770 96 L594 96 Z"
-              strokeWidth="1.8"
               strokeDasharray="470"
               strokeDashoffset="470"
               data-anim=""
-              style={paused("dw .85s .5s cubic-bezier(.33,1,.68,1) forwards")}
+              style={{
+                ...paused("dw .85s .5s cubic-bezier(.33,1,.68,1) forwards"),
+                strokeWidth: inkStroke(1.8),
+              }}
             />
             <path
               d="M212 68 L305 68"
-              strokeWidth="1.7"
               strokeDasharray="96"
               strokeDashoffset="96"
               data-anim=""
-              style={paused("dw .35s 1s ease forwards")}
+              style={{ ...paused("dw .35s 1s ease forwards"), strokeWidth: inkStroke(1.7) }}
             />
             <path
               d="M296 61 L307 68 L296 75"
-              strokeWidth="1.7"
               strokeDasharray="30"
               strokeDashoffset="30"
               data-anim=""
-              style={paused("dw .18s 1.32s ease forwards")}
+              style={{ ...paused("dw .18s 1.32s ease forwards"), strokeWidth: inkStroke(1.7) }}
             />
             <path
               d="M494 68 L587 68"
-              strokeWidth="1.7"
               strokeDasharray="96"
               strokeDashoffset="96"
               data-anim=""
-              style={paused("dw .35s 1.15s ease forwards")}
+              style={{ ...paused("dw .35s 1.15s ease forwards"), strokeWidth: inkStroke(1.7) }}
             />
             <path
               d="M578 61 L589 68 L578 75"
-              strokeWidth="1.7"
               strokeDasharray="30"
               strokeDashoffset="30"
               data-anim=""
-              style={paused("dw .18s 1.47s ease forwards")}
+              style={{ ...paused("dw .18s 1.47s ease forwards"), strokeWidth: inkStroke(1.7) }}
             />
             <path
               d="M682 100 L682 158"
-              strokeWidth="1.7"
               strokeDasharray="60"
               strokeDashoffset="60"
               data-anim=""
-              style={paused("dw .32s 1.6s ease forwards")}
+              style={{ ...paused("dw .32s 1.6s ease forwards"), strokeWidth: inkStroke(1.7) }}
             />
             <path
               d="M675 148 L682 160 L689 148"
-              strokeWidth="1.7"
               strokeDasharray="30"
               strokeDashoffset="30"
               data-anim=""
-              style={paused("dw .18s 1.9s ease forwards")}
+              style={{ ...paused("dw .18s 1.9s ease forwards"), strokeWidth: inkStroke(1.7) }}
             />
             <path
               d="M540 166 C540 162, 544 158, 550 158 L764 158 C770 158, 774 162, 774 168 L774 236 C774 242, 770 246, 764 246 L550 246 C544 246, 540 242, 540 236 Z"
-              strokeWidth="1.8"
               strokeDasharray="800"
               strokeDashoffset="800"
               data-anim=""
-              style={paused("dw 1.1s 2s cubic-bezier(.33,1,.68,1) forwards")}
+              style={{
+                ...paused("dw 1.1s 2s cubic-bezier(.33,1,.68,1) forwards"),
+                strokeWidth: inkStroke(1.8),
+              }}
             />
             <path
               d="M44 178 C44 170, 92 164, 136 164 C180 164, 228 170, 228 178 L228 264 C228 273, 180 279, 136 279 C92 279, 44 273, 44 264 Z"
-              strokeWidth="1.8"
               strokeDasharray="640"
               strokeDashoffset="640"
               data-anim=""
-              style={paused("dw 1.05s 2.2s cubic-bezier(.33,1,.68,1) forwards")}
+              style={{
+                ...paused("dw 1.05s 2.2s cubic-bezier(.33,1,.68,1) forwards"),
+                strokeWidth: inkStroke(1.8),
+              }}
             />
             <path
               d="M44 178 C44 187, 92 193, 136 193 C180 193, 228 187, 228 178"
-              strokeWidth="1.6"
               strokeDasharray="200"
               strokeDashoffset="200"
               data-anim=""
-              style={paused("dw .5s 2.85s ease forwards")}
+              style={{ ...paused("dw .5s 2.85s ease forwards"), strokeWidth: inkStroke(1.6) }}
             />
             <path
               d="M234 226 C320 222, 448 210, 532 200"
-              strokeWidth="1.7"
               strokeDasharray="310"
               strokeDashoffset="310"
               data-anim=""
-              style={paused("dw .7s 2.95s cubic-bezier(.33,1,.68,1) forwards")}
+              style={{
+                ...paused("dw .7s 2.95s cubic-bezier(.33,1,.68,1) forwards"),
+                strokeWidth: inkStroke(1.7),
+              }}
             />
             <path
               d="M522 192 L534 199 L523 207"
-              strokeWidth="1.7"
               strokeDasharray="30"
               strokeDashoffset="30"
               data-anim=""
-              style={paused("dw .18s 3.5s ease forwards")}
+              style={{ ...paused("dw .18s 3.5s ease forwards"), strokeWidth: inkStroke(1.7) }}
             />
             <path
               d="M136 281 L136 314"
-              strokeWidth="1.7"
               strokeDasharray="36"
               strokeDashoffset="36"
               data-anim=""
-              style={paused("dw .28s 3.3s ease forwards")}
+              style={{ ...paused("dw .28s 3.3s ease forwards"), strokeWidth: inkStroke(1.7) }}
             />
             <path
               d="M129 304 L136 316 L143 304"
-              strokeWidth="1.7"
               strokeDasharray="30"
               strokeDashoffset="30"
               data-anim=""
-              style={paused("dw .18s 3.6s ease forwards")}
+              style={{ ...paused("dw .18s 3.6s ease forwards"), strokeWidth: inkStroke(1.7) }}
             />
           </g>
           <g
@@ -505,45 +537,19 @@ export function PipelineDiagram({
             data-anim=""
             style={{ ...paused("fi .7s 1.1s ease forwards"), opacity: 0 }}
           >
-            <text x="52" y="76">
-              EDGAR pull
-            </text>
-            <text x="334" y="76">
-              Docling parse
-            </text>
-            <text x="616" y="76">
-              chunk + embed
-            </text>
-            <text x="72" y="220">
-              pgvector
-            </text>
-            <text x="72" y="246">
-              + lineage
-            </text>
-            <text x="566" y="196">
-              progressive
-            </text>
-            <text x="566" y="222">
-              retrieval
-            </text>
-            <text x="60" y="328">
-              cited answer
-            </text>
-          </g>
-          <g data-anim="" style={{ ...paused("fi .6s 3.8s ease forwards"), opacity: 0 }}>
-            <text
-              x="266"
-              y="300"
-              className="font-hand fill-copy-muted text-[16px]"
-              transform="rotate(-1.6 266 300)"
-            >
-              ← lineage is resolved here, at query time
-            </text>
+            {pipeline.steps.map((step, index) => (
+              <SvgStepLabel
+                key={step.title}
+                title={step.title}
+                x={[118, 400, 682, 136, 657, 136][index]}
+                y={[76, 76, 76, 220, 196, 328][index]}
+              />
+            ))}
           </g>
         </svg>
       </div>
-      <figcaption className="border-ink text-muted mt-2.5 flex justify-between border-t pt-1.5 font-mono text-[0.5625rem] layout:text-[0.59375rem] tracking-[0.16em]">
-        <span>FIG. 2</span>
+      <figcaption className="border-ink text-muted layout:text-[0.59375rem] mt-2.5 flex justify-between border-t pt-1.5 font-mono text-[0.5625rem] tracking-[0.16em]">
+        <span>FIG. {pipeline.figureNumber}</span>
         <ResponsiveCopy
           long={pipeline.caption}
           short={pipeline.captionShort}

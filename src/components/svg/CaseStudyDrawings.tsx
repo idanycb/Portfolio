@@ -1,3 +1,4 @@
+import { inkStroke } from "@/shared/drawn-layer/ink-stroke";
 import type { CSSProperties } from "react";
 
 const paused = (animation: string): CSSProperties => ({ animation, animationPlayState: "paused" });
@@ -8,13 +9,13 @@ export function CaseHeroDocument() {
       width="300"
       height="230"
       viewBox="0 0 300 230"
-      className="pointer-events-none absolute -top-2 right-2 h-[52px] w-[68px] overflow-visible opacity-[.13] layout:top-5 layout:right-[26px] layout:h-[clamp(10.5rem,15.3vw,14.375rem)] layout:w-[clamp(13.75rem,20vw,18.75rem)] layout:opacity-[.17]"
+      className="layout:top-5 layout:right-[26px] layout:h-[clamp(10.5rem,15.3vw,14.375rem)] layout:w-[clamp(13.75rem,20vw,18.75rem)] layout:opacity-[.17] pointer-events-none absolute -top-2 right-2 h-[52px] w-[68px] overflow-visible opacity-[.13]"
       aria-hidden="true"
     >
       <g
         fill="none"
         stroke="currentColor"
-        className="ink [stroke-width:2.6] layout:[stroke-width:1.8]"
+        className="ink layout:[stroke-width:calc(1.8px*var(--ink-stroke,1))] [stroke-width:calc(2.6px*var(--ink-stroke,1))]"
         strokeLinecap="round"
         strokeLinejoin="round"
       >
@@ -33,7 +34,7 @@ export function RailNoteArrow() {
         className="ink"
         fill="none"
         stroke="currentColor"
-        strokeWidth="1.6"
+        style={{ strokeWidth: inkStroke(1.6) }}
         strokeLinecap="round"
         strokeLinejoin="round"
       >
@@ -74,7 +75,7 @@ export function CaseSectionUnderline({ id }: { id: keyof typeof desktop }) {
         height="12"
         viewBox="0 0 340 12"
         preserveAspectRatio="none"
-        className="mt-2.5 block overflow-visible layout:hidden"
+        className="layout:hidden mt-2.5 block overflow-visible"
         aria-hidden="true"
       >
         <path
@@ -82,17 +83,15 @@ export function CaseSectionUnderline({ id }: { id: keyof typeof desktop }) {
           d={mobile[id]}
           fill="none"
           stroke="currentColor"
-          strokeWidth={dashed ? "1.8" : "2.4"}
           strokeLinecap="round"
           strokeDasharray={dashed ? "8 10" : "360"}
           strokeDashoffset={dashed ? undefined : "360"}
           data-anim=""
           style={{
             // The mobile export uses one duration for every underline, unlike desktop.
-            ...paused(
-              `${dashed ? "fi .8s ease" : "dw 1.1s cubic-bezier(.33,1,.68,1)"} forwards`,
-            ),
+            ...paused(`${dashed ? "fi .8s ease" : "dw 1.1s cubic-bezier(.33,1,.68,1)"} forwards`),
             opacity: dashed ? 0 : undefined,
+            strokeWidth: inkStroke(dashed ? "1.8" : "2.4"),
           }}
         />
       </svg>
@@ -101,7 +100,7 @@ export function CaseSectionUnderline({ id }: { id: keyof typeof desktop }) {
         height={dashed ? "16" : "14"}
         viewBox={`0 0 850 ${dashed ? 16 : 14}`}
         preserveAspectRatio="none"
-        className="mt-3 hidden layout:block"
+        className="layout:block mt-3 hidden"
         aria-hidden="true"
       >
         <path
@@ -109,7 +108,6 @@ export function CaseSectionUnderline({ id }: { id: keyof typeof desktop }) {
           d={d[0]}
           fill="none"
           stroke="currentColor"
-          strokeWidth={dashed ? "1.8" : "2.4"}
           strokeLinecap="round"
           strokeDasharray={d[2]}
           strokeDashoffset={dashed ? undefined : d[2]}
@@ -119,6 +117,7 @@ export function CaseSectionUnderline({ id }: { id: keyof typeof desktop }) {
               `${dashed ? "fi" : "dw"} ${d[1]} ${dashed ? "ease" : "cubic-bezier(.33,1,.68,1)"} forwards`,
             ),
             opacity: dashed ? 0 : undefined,
+            strokeWidth: inkStroke(dashed ? "1.8" : "2.4"),
           }}
         />
       </svg>
@@ -136,13 +135,15 @@ export function DecisionCircle({ number, index }: { number: string; index: numbe
         r="26"
         fill="none"
         stroke="currentColor"
-        strokeWidth={mobileGeometry ? "1.9" : "1.8"}
         strokeDasharray="170"
         strokeDashoffset="170"
         data-anim=""
-        style={paused(
-          `dw .8s ${index ? `.${index * (mobileGeometry ? 15 : 2)}s ` : ""}cubic-bezier(.33,1,.68,1) forwards`,
-        )}
+        style={{
+          ...paused(
+            `dw .8s ${index ? `.${index * (mobileGeometry ? 15 : 2)}s ` : ""}cubic-bezier(.33,1,.68,1) forwards`,
+          ),
+          strokeWidth: inkStroke(mobileGeometry ? "1.9" : "1.8"),
+        }}
       />
       <text
         x="33"
@@ -161,7 +162,7 @@ export function DecisionCircle({ number, index }: { number: string; index: numbe
         width="46"
         height="46"
         viewBox="0 0 66 66"
-        className="overflow-visible layout:hidden"
+        className="layout:hidden overflow-visible"
         aria-hidden="true"
       >
         {circle(true)}
@@ -170,7 +171,7 @@ export function DecisionCircle({ number, index }: { number: string; index: numbe
         width="66"
         height="66"
         viewBox="0 0 66 66"
-        className="hidden overflow-visible layout:block"
+        className="layout:block hidden overflow-visible"
         aria-hidden="true"
       >
         {circle(false)}
@@ -185,14 +186,14 @@ export function SectionSevenArrow() {
       width="110"
       height="86"
       viewBox="0 0 110 86"
-      className="pointer-events-none absolute top-3 right-0 hidden h-16 w-[82px] opacity-45 layout:block"
+      className="layout:block pointer-events-none absolute top-3 right-0 hidden h-16 w-[82px] opacity-45"
       aria-hidden="true"
     >
       <g
         className="ink"
         fill="none"
         stroke="currentColor"
-        strokeWidth="1.8"
+        style={{ strokeWidth: inkStroke(1.8) }}
         strokeLinecap="round"
         strokeLinejoin="round"
       >

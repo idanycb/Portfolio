@@ -1,5 +1,6 @@
 import type { CaseStudy } from "@/content/case-studies";
 import { PageDrawnLayer } from "@/shared/drawn-layer/PageDrawnLayer";
+import { HashLink } from "@/shared/hash-link";
 import { ResponsiveCopy } from "@/shared/responsive-copy";
 import { SiteContainer } from "@/shared/site-container";
 import { SiteHeader } from "@/shared/site-header";
@@ -23,6 +24,7 @@ export function CaseStudyPage({ caseStudy }: { caseStudy: CaseStudy }) {
       <SiteHeader
         variant="case-study"
         caseStudyLabel={caseStudy.issueLabel}
+        caseStudyLabelShort={caseStudy.issueLabelShort}
         backLabel={caseStudy.backLabel}
         backLabelShort={caseStudy.backLabelShort}
         progressLabel={caseStudy.progressLabel}
@@ -44,8 +46,8 @@ export function CaseStudyPage({ caseStudy }: { caseStudy: CaseStudy }) {
             navLabel={caseStudy.railNavLabel}
             note={caseStudy.railNote}
           />
-          <article className="min-w-0 px-5 py-[2.375rem] layout:px-12 layout:py-[3.25rem]">
-            <div className="space-y-14 layout:space-y-[4.75rem]">
+          <article className="tablet:px-0 tablet:py-12 layout:px-12 layout:py-[3.25rem] min-w-0 px-5 py-[2.375rem]">
+            <div className="tablet:space-y-16 layout:space-y-[4.75rem] space-y-14">
               {caseStudy.sections.map((section) => (
                 <CaseStudySection
                   key={section.id}
@@ -55,10 +57,10 @@ export function CaseStudyPage({ caseStudy }: { caseStudy: CaseStudy }) {
               ))}
             </div>
             <aside
-              className="border-ink mt-14 border-t-[1.5px] pt-4"
+              className="border-ink border-t-signature mt-14 pt-4"
               aria-label={caseStudy.notesLabel}
             >
-              <p className="text-muted font-mono text-[0.5625rem] layout:text-[0.59375rem] tracking-[0.16em]">
+              <p className="text-muted layout:text-[0.59375rem] font-mono text-[0.5625rem] tracking-[0.16em]">
                 {caseStudy.notesLabel}
               </p>
               <ul className="text-copy-muted mt-3 space-y-2 font-mono text-xs leading-5 tracking-[0.04em]">
@@ -71,9 +73,9 @@ export function CaseStudyPage({ caseStudy }: { caseStudy: CaseStudy }) {
         </SiteContainer>
       </main>
       <footer className="bg-ink-dark text-paper">
-        <SiteContainer className="flex flex-col gap-8 py-8 layout:flex-row layout:items-end layout:justify-between layout:py-[2.125rem]">
+        <SiteContainer className="tablet:flex-row tablet:items-end tablet:justify-between layout:py-[2.125rem] flex flex-col gap-8 py-8">
           <div>
-            <span className="text-inverse-muted font-mono text-[0.5625rem] layout:text-[0.59375rem] tracking-[0.16em]">
+            <span className="text-inverse-muted layout:text-[0.59375rem] font-mono text-[0.5625rem] tracking-[0.16em]">
               {caseStudy.nextLabel}
             </span>
             <Link
@@ -83,12 +85,12 @@ export function CaseStudyPage({ caseStudy }: { caseStudy: CaseStudy }) {
               <ResponsiveCopy long={caseStudy.next.label} short={caseStudy.next.labelShort} />
             </Link>
           </div>
-          <Link
+          <HashLink
             href="#top"
-            className="text-inverse-muted hover:text-paper flex min-h-11 w-fit items-center font-mono text-[0.5625rem] tracking-[0.16em] layout:text-[0.59375rem]"
+            className="text-inverse-muted hover:text-paper layout:text-[0.59375rem] flex min-h-11 w-fit items-center font-mono text-[0.5625rem] tracking-[0.16em]"
           >
             {caseStudy.backToTopLabel}
-          </Link>
+          </HashLink>
         </SiteContainer>
       </footer>
     </div>

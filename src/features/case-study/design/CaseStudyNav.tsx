@@ -1,4 +1,5 @@
 import { RailNoteArrow } from "@/components/svg/CaseStudyDrawings";
+import { HashLink } from "@/shared/hash-link";
 import { ResponsiveCopy } from "@/shared/responsive-copy";
 
 type NavItem = { href: string; label: string; labelShort?: string };
@@ -15,20 +16,20 @@ export function CaseStudyNav({
   note: string;
 }) {
   return (
-    <aside className="border-ink bg-band hidden border-r-[1.5px] px-8 py-9 layout:block">
+    <aside className="border-ink bg-band layout:block border-r-signature hidden px-8 py-9">
       <div className="sticky top-8">
         <p className="text-muted font-mono text-[0.59375rem] tracking-[0.16em]">{label}</p>
         <nav aria-label={navLabel} className="mt-5">
           <ol className="space-y-1">
             {items.map((item, index) => (
               <li key={item.href}>
-                <a
+                <HashLink
                   href={item.href}
                   className="text-copy-muted hover:border-ink hover:text-ink focus-visible:border-ink focus-visible:text-ink grid min-h-9 grid-cols-[1.25rem_1fr] items-center border-l-2 border-transparent pl-3 font-mono text-xs font-bold tracking-[0.07em] transition-colors"
                 >
                   <span className="text-muted">{index + 1}</span>
                   <ResponsiveCopy long={item.label} short={item.labelShort} />
-                </a>
+                </HashLink>
               </li>
             ))}
           </ol>

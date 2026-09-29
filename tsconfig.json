@@ -23,7 +23,6 @@
     }
   },
   "include": [
-    "src/**/*.mdx",
     "src/**/*.ts",
     "src/**/*.tsx",
     ".next/types/**/*.ts",
