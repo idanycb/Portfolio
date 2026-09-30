@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ContactNavCircle } from "@/components/svg/HomeDrawings";
 import { homeContent } from "@/content/home";
 
+import { AutoHideHeader } from "./auto-hide-header";
 import { HashLink } from "./hash-link";
 import { MobileNav } from "./mobile-nav";
 import { ResponsiveCopy } from "./responsive-copy";
@@ -27,8 +28,8 @@ export function SiteHeader({
 }: SiteHeaderProps) {
   const isCaseStudy = variant === "case-study" || Boolean(caseStudyLabel);
 
-  return (
-    <header className="border-ink bg-paper layout:relative border-b-signature sticky top-0 z-40">
+  const content = (
+    <>
       <HashLink
         href="#main-content"
         className="bg-ink text-paper absolute top-2 left-2 z-50 -translate-y-20 px-4 py-3 font-mono text-xs font-bold transition-transform focus:translate-y-0"
@@ -96,6 +97,18 @@ export function SiteHeader({
           </>
         )}
       </SiteContainer>
+    </>
+  );
+
+  // Case studies are long reads: the header stays reachable at every width but
+  // slides out of the way while scrolling down. The homepage header stays put.
+  return isCaseStudy ? (
+    <AutoHideHeader className="border-ink bg-paper border-b-signature sticky top-0 z-40">
+      {content}
+    </AutoHideHeader>
+  ) : (
+    <header className="border-ink bg-paper layout:relative border-b-signature sticky top-0 z-40">
+      {content}
     </header>
   );
 }

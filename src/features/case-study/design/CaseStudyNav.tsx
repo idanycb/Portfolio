@@ -17,7 +17,7 @@ export function CaseStudyNav({
 }) {
   return (
     <aside className="border-ink bg-band layout:block border-r-signature hidden px-8 py-9">
-      <div className="sticky top-8">
+      <div className="sticky top-[calc(var(--site-header-offset,0px)+2rem)] transition-[top] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none">
         <p className="text-muted font-mono text-[0.59375rem] tracking-[0.16em]">{label}</p>
         <nav aria-label={navLabel} className="mt-5">
           <ol className="space-y-1">
