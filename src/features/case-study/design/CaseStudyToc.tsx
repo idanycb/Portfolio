@@ -30,7 +30,8 @@ export function CaseStudyToc({
 
   useEffect(() => {
     if (!open) return;
-    firstLinkRef.current?.focus();
+    // The panel is still expanding; keep focus from scrolling its clipped box.
+    firstLinkRef.current?.focus({ preventScroll: true });
 
     const closeOnEscape = (event: KeyboardEvent) => {
       if (event.key !== "Escape") return;
@@ -64,28 +65,39 @@ export function CaseStudyToc({
           {open ? "HIDE ✕" : "SHOW ▾"}
         </button>
       </div>
-      <nav
-        id={panelId}
-        aria-label={navLabel}
-        hidden={!open}
-        className="border-rule tablet:px-8 border-t px-5 py-4"
+      <div
+        className={`grid transition-[grid-template-rows] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
       >
-        <ol className="grid grid-cols-2 gap-x-5 gap-y-1">
-          {items.map((item, index) => (
-            <li key={item.href}>
-              <HashLink
-                ref={index === 0 ? firstLinkRef : undefined}
-                href={item.href}
-                onClick={closeFromLink}
-                className="text-ink flex min-h-11 items-center gap-2 font-mono text-xs font-bold tracking-[0.08em]"
-              >
-                <span className="text-muted">{index + 1}</span>
-                <ResponsiveCopy long={item.label} short={item.labelShort} />
-              </HashLink>
-            </li>
-          ))}
-        </ol>
-      </nav>
+        <nav
+          id={panelId}
+          aria-label={navLabel}
+          inert={!open}
+          className={`min-h-0 overflow-hidden transition-opacity duration-300 ${open ? "opacity-100" : "opacity-0"}`}
+        >
+          <div className="border-rule tablet:px-8 border-t px-5 py-4">
+            <ol
+              className="grid grid-flow-col grid-cols-2 gap-x-5 gap-y-1"
+              style={{
+                gridTemplateRows: `repeat(${Math.ceil(items.length / 2)}, auto)`,
+              }}
+            >
+              {items.map((item, index) => (
+                <li key={item.href}>
+                  <HashLink
+                    ref={index === 0 ? firstLinkRef : undefined}
+                    href={item.href}
+                    onClick={closeFromLink}
+                    className="text-ink flex min-h-11 items-center gap-2 font-mono text-xs font-bold tracking-[0.08em]"
+                  >
+                    <span className="text-muted">{index + 1}</span>
+                    <ResponsiveCopy long={item.label} short={item.labelShort} />
+                  </HashLink>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </nav>
+      </div>
     </div>
   );
 }

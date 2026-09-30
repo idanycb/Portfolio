@@ -19,9 +19,24 @@ export function CaseHeroDocument() {
         strokeLinecap="round"
         strokeLinejoin="round"
       >
-        <path d="M66 30 L192 30 L236 74 L236 200 L66 200 Z" />
-        <path d="M192 30 L192 74 L236 74" />
-        <path d="M94 106 L208 106 M94 130 L208 130 M94 154 L166 154" />
+        <g transform="rotate(-5 151 115)">
+          {/* Page: bowed edges with corners that overshoot, like a quick pen sketch. */}
+          <path d="M62 31 C104 28, 150 31, 191 29" />
+          <path d="M190 29 C204 42, 220 57, 236 71" />
+          <path d="M235 68 C238 110, 233 160, 236 203" />
+          <path d="M240 200 C180 203, 120 197, 63 201" />
+          <path d="M66 205 C63 150, 68 90, 65 26" />
+          {/* Dog-ear, folded down with a slight curl. */}
+          <path d="M191 29 C188 44, 192 60, 189 74 C205 71, 220 74, 236 71" />
+          {/* Scribbled lines of text. */}
+          <path d="M92 104 C110 99, 128 108, 146 103 S182 99, 208 105" />
+          <path d="M92 128 C112 123, 130 132, 150 127 S186 123, 206 129" />
+          <path d="M92 152 C106 147, 120 156, 136 151 S156 147, 166 152" />
+          {/* A loose loop around one passage, the part that changed. */}
+          <path d="M140 118 C172 111, 216 115, 215 129 C214 143, 170 145, 140 140 C116 136, 114 119, 152 115" />
+          {/* Paperclip over the top edge. */}
+          <path d="M96 48 L96 18 C96 9, 110 9, 110 18 L110 54 C110 62, 101 62, 101 54 L101 24" />
+        </g>
       </g>
     </svg>
   );
@@ -38,8 +53,9 @@ export function RailNoteArrow() {
         strokeLinecap="round"
         strokeLinejoin="round"
       >
-        <path d="M64 10 C48 18, 30 27, 14 40" />
-        <path d="M26 38 C20 39, 15 41, 13 42 C13 37, 14 32, 15 27" />
+        {/* Tail sits by the note; the head points up at the section list. */}
+        <path d="M60 50 A48 48 0 0 1 20 8" />
+        <path d="M16.3 17.3 L20 8 L25.7 16.2" />
       </g>
     </svg>
   );
@@ -197,8 +213,9 @@ export function SectionSevenArrow() {
         strokeLinecap="round"
         strokeLinejoin="round"
       >
-        <path d="M12 66 C34 22, 74 12, 98 36" />
-        <path d="M80 32 C87 32, 94 34, 98 34 C97 40, 96 47, 94 53" />
+        {/* Tail sits in the corner; the head points back at the section heading. */}
+        <path d="M100 34 A80 80 0 0 0 14 54" />
+        <path d="M25.4 50.2 L14 54 L17.2 42.4" />
       </g>
     </svg>
   );
