@@ -1,3 +1,6 @@
+/** `box` by default; `store` draws a cylinder, `process` a rounded box. */
+export type PipelineStep = { title: string; detail: string; shape?: "store" | "process" };
+
 export type CaseStudySectionData = {
   id: `s${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8}`;
   number: string;
@@ -24,12 +27,12 @@ export type CaseStudySectionData = {
     caption: string;
     captionShort?: string;
     steps: readonly [
-      { title: string; detail: string },
-      { title: string; detail: string },
-      { title: string; detail: string },
-      { title: string; detail: string },
-      { title: string; detail: string },
-      { title: string; detail: string },
+      PipelineStep,
+      PipelineStep,
+      PipelineStep,
+      PipelineStep,
+      PipelineStep,
+      PipelineStep,
     ];
   };
   amendmentDiagram?: {
@@ -140,8 +143,16 @@ export const caseStudies = {
             { title: "EDGAR pull", detail: "Source filing and amendment metadata" },
             { title: "Docling parse", detail: "Structured sections and chunks" },
             { title: "Chunk + embed", detail: "Evidence-sized text with vector embeddings" },
-            { title: "pgvector + lineage", detail: "Embeddings with filing relationships" },
-            { title: "Progressive retrieval", detail: "Evidence gathered in passes" },
+            {
+              title: "pgvector + lineage",
+              detail: "Embeddings with filing relationships",
+              shape: "store",
+            },
+            {
+              title: "Progressive retrieval",
+              detail: "Evidence gathered in passes",
+              shape: "process",
+            },
             { title: "Cited answer", detail: "Claims tied back to filing metadata" },
           ],
         },
@@ -179,9 +190,11 @@ export const caseStudies = {
         heading: "EVALUATION",
         variant: "evaluation",
         metrics: [
-          { metric: "Citation accuracy", method: "GOLD SET", result: "— to fill" },
-          { metric: "Retrieval precision @ k", method: "HARNESS", result: "— to fill" },
-          { metric: "p95 vector search latency", method: "LOAD TEST", result: "< 100 MS" },
+          { metric: "Evidence recall @ 6", method: "GOLD SET", result: "0.90" },
+          { metric: "Section recall @ 6", method: "GOLD SET", result: "1.00" },
+          { metric: "Mean reciprocal rank", method: "GOLD SET", result: "0.92" },
+          { metric: "Amendment version accuracy", method: "HARNESS", result: "1.00" },
+          { metric: "Tenant leakage", method: "ISOLATION TEST", result: "0" },
         ],
       },
       {
@@ -314,7 +327,11 @@ export const caseStudies = {
             { title: "Wildcard TLS", detail: "Secure apex and subdomains through DNS-01" },
             { title: "Frontend", detail: "Expose the public application surface" },
             { title: "Services", detail: "Keep backend services private" },
-            { title: "Data layer", detail: "Keep pgvector and parser traffic internal" },
+            {
+              title: "Data layer",
+              detail: "Keep pgvector and parser traffic internal",
+              shape: "store",
+            },
           ],
         },
       },
