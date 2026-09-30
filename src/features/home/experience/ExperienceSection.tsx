@@ -1,4 +1,8 @@
-import { ExperienceIcon, HomeSectionUnderline } from "@/components/svg/HomeDrawings";
+import {
+  ExperienceIcon,
+  ExperienceNoteCircle,
+  HomeSectionUnderline,
+} from "@/components/svg/HomeDrawings";
 import type { HomepageContent } from "@/content/home";
 import { ResponsiveCopy } from "@/shared/responsive-copy";
 import { SectionHeading } from "@/shared/section-heading";
@@ -116,9 +120,12 @@ export function ExperienceSection({ content }: ExperienceSectionProps) {
                   {isWork ? (
                     <p
                       data-note=""
-                      className="ink-note font-hand text-copy-muted tablet:col-start-1 tablet:row-start-2 tablet:mt-3 tablet:text-right tablet:leading-[1.2] layout:pr-7 mt-2.5 text-[17px] leading-[1.25]"
+                      className="ink-note font-hand tablet:block text-copy-muted tablet:col-start-1 tablet:row-start-2 tablet:mt-3 tablet:text-right tablet:leading-[1.2] layout:pr-7 mt-2.5 hidden text-[17px] leading-[1.25]"
                     >
-                      {content.note}
+                      <span className="relative mr-4 inline-block max-w-[7.5rem]">
+                        {content.note}
+                        <ExperienceNoteCircle className="text-ink -top-[14px] -left-[20px] h-[calc(100%+28px)] w-[calc(100%+46px)]" />
+                      </span>
                     </p>
                   ) : null}
                 </li>

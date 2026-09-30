@@ -30,7 +30,7 @@ export function StackSection({ content }: StackSectionProps) {
                 <StackMarker index={index} />
                 <span className="relative">{tier.number}</span>
               </span>
-              <h3 className="font-display text-ink layout:text-[1.625rem] text-[1.375rem] leading-none font-extrabold tracking-[-0.035em]">
+              <h3 className="font-display text-ink layout:text-[1.625rem] self-center text-[1.375rem] leading-none font-extrabold tracking-[-0.035em]">
                 {tier.label}
               </h3>
               <ResponsiveCopy
@@ -43,7 +43,7 @@ export function StackSection({ content }: StackSectionProps) {
           ))}
         </ol>
         <div data-note="" className="ink-note layout:mt-[26px] layout:pl-24 relative mt-4">
-          <StackNoteArrow className="layout:block absolute -top-1.5 left-0 hidden" />
+          <StackNoteArrow className="layout:block absolute -top-8 left-0 hidden" />
           <ResponsiveCopy
             long={content.note}
             short={content.noteShort}

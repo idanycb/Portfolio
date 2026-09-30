@@ -25,7 +25,7 @@
 :root {
   --paper: #f7f5f0;
   --paper-light: #fffdf9;
-  --band: #efece5;
+  --band: #f0ebe1;
   --ink: #111111;
   --ink-dark: #141414;
   --ink-soft: #1c1c1c;
@@ -324,26 +324,26 @@
   container-type: inline-size;
 }
 
-.archive-outline {
-  display: none;
+/* Two columns stretch the cards into wide, flat strips well before desktop, so
+   the row of four starts as soon as each card can hold its title. */
+@container archive (width >= 40rem) {
+  .archive-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .archive-card {
+    min-height: 156px;
+  }
 }
 
 @container archive (width >= 68rem) {
   .archive-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 26px;
   }
 
-  /* In the wide composition the hand-drawn outline IS the card border, so the
-     CSS border is removed and the card fills on hover (export: #1c1c1c). */
   .archive-card {
     min-height: 182px;
     aspect-ratio: auto;
     padding: 24px 22px 22px;
-    border-width: 0;
-  }
-
-  .archive-outline {
-    display: block;
   }
 }

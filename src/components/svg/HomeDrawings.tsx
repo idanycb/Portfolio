@@ -44,7 +44,7 @@ export function HeroStartArrow() {
           strokeLinejoin="round"
         >
           <path
-            d="M34 34 C24 26, 16 16, 12 6"
+            d="M42 28 C28 28, 14 22, 12 6"
             strokeDasharray="60"
             strokeDashoffset="60"
             style={{ animation: "dw .7s 1.1s cubic-bezier(.33,1,.68,1) forwards" }}
@@ -73,7 +73,7 @@ export function HeroStartArrow() {
           strokeLinejoin="round"
         >
           <path
-            d="M40 52 C30 40, 24 26, 22 8"
+            d="M58 36 C40 36, 24 28, 22 8"
             strokeDasharray="70"
             strokeDashoffset="70"
             style={{ animation: "dw .8s 1.5s cubic-bezier(.33,1,.68,1) forwards" }}
@@ -102,13 +102,13 @@ export function PortraitNoteArrow({ className }: SvgProps) {
         strokeLinejoin="round"
       >
         <path
-          d="M100 8 C88 30, 62 46, 30 54"
+          d="M30 18 C62 26, 88 42, 100 64"
           strokeDasharray="130"
           strokeDashoffset="130"
           style={{ animation: "dw .9s 1.4s cubic-bezier(.33,1,.68,1) forwards" }}
         />
         <path
-          d="M42 42 C36 49, 32 53, 28 55 C33 58, 38 61, 43 65"
+          d="M103.2 45.2 C100.6 54, 99.5 59.6, 100 64 C94.8 61.5, 89.5 58.9, 83.4 56.9"
           strokeDasharray="60"
           strokeDashoffset="60"
           style={{ animation: "dw .4s 2.2s ease forwards" }}
@@ -1134,20 +1134,51 @@ export function WorkNoteArrow({ className }: SvgProps) {
         strokeLinejoin="round"
       >
         <path
-          d="M6 14 C22 8, 44 16, 54 36"
+          d="M8 4 C6 20, 18 28, 54 26"
           strokeDasharray="80"
           strokeDashoffset="80"
           data-anim=""
           style={paused("dw .8s cubic-bezier(.33,1,.68,1) forwards")}
         />
         <path
-          d="M42 32 C47 33, 52 35, 55 37 C54 41, 52 46, 50 51"
+          d="M45.7 16.6 C50 19.3, 53.9 23, 56 26 C53.6 29.4, 49.9 33.3, 46.2 37.2"
           strokeDasharray="40"
           strokeDashoffset="40"
           data-anim=""
           style={paused("dw .3s .8s ease forwards")}
         />
       </g>
+    </svg>
+  );
+}
+
+// A quick double loop scribbled around the Experience note. The second pass
+// drifts off the first and stops short, the way a pen circles something twice.
+// `pathLength="1"` keeps the draw-in dash right as the box stretches the path.
+export function ExperienceNoteCircle({ className = "" }: SvgProps) {
+  return (
+    <svg
+      viewBox="0 0 180 80"
+      preserveAspectRatio="none"
+      className={`pointer-events-none absolute overflow-visible ${className}`}
+      aria-hidden="true"
+    >
+      <path
+        className="ink"
+        d="M40 11 C100 2, 166 8, 172 34 C177 60, 130 74, 84 74 C36 74, 5 62, 8 40 C11 17, 52 7, 98 7 C142 7, 178 21, 171 45 C165 66, 124 71, 102 70"
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        pathLength={1}
+        strokeDasharray="1"
+        strokeDashoffset="1"
+        data-anim=""
+        style={{
+          ...paused("dw 1.4s .3s cubic-bezier(.33,1,.68,1) forwards"),
+          strokeWidth: inkStroke(1.5),
+        }}
+      />
     </svg>
   );
 }
@@ -1362,14 +1393,14 @@ export function StackNoteArrow({ className }: SvgProps) {
         strokeLinejoin="round"
       >
         <path
-          d="M74 52 C52 54, 28 40, 12 14"
+          d="M78 45 C50 47, 18 40, 12 8"
           strokeDasharray="94"
           strokeDashoffset="94"
           data-anim=""
           style={paused("dw .8s cubic-bezier(.33,1,.68,1) forwards")}
         />
         <path
-          d="M11 30 C11 23, 11 17, 11 13 C16 15, 22 17, 28 19"
+          d="M4.9 23.4 C7.8 17.1, 10.3 11.6, 12 8 C15.7 11.9, 20.3 16.2, 24.9 20.5"
           strokeDasharray="40"
           strokeDashoffset="40"
           data-anim=""
@@ -1394,19 +1425,21 @@ export function ArchiveOutline({ index }: { index: number }) {
       height="100%"
       viewBox="0 0 264 158"
       preserveAspectRatio="none"
-      className="archive-outline pointer-events-none absolute inset-0 overflow-visible"
+      className="archive-outline text-muted pointer-events-none absolute inset-0 -z-10 overflow-visible"
       aria-hidden="true"
     >
+      {/* The fill shares the outline's path, so the card surface wobbles with it. */}
       <path
-        className="ink"
+        className="ink fill-paper"
         d={archivePaths[index]}
-        fill="none"
         stroke="currentColor"
         strokeLinejoin="round"
         strokeLinecap="round"
         vectorEffect="non-scaling-stroke"
-        strokeDasharray="860"
-        strokeDashoffset="860"
+        // Non-scaling strokes measure dashes in screen pixels; 1000 must exceed
+        // the widest card's perimeter or the outline stops short of closing.
+        strokeDasharray="1000"
+        strokeDashoffset="1000"
         data-anim=""
         style={{
           ...paused(`dw 1.1s ${index ? `.${index * 12}s ` : ""}cubic-bezier(.33,1,.68,1) forwards`),
@@ -1460,14 +1493,14 @@ export function ContactNoteArrow({ className }: SvgProps) {
         strokeLinejoin="round"
       >
         <path
-          d="M60 20 C44 8, 26 10, 8 22"
+          d="M60 24 C38 26, 14 22, 10 1"
           strokeDasharray="70"
           strokeDashoffset="70"
           data-anim=""
           style={paused("dw .7s cubic-bezier(.33,1,.68,1) forwards")}
         />
         <path
-          d="M18 14 C13 17, 9 20, 7 22 C11 25, 15 28, 19 32"
+          d="M20.2 10 C16.2 5.8, 12.4 2.5, 10 1 C8 5.6, 5.9 10.1, 2.9 14.9"
           strokeDasharray="44"
           strokeDashoffset="44"
           data-anim=""

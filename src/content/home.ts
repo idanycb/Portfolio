@@ -94,7 +94,7 @@ export type HomepageContent = {
     image: { src: string; alt: string; sizes: string; aspectRatio: string };
     captionLeft: string;
     captionRight: string;
-    notes: { start: string; portrait: string; portraitShort: string };
+    notes: { start: string; portrait: string };
   };
   work: {
     heading: string;
@@ -145,9 +145,6 @@ export type HomepageContent = {
     socialLabel: string;
     socialLabelShort: string;
     directLabel: string;
-    copyright: string;
-    notes: string;
-    notesShort: string;
   };
 };
 
@@ -199,7 +196,7 @@ export const homeContent = {
       src: "/images/dany-portrait.png",
       alt: "Grayscale portrait of Daniel Thomas Jesudoss wearing glasses, with headphones around his neck",
       sizes:
-        "(min-width: 960px) min(27vw, 21rem), (min-width: 640px) 30vw, min(calc(100vw - 40px), 24rem)",
+        "(min-width: 960px) min(34vw, 28rem), (min-width: 640px) 44vw, min(calc(100vw - 40px), 24rem)",
       aspectRatio: "4 / 5",
     },
     captionLeft: "DANY C.B.",
@@ -207,7 +204,6 @@ export const homeContent = {
     notes: {
       start: "start here",
       portrait: "I draw the system before I build it — every diagram here is mine",
-      portraitShort: "I draw the system before I build it — every diagram here is mine",
     },
   },
   work: {
@@ -223,9 +219,9 @@ export const homeContent = {
         figureCaptionShort: "INGESTION → CITED ANSWER",
         category: "AI / BACKEND · RETRIEVAL",
         title: ["FINDOC"],
-        body: "Financial filings are long, amended over time, and hostile to naïve retrieval. FinDoc imports SEC EDGAR filings, parses and indexes their structured sections, retrieves progressively, and answers only with citations tied back to filing metadata. [1]",
+        body: "Financial filings are long, amended over time, and hostile to naïve retrieval. FinDoc imports SEC EDGAR filings, parses and indexes their structured sections, retrieves progressively, and answers only with citations tied back to filing metadata.",
         bodyShort:
-          "Financial filings are long, amended over time, and hostile to naïve retrieval. FinDoc imports SEC EDGAR filings, indexes their structured sections, retrieves progressively, and answers only with citations tied back to filing metadata. [1]",
+          "Financial filings are long, amended over time, and hostile to naïve retrieval. FinDoc imports SEC EDGAR filings, indexes their structured sections, retrieves progressively, and answers only with citations tied back to filing metadata.",
         facts: [
           {
             label: "AMENDMENTS",
@@ -258,9 +254,9 @@ export const homeContent = {
         figureCaption: "THE RECONCILIATION LOOP",
         category: "DEVOPS · PLATFORM",
         title: ["PORTFOLIO", "GITOPS"],
-        body: "A private K3s cluster on Oracle Cloud ARM, declared entirely in Git. FluxCD reconciles, Infisical holds the secrets under zero-trust, cert-manager and Traefik keep it public and encrypted. Bootstrap is two-phase and documented — after it, nothing is done by hand. [2]",
+        body: "A private K3s cluster on Oracle Cloud ARM, declared entirely in Git. FluxCD reconciles, Infisical holds the secrets under zero-trust, cert-manager and Traefik keep it public and encrypted. Bootstrap is two-phase and documented — after it, nothing is done by hand.",
         bodyShort:
-          "A private K3s cluster on Oracle Cloud ARM, declared entirely in Git. FluxCD reconciles, Infisical holds the secrets under zero-trust, cert-manager and Traefik keep it public and encrypted. After bootstrap, nothing is done by hand. [2]",
+          "A private K3s cluster on Oracle Cloud ARM, declared entirely in Git. FluxCD reconciles, Infisical holds the secrets under zero-trust, cert-manager and Traefik keep it public and encrypted. After bootstrap, nothing is done by hand.",
         facts: [
           {
             label: "DECLARED",
@@ -432,9 +428,6 @@ export const homeContent = {
     socialLabel: "PROFESSIONAL",
     socialLabelShort: "ELSEWHERE",
     directLabel: "DIRECT",
-    copyright: "© 2026 DANIEL THOMAS JESUDOSS",
-    notes: "NOTES [1] FINDOC ADR-1 ↗   [2] GITOPS BOOTSTRAP ↗",
-    notesShort: "NOTES [1] FINDOC ADR-1 ↗ · [2] GITOPS BOOTSTRAP ↗",
   },
 } as const satisfies HomepageContent;
 

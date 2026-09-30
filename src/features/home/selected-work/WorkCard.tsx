@@ -90,7 +90,7 @@ export function WorkCard({ project, index, note }: WorkCardProps) {
       </div>
 
       <div
-        className={`tablet:max-w-[40rem] layout:order-none layout:mt-0 layout:max-w-none order-3 mt-[22px] ${figureCol} layout:row-start-1`}
+        className={`tablet:block tablet:max-w-[40rem] layout:order-none layout:mt-0 layout:max-w-none order-3 mt-[22px] flex flex-col ${figureCol} layout:row-start-1`}
       >
         <figure>
           <div className="border-signature border-ink bg-paper-light tablet:p-[22px] px-3.5 py-4">
@@ -106,13 +106,20 @@ export function WorkCard({ project, index, note }: WorkCardProps) {
             />
           </figcaption>
         </figure>
-        <div data-note="" className="ink-note layout:mt-4 relative mt-3.5">
-          {flipped ? <WorkNoteArrow className="layout:block absolute top-0 left-0 hidden" /> : null}
+        <div
+          data-note=""
+          className="ink-note tablet:order-none tablet:mt-3.5 tablet:mb-0 layout:mt-4 relative order-first mb-3.5"
+        >
+          {/* Same mark on both cards; mirrored on the right so the head
+              points back at the note. */}
+          <WorkNoteArrow
+            className={`layout:block absolute top-0 hidden ${flipped ? "left-0" : "right-0 -scale-x-100"}`}
+          />
           <p
             className={`font-hand text-copy-muted layout:text-[19px] layout:leading-[1.35] text-lg leading-[1.3] ${
               flipped
                 ? "layout:[transform:none] layout:pl-[74px] [transform:rotate(-.8deg)]"
-                : "layout:[transform:rotate(-.8deg)] [transform:rotate(-.6deg)]"
+                : "layout:[transform:none] layout:pr-[74px] [transform:rotate(-.6deg)]"
             }`}
           >
             {note}

@@ -46,8 +46,8 @@ export function SiteFooter({ variant, nextCaseStudy }: SiteFooterProps) {
 
   return (
     <footer className="bg-ink-dark text-paper">
-      <SiteContainer className="tablet:grid-cols-2 tablet:gap-x-10 tablet:py-12 layout:grid-cols-[1.45fr_0.8fr_1.15fr_1fr] layout:gap-9 layout:py-14 grid gap-8 py-10">
-        <div>
+      <SiteContainer className="tablet:grid-cols-2 tablet:gap-x-10 tablet:gap-y-8 tablet:py-12 layout:grid-cols-[1.45fr_0.8fr_1.15fr_1fr] layout:gap-9 layout:py-14 grid grid-cols-2 gap-x-5 gap-y-7 py-8">
+        <div className="tablet:col-span-1 col-span-2">
           <HashLink
             href="/#top"
             className="font-display text-paper layout:text-[2.75rem] hover:text-inverse-muted inline-flex min-h-11 items-center text-[2.375rem] font-black tracking-[-0.055em]"
@@ -62,7 +62,7 @@ export function SiteFooter({ variant, nextCaseStudy }: SiteFooterProps) {
           <p className="text-inverse-subtle layout:text-[0.625rem] font-mono text-[0.5625rem] tracking-[0.2em]">
             {homeContent.footer.siteLabel}
           </p>
-          <div className="layout:mt-4 layout:text-[0.71875rem] mt-3 flex flex-col gap-1 font-mono text-[0.6875rem] font-bold tracking-[0.12em]">
+          <div className="tablet:mt-3 layout:mt-4 layout:text-[0.71875rem] tablet:gap-1 mt-2 flex flex-col font-mono text-[0.6875rem] font-bold tracking-[0.12em]">
             {homeContent.navigation
               .filter((item) => item.href !== "#archive")
               .map((item) => (
@@ -84,7 +84,7 @@ export function SiteFooter({ variant, nextCaseStudy }: SiteFooterProps) {
             at="tablet"
             className="text-inverse-subtle layout:text-[0.625rem] font-mono text-[0.5625rem] tracking-[0.2em]"
           />
-          <div className="layout:mt-4 layout:text-[0.71875rem] mt-3 flex flex-col gap-1 font-mono text-[0.6875rem] font-bold tracking-[0.12em]">
+          <div className="tablet:mt-3 layout:mt-4 layout:text-[0.71875rem] tablet:gap-1 mt-2 flex flex-col font-mono text-[0.6875rem] font-bold tracking-[0.12em]">
             {homeContent.profile.social.map((item) => (
               <a
                 key={item.href}
@@ -125,16 +125,6 @@ export function SiteFooter({ variant, nextCaseStudy }: SiteFooterProps) {
             </a>
           </div>
         </div>
-      </SiteContainer>
-      <SiteContainer className="border-inverse-subtle text-inverse-subtle tablet:flex-row tablet:items-center tablet:flex-wrap tablet:justify-between tablet:gap-x-6 tablet:gap-y-0 layout:text-[0.59375rem] layout:py-5 layout:text-xs flex flex-col gap-2 border-t py-4 font-mono text-[0.5625rem] leading-[1.8] tracking-[0.16em]">
-        <span>{homeContent.footer.copyright}</span>
-        <ResponsiveCopy long={homeContent.footer.notes} short={homeContent.footer.notesShort} />
-        <HashLink
-          href="#top"
-          className="text-inverse-subtle hover:text-paper flex min-h-11 w-fit min-w-11 items-center"
-        >
-          BACK TO TOP ↑
-        </HashLink>
       </SiteContainer>
     </footer>
   );
