@@ -2,7 +2,7 @@
 
 import type { ContactFormContent } from "@/content/home";
 import Script from "next/script";
-import { useActionState, useCallback, useEffect, useRef } from "react";
+import { useActionState, useCallback, useEffect, useRef, useState } from "react";
 
 import { sendContact } from "./actions";
 import type { ContactActionState, ContactField } from "./contact-checks";
@@ -54,6 +54,7 @@ export function ContactForm({ content }: { content: ContactFormContent }) {
   const startedAtRef = useRef<HTMLInputElement>(null);
   const turnstileContainerRef = useRef<HTMLDivElement>(null);
   const turnstileWidgetIdRef = useRef<string | null>(null);
+  const [loadTurnstile, setLoadTurnstile] = useState(false);
 
   const renderTurnstile = useCallback(() => {
     if (!turnstileContainerRef.current || !window.turnstile || turnstileWidgetIdRef.current) {
@@ -86,6 +87,24 @@ export function ContactForm({ content }: { content: ContactFormContent }) {
     };
   }, [renderTurnstile]);
 
+  // Cross-origin Turnstile loaded with the page lands before LCP and inflates
+  // simulated mobile LCP. Load it only once the form is close to the viewport.
+  useEffect(() => {
+    const form = formRef.current;
+    if (!form) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        setLoadTurnstile(true);
+        observer.disconnect();
+      },
+      { rootMargin: "800px 0px" },
+    );
+    observer.observe(form);
+    return () => observer.disconnect();
+  }, []);
+
   useEffect(() => {
     if (state.status === "idle") return;
 
@@ -105,12 +124,14 @@ export function ContactForm({ content }: { content: ContactFormContent }) {
 
   return (
     <>
-      <Script
-        id="cloudflare-turnstile"
-        src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
-        strategy="afterInteractive"
-        onReady={renderTurnstile}
-      />
+      {loadTurnstile && (
+        <Script
+          id="cloudflare-turnstile"
+          src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
+          strategy="afterInteractive"
+          onReady={renderTurnstile}
+        />
+      )}
       <form ref={formRef} action={formAction} aria-busy={pending}>
         <input ref={startedAtRef} type="hidden" name="startedAt" />
         <div
