@@ -22,7 +22,7 @@ type HeroSectionProps = { content: HomepageContent["hero"] };
    photo box, and only the doodle gutter sits under them. */
 export function HeroSection({ content }: HeroSectionProps) {
   return (
-    <section className="border-ink tablet:py-14 tablet:pb-16 layout:py-[72px] layout:pb-24 border-b-signature py-[34px] pb-11">
+    <section className="border-ink tablet:py-14 tablet:pb-16 layout:py-18 layout:pb-24 border-b-signature py-8.5 pb-11">
       <SiteContainer className="tablet:grid-cols-2 tablet:gap-x-10 layout:grid-cols-[minmax(0,1.2fr)_minmax(19rem,1fr)] layout:gap-x-16 grid">
         <div className="tablet:col-span-2 tablet:col-start-1 tablet:row-start-1 layout:col-span-1 layout:self-end">
           <p className="animate-fi text-muted font-mono text-[0.59375rem] tracking-[0.24em]">
@@ -34,13 +34,13 @@ export function HeroSection({ content }: HeroSectionProps) {
         </div>
         <figure className="tablet:col-start-2 tablet:row-span-2 tablet:row-start-1 tablet:mt-0 tablet:max-w-none tablet:self-center tablet:[--pw:88%] layout:row-span-2 layout:row-start-1 layout:self-end layout:pb-1 layout:[--pw:86%] tablet:mx-0 mx-auto mt-6 w-full max-w-[24rem] [--pw:100%]">
           <div data-note="" className="ink-note layout:block relative mb-16 hidden">
-            <p className="font-hand [transform:rotate(-1.4deg)] text-[19px] leading-[1.35] whitespace-pre-line">
+            <p className="font-hand transform-[rotate(-1.4deg)] text-[19px] leading-[1.35] whitespace-pre-line">
               {content.notes.portrait}
             </p>
-            <PortraitNoteArrow className="absolute right-[34%] -bottom-[4.25rem]" />
+            <PortraitNoteArrow className="absolute right-[34%] -bottom-17" />
           </div>
-          <div className="layout:-rotate-1 relative -rotate-[1.5deg]">
-            <div className="relative ml-auto aspect-[4/5] w-[var(--pw)]">
+          <div className="layout:-rotate-1 relative rotate-[-1.5deg]">
+            <div className="relative ml-auto aspect-4/5 w-(--pw)">
               <div className="bg-band absolute inset-x-0 top-[20%] bottom-0" />
               <PortraitFrameBack className="text-ink absolute inset-x-0 top-[20%] h-auto w-full" />
               <Image
@@ -53,8 +53,8 @@ export function HeroSection({ content }: HeroSectionProps) {
                 className="animate-[rise_900ms_cubic-bezier(.33,1,.68,1)_both] object-cover contrast-[1.06] grayscale sepia-[.08]"
               />
               <PortraitFrameFront className="text-ink absolute inset-x-0 top-[20%] h-auto w-full" />
-              <PortraitTape className="absolute bottom-0 left-0 -translate-x-1/4 translate-y-1/2 rotate-[24deg] animate-[fi_.5s_1.7s_both]" />
-              <PortraitTape className="absolute top-[20%] right-0 translate-x-1/4 -translate-y-1/2 rotate-[28deg] animate-[fi_.5s_1.8s_both]" />
+              <PortraitTape className="absolute bottom-0 left-0 -translate-x-1/4 translate-y-1/2 rotate-24 animate-[fi_.5s_1.7s_both]" />
+              <PortraitTape className="absolute top-[20%] right-0 translate-x-1/4 -translate-y-1/2 rotate-28 animate-[fi_.5s_1.8s_both]" />
               <PortraitDoodles
                 variant="mobile"
                 className="ink-note tablet:hidden pointer-events-none absolute inset-0 block h-full w-full overflow-visible"
@@ -62,7 +62,7 @@ export function HeroSection({ content }: HeroSectionProps) {
               <PortraitDoodles className="ink-note tablet:block pointer-events-none absolute inset-0 hidden h-full w-full overflow-visible" />
             </div>
           </div>
-          <figcaption className="border-ink text-muted layout:text-[0.59375rem] mt-5 ml-auto flex w-[var(--pw)] flex-wrap justify-between gap-x-4 border-t pt-1.5 font-mono text-[0.5625rem] tracking-[0.14em]">
+          <figcaption className="border-ink text-muted layout:text-[0.59375rem] mt-5 ml-auto flex w-(--pw) flex-wrap justify-between gap-x-4 border-t pt-1.5 font-mono text-[0.5625rem] tracking-[0.14em]">
             <span>{content.captionLeft}</span>
             <span>{content.captionRight}</span>
           </figcaption>
@@ -71,14 +71,14 @@ export function HeroSection({ content }: HeroSectionProps) {
           <h2 className="animate-fu font-display text-ink tablet:text-[clamp(1.6875rem,3.4vw,2rem)] layout:mt-10 layout:text-[clamp(1.875rem,3.4vw,2.75rem)] layout:leading-[1.08] layout:tracking-[-0.035em] mt-7 max-w-xl text-[1.6875rem] leading-[1.1] font-extrabold tracking-[-0.03em] text-balance">
             {content.subtitle}
           </h2>
-          <p className="animate-fu text-copy tablet:text-[1.1875rem] layout:mt-4 layout:text-[1.3125rem] mt-3.5 max-w-xl text-[1.0625rem] leading-[1.5]">
+          <p className="animate-fu text-copy tablet:text-[1.1875rem] layout:mt-4 layout:text-[1.3125rem] mt-3.5 max-w-xl text-[1.0625rem] leading-normal">
             {content.body}
           </p>
           <div className="border-rule layout:mt-8 mt-6 max-w-xl border-t pt-4">
             <p className="text-copy-muted layout:text-[0.9375rem] text-sm leading-[1.55]">
               {content.education}
             </p>
-            <p className="text-ink layout:text-[0.78125rem] mt-2.5 font-mono text-[0.71875rem] leading-[1.9] font-bold tracking-[0.1em]">
+            <p className="text-ink layout:text-[0.78125rem] mt-2.5 font-mono text-[0.71875rem] leading-[1.9] font-bold tracking-widest">
               {content.skills.join(" · ")}
             </p>
           </div>
@@ -91,7 +91,7 @@ export function HeroSection({ content }: HeroSectionProps) {
               {content.actions.map((action) =>
                 action.hrefMobile ? (
                   <div key={action.label} className="contents">
-                    <span className="tablet:flex-1 tablet:basis-[12.25rem] layout:hidden w-full">
+                    <span className="tablet:flex-1 tablet:basis-49 layout:hidden w-full">
                       <ActionLink
                         href={action.hrefMobile}
                         variant="outline"
@@ -122,7 +122,7 @@ export function HeroSection({ content }: HeroSectionProps) {
                       className="ink-note layout:flex mt-4 hidden items-start gap-2 pl-1"
                     >
                       <HeroStartArrow />
-                      <span className="font-hand layout:pt-6 layout:text-[19px] [transform:rotate(-2deg)] pt-4 text-lg leading-[1.25]">
+                      <span className="font-hand layout:pt-6 layout:text-[19px] transform-[rotate(-2deg)] pt-4 text-lg leading-tight">
                         {content.notes.start}
                       </span>
                     </div>
@@ -133,7 +133,7 @@ export function HeroSection({ content }: HeroSectionProps) {
                     href={action.href}
                     download={action.download}
                     variant="outline"
-                    className="tablet:flex-1 tablet:basis-[12.25rem] layout:flex-none layout:basis-auto layout:w-auto w-full"
+                    className="tablet:flex-1 tablet:basis-49 layout:flex-none layout:basis-auto layout:w-auto w-full"
                   >
                     {action.label}
                   </ActionLink>

@@ -35,7 +35,7 @@ export function SectionHeading({
       <div className="flex items-baseline gap-3">
         {number ? (
           <span
-            className={`layout:text-[0.8125rem] font-mono text-xs font-bold tracking-[0.1em] ${inverse ? "text-inverse-muted" : "text-muted"}`}
+            className={`layout:text-[0.8125rem] font-mono text-xs font-bold tracking-widest ${inverse ? "text-inverse-muted" : "text-muted"}`}
           >
             {number}
           </span>

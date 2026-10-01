@@ -213,7 +213,7 @@ export function TopicSelect({
           aria-invalid={showInvalid ? true : undefined}
           aria-describedby={describedByIds || undefined}
           aria-activedescendant={isOpen ? optionId(activeIndex) : undefined}
-          className="text-ink border-subtle layout:text-[0.9375rem] focus-visible:outline-ink group mt-2 flex w-full cursor-pointer touch-manipulation items-center justify-between gap-4 border-b py-1.5 font-sans text-base leading-[1.5] select-none focus-visible:outline-2 focus-visible:outline-offset-2"
+          className="text-ink border-subtle layout:text-[0.9375rem] focus-visible:outline-ink group mt-2 flex w-full cursor-pointer touch-manipulation items-center justify-between gap-4 border-b py-1.5 font-sans text-base leading-normal select-none focus-visible:outline-2 focus-visible:outline-offset-2"
           onClick={() => {
             if (isOpen) {
               setIsOpen(false);
@@ -253,8 +253,8 @@ export function TopicSelect({
           // negative side and bottom insets leave room for the shadow.
           className={`border-ink bg-paper-light border-signature absolute inset-x-0 top-full z-20 mt-2 py-1 shadow-[0_10px_24px_-14px_color-mix(in_srgb,var(--ink)_45%,transparent)] transition-[clip-path,visibility] ease-[cubic-bezier(0.32,0,0.67,0)] ${
             isOpen
-              ? "visible duration-[350ms] [clip-path:inset(0_-2rem_-2rem_-2rem)]"
-              : "pointer-events-none invisible duration-[250ms] [clip-path:inset(0_-2rem_100%_-2rem)]"
+              ? "visible duration-350 [clip-path:inset(0_-2rem_-2rem_-2rem)]"
+              : "pointer-events-none invisible duration-250 [clip-path:inset(0_-2rem_100%_-2rem)]"
           }`}
           onPointerDown={(event) => event.preventDefault()}
           onPointerLeave={() => setShowActive(false)}
@@ -302,7 +302,7 @@ export function TopicSelect({
                   // A hand-drawn rule inset to the text edge on both sides.
                   <span
                     aria-hidden="true"
-                    className="tablet:inset-x-4 pointer-events-none absolute inset-x-3 -bottom-[3px] z-[1] block h-1.5"
+                    className="tablet:inset-x-4 pointer-events-none absolute inset-x-3 -bottom-0.75 z-1 block h-1.5"
                   >
                     <svg
                       viewBox="0 0 400 6"

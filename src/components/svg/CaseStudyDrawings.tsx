@@ -9,13 +9,13 @@ export function CaseHeroDocument() {
       width="300"
       height="230"
       viewBox="0 0 300 230"
-      className="layout:top-5 layout:right-[26px] layout:h-[clamp(10.5rem,15.3vw,14.375rem)] layout:w-[clamp(13.75rem,20vw,18.75rem)] layout:opacity-[.17] pointer-events-none absolute -top-2 right-2 h-[52px] w-[68px] overflow-visible opacity-[.13]"
+      className="layout:top-5 layout:right-6.5 layout:h-[clamp(10.5rem,15.3vw,14.375rem)] layout:w-[clamp(13.75rem,20vw,18.75rem)] layout:opacity-[.17] pointer-events-none absolute -top-2 right-2 h-13 w-17 overflow-visible opacity-[.13]"
       aria-hidden="true"
     >
       <g
         fill="none"
         stroke="currentColor"
-        className="ink layout:[stroke-width:calc(1.8px*var(--ink-stroke,1))] [stroke-width:calc(2.6px*var(--ink-stroke,1))]"
+        className="ink layout:stroke-[calc(1.8px*var(--ink-stroke,1))] stroke-[calc(2.6px*var(--ink-stroke,1))]"
         strokeLinecap="round"
         strokeLinejoin="round"
       >
@@ -202,7 +202,7 @@ export function SectionSevenArrow() {
       width="110"
       height="86"
       viewBox="0 0 110 86"
-      className="layout:block pointer-events-none absolute top-3 right-0 hidden h-16 w-[82px] opacity-45"
+      className="layout:block pointer-events-none absolute top-3 right-0 hidden h-16 w-20.5 opacity-45"
       aria-hidden="true"
     >
       <g

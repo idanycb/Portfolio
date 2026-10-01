@@ -30,7 +30,7 @@ declare global {
 
 const initialState: ContactActionState = { status: "idle" };
 const fieldClassName =
-  "text-ink border-subtle layout:text-[0.9375rem] focus-visible:outline-ink mt-2 block w-full rounded-none border-0 border-b bg-transparent px-0 py-1.5 font-sans text-base leading-[1.5] focus-visible:outline-2 focus-visible:outline-offset-2";
+  "text-ink border-subtle layout:text-[0.9375rem] focus-visible:outline-ink mt-2 block w-full rounded-none border-0 border-b bg-transparent px-0 py-1.5 font-sans text-base leading-normal focus-visible:outline-2 focus-visible:outline-offset-2";
 const labelClassName =
   "text-copy-muted layout:text-[0.625rem] block font-mono text-[0.59375rem] font-bold tracking-[0.14em]";
 
@@ -205,7 +205,7 @@ export function ContactForm({ content }: { content: ContactFormContent }) {
           </button>
           <p
             aria-live="polite"
-            className={`mt-3 min-h-5 font-mono text-[0.625rem] leading-[1.5] tracking-[0.08em] ${
+            className={`mt-3 min-h-5 font-mono text-[0.625rem] leading-normal tracking-[0.08em] ${
               state.status === "success" ? "text-ink" : "text-copy-muted"
             }`}
           >

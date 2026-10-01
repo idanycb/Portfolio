@@ -10,7 +10,7 @@ export function CaseStudyHero({ caseStudy }: { caseStudy: CaseStudy }) {
       aria-labelledby="case-study-title"
     >
       <CaseHeroDocument />
-      <SiteContainer className="animate-fu tablet:py-14 layout:py-[4.5rem] py-[2.125rem]">
+      <SiteContainer className="animate-fu tablet:py-14 layout:py-18 py-8.5">
         <p className="text-muted layout:text-[0.625rem] font-mono text-[0.59375rem] tracking-[0.22em]">
           {caseStudy.eyebrow}
         </p>
@@ -20,7 +20,7 @@ export function CaseStudyHero({ caseStudy }: { caseStudy: CaseStudy }) {
         >
           {caseStudy.title}
         </h1>
-        <p className="text-copy tablet:text-[1.1875rem] layout:mt-10 layout:max-w-[52rem] layout:text-[clamp(1.25rem,1.8vw,1.625rem)] layout:leading-[1.38] mt-7 max-w-[43rem] text-[clamp(0.9375rem,4.8vw,1.125rem)] leading-[1.45] font-semibold text-pretty">
+        <p className="text-copy tablet:text-[1.1875rem] layout:mt-10 layout:max-w-208 layout:text-[clamp(1.25rem,1.8vw,1.625rem)] layout:leading-[1.38] mt-7 max-w-172 text-[clamp(0.9375rem,4.8vw,1.125rem)] leading-[1.45] font-semibold text-pretty">
           {caseStudy.deck}
         </p>
         <dl className="border-ink tablet:grid-cols-4 layout:mt-12 border-t-signature mt-8 grid grid-cols-2">

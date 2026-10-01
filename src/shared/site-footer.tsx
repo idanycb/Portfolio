@@ -21,14 +21,14 @@ export function SiteFooter({ variant, nextCaseStudy }: SiteFooterProps) {
   if (isCaseStudy && nextCaseStudy) {
     return (
       <footer className="bg-ink-dark text-paper">
-        <SiteContainer className="tablet:flex-row tablet:items-end tablet:justify-between layout:py-[2.125rem] flex flex-col gap-8 py-8">
+        <SiteContainer className="tablet:flex-row tablet:items-end tablet:justify-between layout:py-8.5 flex flex-col gap-8 py-8">
           <div>
             <span className="text-inverse-muted layout:text-[0.625rem] font-mono text-[0.5625rem] tracking-[0.16em]">
               NEXT CASE STUDY
             </span>
             <Link
               href={nextCaseStudy.href}
-              className="font-display text-paper hover:text-inverse-muted mt-2 block text-3xl leading-[0.95] font-black tracking-[-0.05em] whitespace-pre-line"
+              className="font-display text-paper hover:text-inverse-muted mt-2 block text-3xl leading-[0.95] font-black tracking-tighter whitespace-pre-line"
             >
               <ResponsiveCopy long={nextCaseStudy.label} short={nextCaseStudy.labelShort} />
             </Link>

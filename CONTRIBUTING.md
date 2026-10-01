@@ -54,7 +54,7 @@ The hand-drawn ink look comes from `src/shared/drawn-layer/`.
 - **Set stroke widths with `inkStroke()` in `style`**, like
   `style={{ strokeWidth: inkStroke(1.6) }}`. Don't use a `strokeWidth=`
   attribute, because it can't read `--ink-stroke`. In a class, use
-  `[stroke-width:calc(1.6px*var(--ink-stroke,1))]`.
+  `stroke-[calc(1.6px*var(--ink-stroke,1))]`.
 - **If you change `--ink-wobble`**, also update `INK_WOBBLE_FALLBACK` in
   `src/shared/drawn-layer/InkFilter.tsx`. The server-rendered value must match.
 - **`PageDrawnLayer` renders once per page, from the page itself.** Never

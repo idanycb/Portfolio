@@ -29,10 +29,10 @@ export function ExperienceSection({ content }: ExperienceSectionProps) {
             mobile, per-item dashed connectors beside the icons on desktop.
             Tablet keeps the spine and dots, with the dates in their own column.
             Neither export puts a rule between entries. */}
-        <div className="tablet:mt-10 tablet:pl-0 layout:mt-[50px] relative mt-[30px] pl-[34px]">
+        <div className="tablet:mt-10 tablet:pl-0 layout:mt-12.5 relative mt-7.5 pl-8.5">
           <span
             aria-hidden
-            className="border-connector layout:hidden tablet:left-[calc(11rem_+_19px)] border-l-signature absolute top-[10px] bottom-[10px] left-[9px] border-dashed"
+            className="border-connector layout:hidden tablet:left-48.75 border-l-signature absolute top-2.5 bottom-2.5 left-2.25 border-dashed"
           />
           <ol>
             {content.items.map((item, index) => {
@@ -41,20 +41,20 @@ export function ExperienceSection({ content }: ExperienceSectionProps) {
               return (
                 <li
                   key={item.organization}
-                  className="tablet:grid tablet:grid-cols-[11rem_1fr] tablet:items-start tablet:gap-x-10 layout:grid-cols-[150px_132px_1fr] layout:gap-0 layout:pb-[54px] relative pb-[34px]"
+                  className="tablet:grid tablet:grid-cols-[11rem_1fr] tablet:items-start tablet:gap-x-10 layout:grid-cols-[150px_132px_1fr] layout:gap-0 layout:pb-13.5 relative pb-8.5"
                 >
                   <span
                     aria-hidden
-                    className="border-ink bg-band layout:hidden tablet:left-[calc(11rem_+_14px)] tablet:top-[10px] border-signature absolute top-[6px] -left-[30px] h-[11px] w-[11px] rounded-full"
+                    className="border-ink bg-band layout:hidden tablet:left-47.5 tablet:top-2.5 border-signature absolute top-1.5 -left-7.5 h-2.75 w-2.75 rounded-full"
                   />
                   {!isLast ? (
                     <span
                       aria-hidden
-                      className="border-connector layout:block border-l-signature absolute top-[120px] bottom-[6px] left-[215px] hidden border-dashed"
+                      className="border-connector layout:block border-l-signature absolute top-30 bottom-1.5 left-53.75 hidden border-dashed"
                     />
                   ) : null}
 
-                  <div className="tablet:col-start-1 tablet:row-start-1 tablet:pt-2 tablet:text-right layout:pt-[22px] layout:pr-7">
+                  <div className="tablet:col-start-1 tablet:row-start-1 tablet:pt-2 tablet:text-right layout:pt-5.5 layout:pr-7">
                     <div className="text-ink layout:text-xs font-mono text-[0.6875rem] font-bold tracking-[0.13em]">
                       <ResponsiveCopy long={item.dates} short={item.datesShort} at="tablet" />
                     </div>
@@ -62,7 +62,7 @@ export function ExperienceSection({ content }: ExperienceSectionProps) {
                       <ResponsiveCopy
                         long={item.meta}
                         short={item.metaShort}
-                        className="text-muted tablet:block mt-[5px] hidden font-mono text-[0.65625rem] tracking-[0.13em]"
+                        className="text-muted tablet:block mt-1.25 hidden font-mono text-[0.65625rem] tracking-[0.13em]"
                       />
                     ) : null}
                   </div>
@@ -111,7 +111,7 @@ export function ExperienceSection({ content }: ExperienceSectionProps) {
                       />
                     ) : null}
                     {item.stack ? (
-                      <p className="text-muted layout:mt-3.5 mt-3 font-mono text-[0.65625rem] leading-[2] tracking-[0.13em]">
+                      <p className="text-muted layout:mt-3.5 mt-3 font-mono text-[0.65625rem] leading-loose tracking-[0.13em]">
                         {item.stack}
                       </p>
                     ) : null}
@@ -120,11 +120,11 @@ export function ExperienceSection({ content }: ExperienceSectionProps) {
                   {isWork ? (
                     <p
                       data-note=""
-                      className="ink-note font-hand tablet:block text-copy-muted tablet:col-start-1 tablet:row-start-2 tablet:mt-3 tablet:text-right tablet:leading-[1.2] layout:pr-7 mt-2.5 hidden text-[17px] leading-[1.25]"
+                      className="ink-note font-hand tablet:block text-copy-muted tablet:col-start-1 tablet:row-start-2 tablet:mt-3 tablet:text-right tablet:leading-[1.2] layout:pr-7 mt-2.5 hidden text-[17px] leading-tight"
                     >
-                      <span className="relative mr-4 inline-block max-w-[7.5rem]">
+                      <span className="relative mr-4 inline-block max-w-30">
                         {content.note}
-                        <ExperienceNoteCircle className="text-ink -top-[14px] -left-[20px] h-[calc(100%+28px)] w-[calc(100%+46px)]" />
+                        <ExperienceNoteCircle className="text-ink -top-3.5 -left-5 h-[calc(100%+28px)] w-[calc(100%+46px)]" />
                       </span>
                     </p>
                   ) : null}

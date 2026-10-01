@@ -7,7 +7,7 @@ import { SiteHeader } from "@/shared/site-header";
 
 function WrongTurnArrow({ note }: { note: string }) {
   return (
-    <div className="ink-note layout:mx-0 relative mx-auto w-full max-w-[25rem]">
+    <div className="ink-note layout:mx-0 relative mx-auto w-full max-w-100">
       <svg viewBox="0 0 410 260" aria-hidden="true" className="ink h-auto w-full overflow-visible">
         <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round">
           <path
@@ -30,7 +30,7 @@ function WrongTurnArrow({ note }: { note: string }) {
 
 export function NotFoundPage({ content }: { content: NotFoundContent }) {
   return (
-    <div id="top" className="bg-paper text-ink relative min-h-[100dvh] overflow-hidden">
+    <div id="top" className="bg-paper text-ink relative min-h-dvh overflow-hidden">
       <PageDrawnLayer />
       <div
         data-grid=""
@@ -45,7 +45,7 @@ export function NotFoundPage({ content }: { content: NotFoundContent }) {
         </div>
       </div>
 
-      <div className="relative z-10 flex min-h-[100dvh] flex-col">
+      <div className="relative z-10 flex min-h-dvh flex-col">
         <SiteHeader />
         <main id="main-content" tabIndex={-1} className="layout:py-12 flex flex-1 py-8">
           <SiteContainer className="flex flex-1 flex-col">
@@ -66,10 +66,10 @@ export function NotFoundPage({ content }: { content: NotFoundContent }) {
               </div>
 
               <div className="tablet:col-span-2 tablet:row-start-2 layout:col-span-1 min-w-0">
-                <p className="font-display layout:mt-8 layout:text-[clamp(2rem,3.6vw,3.25rem)] mt-12 text-[clamp(1.75rem,8vw,2.5rem)] leading-[0.92] font-black tracking-[-0.05em]">
+                <p className="font-display layout:mt-8 layout:text-[clamp(2rem,3.6vw,3.25rem)] mt-12 text-[clamp(1.75rem,8vw,2.5rem)] leading-[0.92] font-black tracking-tighter">
                   {content.heading}
                 </p>
-                <p className="text-copy layout:text-[1.0625rem] mt-5 max-w-3xl font-sans text-base leading-[1.5]">
+                <p className="text-copy layout:text-[1.0625rem] mt-5 max-w-3xl font-sans text-base leading-normal">
                   {content.body}
                 </p>
                 <div className="layout:flex-row mt-7 flex flex-col gap-3">
@@ -92,7 +92,7 @@ export function NotFoundPage({ content }: { content: NotFoundContent }) {
             </div>
 
             <div className="min-h-12 flex-1" aria-hidden="true" />
-            <div className="border-ink layout:flex-row layout:items-center layout:justify-between flex flex-col gap-3 border-t pt-4 font-mono text-xs leading-[1.5] tracking-[0.14em]">
+            <div className="border-ink layout:flex-row layout:items-center layout:justify-between flex flex-col gap-3 border-t pt-4 font-mono text-xs leading-normal tracking-[0.14em]">
               <span>{content.footerLeft}</span>
               <span className="text-copy-muted">{content.footerRight}</span>
             </div>

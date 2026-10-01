@@ -439,25 +439,25 @@ const frameEdges = [
   {
     viewBox: "0 0 1000 18",
     d: "M4 11 C180 6, 360 13, 540 8 C720 4, 860 12, 996 7",
-    className: "-top-[9px] -left-[5px] h-[18px] w-[calc(100%+12px)]",
+    className: "-top-2.25 -left-1.25 h-4.5 w-[calc(100%+12px)]",
     animation: "dw 1.2s cubic-bezier(.33,1,.68,1) forwards",
   },
   {
     viewBox: "0 0 18 1000",
     d: "M10 4 C6 200, 13 410, 8 600 C4 780, 12 900, 9 996",
-    className: "-top-[4px] -right-[9px] h-[calc(100%+11px)] w-[18px]",
+    className: "-top-1 -right-2.25 h-[calc(100%+11px)] w-4.5",
     animation: "dw 1.6s .2s cubic-bezier(.33,1,.68,1) forwards",
   },
   {
     viewBox: "0 0 1000 18",
     d: "M3 8 C200 13, 420 5, 610 10 C780 14, 900 6, 997 11",
-    className: "-bottom-[9px] -left-[8px] h-[18px] w-[calc(100%+12px)]",
+    className: "-bottom-2.25 -left-2 h-4.5 w-[calc(100%+12px)]",
     animation: "dw 1.2s cubic-bezier(.33,1,.68,1) forwards",
   },
   {
     viewBox: "0 0 18 1000",
     d: "M8 3 C12 180, 5 380, 10 560 C14 740, 6 880, 9 997",
-    className: "-top-[7px] -left-[9px] h-[calc(100%+11px)] w-[18px]",
+    className: "-top-1.75 -left-2.25 h-[calc(100%+11px)] w-4.5",
     animation: "dw 1.6s .1s cubic-bezier(.33,1,.68,1) forwards",
   },
 ];
@@ -498,7 +498,7 @@ export function WorkDivider() {
         height="14"
         viewBox="0 0 340 14"
         preserveAspectRatio="none"
-        className="layout:hidden my-[34px] block overflow-visible"
+        className="layout:hidden my-8.5 block overflow-visible"
         aria-hidden="true"
       >
         <path
@@ -1362,11 +1362,11 @@ export function StackMarker({ index }: { index: number }) {
       width="46"
       height="46"
       viewBox="0 0 46 46"
-      className="layout:h-[46px] layout:w-[46px] absolute inset-0 h-[42px] w-[42px] overflow-visible"
+      className="layout:h-11.5 layout:w-11.5 absolute inset-0 h-10.5 w-10.5 overflow-visible"
       aria-hidden="true"
     >
       <path
-        className="ink layout:[stroke-width:calc(1.5px*var(--ink-stroke,1))] [stroke-width:calc(1.6px*var(--ink-stroke,1))]"
+        className="ink layout:stroke-[calc(1.5px*var(--ink-stroke,1))] stroke-[calc(1.6px*var(--ink-stroke,1))]"
         d={stackPaths[index]}
         fill="none"
         stroke="currentColor"

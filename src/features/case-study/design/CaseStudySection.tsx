@@ -18,7 +18,7 @@ function Prose({ body, bodyShort }: { body: string; bodyShort?: string }) {
     <ResponsiveCopy
       long={body}
       short={bodyShort}
-      className="case-study-prose text-copy layout:text-base layout:leading-[1.75] mt-5 max-w-[47rem] font-serif text-[0.96875rem] leading-[1.72]"
+      className="case-study-prose text-copy layout:text-base layout:leading-[1.75] mt-5 max-w-188 font-serif text-[0.96875rem] leading-[1.72]"
     />
   );
 }
@@ -39,7 +39,7 @@ function Decisions({ decisions }: { decisions: NonNullable<CaseStudySectionData[
             <ResponsiveCopy
               long={decision.body}
               short={decision.bodyShort}
-              className="text-copy mt-2 max-w-[43rem] font-serif text-[0.9375rem] leading-[1.72]"
+              className="text-copy mt-2 max-w-172 font-serif text-[0.9375rem] leading-[1.72]"
             />
             {decision.note ? (
               <p
@@ -115,11 +115,11 @@ export function CaseStudySection({
     <section
       id={section.id}
       aria-labelledby={`${section.id}-title`}
-      className={`scroll-mt-28 ${band ? "border-ink bg-band tablet:-mx-8 tablet:px-8 tablet:py-10 layout:-mx-12 layout:px-12 layout:py-12 border-y-signature relative -mx-5 overflow-hidden px-5 py-[2.125rem]" : "border-rule border-t pt-7 first:border-t-0 first:pt-0"}`}
+      className={`scroll-mt-28 ${band ? "border-ink bg-band tablet:-mx-8 tablet:px-8 tablet:py-10 layout:-mx-12 layout:px-12 layout:py-12 border-y-signature relative -mx-5 overflow-hidden px-5 py-8.5" : "border-rule border-t pt-7 first:border-t-0 first:pt-0"}`}
     >
       {band ? <SectionSevenArrow /> : null}
       <header className="layout:gap-4 flex items-start gap-2">
-        <span className="text-muted layout:text-xs shrink-0 pt-1 font-mono text-[0.71875rem] font-bold tracking-[0.1em]">
+        <span className="text-muted layout:text-xs shrink-0 pt-1 font-mono text-[0.71875rem] font-bold tracking-widest">
           {section.number}
         </span>
         <ResponsiveCopy

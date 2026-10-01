@@ -186,7 +186,7 @@ export function AmendmentDiagram({
 }) {
   return (
     <figure className="mt-7">
-      <div className="border-signature border-ink bg-paper-light tablet:p-[26px] p-3">
+      <div className="border-signature border-ink bg-paper-light tablet:p-6.5 p-3">
         <svg width="100%" viewBox="0 0 300 330" className="tablet:hidden block" role="img">
           <title>{diagram.label}</title>
           <g
@@ -480,7 +480,7 @@ export function PipelineDiagram({
 
   return (
     <figure className="mt-7">
-      <div className="border-signature border-ink bg-paper-light tablet:p-[26px] p-3">
+      <div className="border-signature border-ink bg-paper-light tablet:p-6.5 p-3">
         <svg
           width="100%"
           viewBox={`0 0 300 ${mobile.height}`}

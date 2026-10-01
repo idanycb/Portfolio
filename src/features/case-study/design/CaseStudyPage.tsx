@@ -19,7 +19,7 @@ export function CaseStudyPage({ caseStudy }: { caseStudy: CaseStudy }) {
   }));
 
   return (
-    <div id="top" className="bg-paper text-ink min-h-[100dvh]">
+    <div id="top" className="bg-paper text-ink min-h-dvh">
       <PageDrawnLayer />
       <SiteHeader
         variant="case-study"
@@ -46,8 +46,8 @@ export function CaseStudyPage({ caseStudy }: { caseStudy: CaseStudy }) {
             navLabel={caseStudy.railNavLabel}
             note={caseStudy.railNote}
           />
-          <article className="tablet:px-0 tablet:py-12 layout:px-12 layout:py-[3.25rem] min-w-0 px-5 py-[2.375rem]">
-            <div className="tablet:space-y-16 layout:space-y-[4.75rem] space-y-14">
+          <article className="tablet:px-0 tablet:py-12 layout:px-12 layout:py-13 min-w-0 px-5 py-9.5">
+            <div className="tablet:space-y-16 layout:space-y-19 space-y-14">
               {caseStudy.sections.map((section) => (
                 <CaseStudySection
                   key={section.id}
@@ -73,7 +73,7 @@ export function CaseStudyPage({ caseStudy }: { caseStudy: CaseStudy }) {
         </SiteContainer>
       </main>
       <footer className="bg-ink-dark text-paper">
-        <SiteContainer className="tablet:flex-row tablet:items-end tablet:justify-between layout:py-[2.125rem] flex flex-col gap-8 py-8">
+        <SiteContainer className="tablet:flex-row tablet:items-end tablet:justify-between layout:py-8.5 flex flex-col gap-8 py-8">
           <div>
             <span className="text-inverse-muted layout:text-[0.59375rem] font-mono text-[0.5625rem] tracking-[0.16em]">
               {caseStudy.nextLabel}

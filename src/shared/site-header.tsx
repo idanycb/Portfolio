@@ -36,7 +36,7 @@ export function SiteHeader({
       >
         SKIP TO CONTENT
       </HashLink>
-      <SiteContainer className="layout:min-h-0 layout:gap-5 layout:py-5 flex min-h-[68px] items-center justify-between gap-3 py-3.5">
+      <SiteContainer className="layout:min-h-0 layout:gap-5 layout:py-5 flex min-h-17 items-center justify-between gap-3 py-3.5">
         {isCaseStudy ? (
           <Link
             href="/"
@@ -45,7 +45,7 @@ export function SiteHeader({
             <ResponsiveCopy long={backLabel} short={backLabelShort} />
           </Link>
         ) : (
-          <div className="layout:flex-row layout:items-center layout:gap-[18px] flex min-w-0 flex-col items-start gap-0.5">
+          <div className="layout:flex-row layout:items-center layout:gap-4.5 flex min-w-0 flex-col items-start gap-0.5">
             <HashLink
               href="/#top"
               className="font-display text-ink hover:text-link-hover layout:py-0 layout:text-[1.375rem] block shrink-0 py-1 text-xl leading-[1.1] font-black tracking-[-0.045em]"
@@ -75,7 +75,7 @@ export function SiteHeader({
             <MobileNav items={homeContent.navigation} />
             <nav
               aria-label="Primary navigation"
-              className="layout:flex hidden shrink-0 items-center justify-end gap-[30px] font-mono text-[0.6875rem] leading-[1.2] font-bold tracking-[0.16em] whitespace-nowrap"
+              className="layout:flex hidden shrink-0 items-center justify-end gap-7.5 font-mono text-[0.6875rem] leading-[1.2] font-bold tracking-[0.16em] whitespace-nowrap"
             >
               {homeContent.navigation
                 .filter((item) => item.href !== "#archive")

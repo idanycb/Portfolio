@@ -92,7 +92,7 @@ export function MobileNav({
         id={navId}
         aria-label="Mobile primary navigation"
         inert={!isOpen}
-        className={`border-ink bg-band border-b-signature fixed inset-x-0 top-[69px] z-30 grid ${
+        className={`border-ink bg-band border-b-signature fixed inset-x-0 top-17.25 z-30 grid ${
           isOpen
             ? "visible grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
             : "invisible grid-rows-[0fr] transition-[grid-template-rows,visibility] duration-300 ease-[cubic-bezier(0.64,0,0.78,0)]"

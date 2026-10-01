@@ -26,7 +26,7 @@ export function StackSection({ content }: StackSectionProps) {
               key={tier.number}
               className="border-rule tablet:grid-cols-[2.75rem_13.5rem_1fr] tablet:items-center tablet:gap-6 layout:grid-cols-[3.25rem_16.25rem_1fr] layout:gap-7 layout:py-7 grid grid-cols-[2.5rem_1fr] gap-x-3 gap-y-2 border-b py-5 last:border-b-0"
             >
-              <span className="text-ink layout:h-[46px] layout:w-[46px] relative flex h-[42px] w-[42px] items-center justify-center font-mono text-xs font-bold tracking-[0.04em]">
+              <span className="text-ink layout:h-11.5 layout:w-11.5 relative flex h-10.5 w-10.5 items-center justify-center font-mono text-xs font-bold tracking-[0.04em]">
                 <StackMarker index={index} />
                 <span className="relative">{tier.number}</span>
               </span>
@@ -42,7 +42,7 @@ export function StackSection({ content }: StackSectionProps) {
             </li>
           ))}
         </ol>
-        <div data-note="" className="ink-note layout:mt-[26px] layout:pl-24 relative mt-4">
+        <div data-note="" className="ink-note layout:mt-6.5 layout:pl-24 relative mt-4">
           <StackNoteArrow className="layout:block absolute -top-8 left-0 hidden" />
           <ResponsiveCopy
             long={content.note}
