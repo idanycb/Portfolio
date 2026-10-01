@@ -1,0 +1,12 @@
+{
+  "$schema": "https://unpkg.com/knip/schema.json",
+  "entry": [
+    "scripts/check-local.mjs",
+    "scripts/pre-push.mjs",
+    "scripts/release-push.mjs",
+    "scripts/lighthouse.mjs",
+    "scripts/serve-check.mjs",
+    "scripts/check-image-runtime.mjs"
+  ],
+  "project": ["src/**/*.{ts,tsx,css}", "scripts/**/*.mjs", "tests/**/*.ts"]
+}

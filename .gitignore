@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local quality reports
+.check-reports/
+playwright-report/
+test-results/
+.lighthouseci/
+.husky/_/

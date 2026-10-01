@@ -20,7 +20,10 @@
     ],
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "noUncheckedIndexedAccess": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true
   },
   "include": [
     "src/**/*.ts",
@@ -28,7 +31,8 @@
     ".next/types/**/*.ts",
     "next-env.d.ts",
     "dist/types/**/*.ts",
-    ".next/dev/types/**/*.ts"
+    ".next/dev/types/**/*.ts",
+    "next.config.ts"
   ],
   "exclude": ["node_modules"]
 }
