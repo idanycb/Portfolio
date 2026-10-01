@@ -47,7 +47,8 @@ export function HeroSection({ content }: HeroSectionProps) {
                 src={content.image.src}
                 alt={content.image.alt}
                 fill
-                preload
+                loading="eager"
+                fetchPriority="high"
                 sizes={content.image.sizes}
                 className="animate-[rise_900ms_cubic-bezier(.33,1,.68,1)_both] object-cover contrast-[1.06] grayscale sepia-[.08]"
               />
