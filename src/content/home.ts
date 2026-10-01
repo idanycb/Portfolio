@@ -1,4 +1,4 @@
-export type LinkTarget = {
+type LinkTarget = {
   label: string;
   labelShort?: string;
   href: string;
@@ -52,7 +52,7 @@ export type WorkProject = {
   actions: readonly LinkTarget[];
 };
 
-export type ExperienceItem = {
+type ExperienceItem = {
   dates: string;
   datesShort?: string;
   meta?: string;
@@ -184,8 +184,8 @@ export const homeContent = {
     eyebrow: "HEY, I'M",
     title: "DANY.",
     subtitle: "Backend & AI Software Engineer",
-    body: "I build reliable Java/Spring systems, RAG pipelines, and cloud-native applications.",
-    education: "MS Computer Science @ UT Arlington. Experienced across",
+    body: "I build Spring Boot backends and RAG apps, and run them on a Kubernetes cluster I set up.",
+    education: "MS Computer Science @ UT Arlington ('26). Stuff I've actually shipped with:",
     skills: ["JAVA", "SPRING BOOT", "RAG", "POSTGRESQL", "AWS", "NEXT.JS", "KUBERNETES"],
     actions: [
       { label: "VIEW PROJECTS ↗", href: "#work" },
@@ -203,13 +203,13 @@ export const homeContent = {
     captionRight: "DALLAS–FORT WORTH",
     notes: {
       start: "start here",
-      portrait: "I draw the system before I build it — every diagram here is mine",
+      portrait: "curious guy who codes for fun. the headphones never come off",
     },
   },
   work: {
     heading: "SELECTED WORK",
     headingShort: "SELECTED\nWORK",
-    meta: "TWO PROJECTS · SHOWN IN FULL",
+    meta: "TWO PROJECTS · BOTH LIVE",
     projects: [
       {
         slug: "findoc",
@@ -219,21 +219,21 @@ export const homeContent = {
         figureCaptionShort: "INGESTION → CITED ANSWER",
         category: "AI / BACKEND · RETRIEVAL",
         title: ["FINDOC"],
-        body: "Financial filings are long, amended over time, and hostile to naïve retrieval. FinDoc imports SEC EDGAR filings, parses and indexes their structured sections, retrieves progressively, and answers only with citations tied back to filing metadata.",
+        body: "A friend majoring in finance told me how painful SEC filings are to dig through, so I built FinDoc. It pulls filings from EDGAR, indexes them by section, searches in a few passes and answers with citations back to the exact filing.",
         bodyShort:
-          "Financial filings are long, amended over time, and hostile to naïve retrieval. FinDoc imports SEC EDGAR filings, indexes their structured sections, retrieves progressively, and answers only with citations tied back to filing metadata.",
+          "A friend in finance told me how painful SEC filings are to dig through, so I built FinDoc. It pulls filings from EDGAR, indexes them by section and answers with citations back to the exact filing.",
         facts: [
           {
             label: "AMENDMENTS",
-            body: "A 10-K/A supersedes parts of its parent. Lineage resolves at query time.",
+            body: "A 10-K/A only replaces parts of the original. FinDoc works out which version applies when you ask.",
           },
           {
             label: "IMPORTS",
-            body: "Idempotent, keyed on accession number — backfills are free.",
+            body: "Imports are keyed on accession number, so running one twice is safe.",
           },
           {
             label: "GROUNDING",
-            body: "No citation, no answer. Sub-100 ms vector search, evaluated not asserted.",
+            body: "Every answer needs a citation. Vector search comes back in under 100 ms.",
           },
         ],
         stack:
@@ -254,17 +254,17 @@ export const homeContent = {
         figureCaption: "THE RECONCILIATION LOOP",
         category: "DEVOPS · PLATFORM",
         title: ["PORTFOLIO", "GITOPS"],
-        body: "A private K3s cluster on Oracle Cloud ARM, declared entirely in Git. FluxCD reconciles, Infisical holds the secrets under zero-trust, cert-manager and Traefik keep it public and encrypted. Bootstrap is two-phase and documented — after it, nothing is done by hand.",
+        body: "My site outgrew a public S3 bucket, so I moved to Oracle Cloud's free ARM tier to run a real server. The K3s cluster on it is defined in Git: FluxCD applies whatever I push and Infisical keeps secrets out of the repo. I didn't want to SSH in for every change, and now I don't.",
         bodyShort:
-          "A private K3s cluster on Oracle Cloud ARM, declared entirely in Git. FluxCD reconciles, Infisical holds the secrets under zero-trust, cert-manager and Traefik keep it public and encrypted. After bootstrap, nothing is done by hand.",
+          "My site outgrew a public S3 bucket, so I moved to Oracle Cloud's free ARM tier. The K3s cluster there is defined in Git: FluxCD applies whatever I push and Infisical keeps secrets out of the repo. No more SSHing in for every change.",
         facts: [
           {
             label: "DECLARED",
-            body: "Git is the only source of truth. Drift is corrected, not debugged.",
+            body: "If something drifts from Git, Flux puts it back within about ten minutes.",
           },
           {
             label: "SECRETS",
-            body: "Zero-trust management — nothing sensitive lives in the repo.",
+            body: "Secrets live in Infisical. The repo only holds references to them.",
           },
         ],
         stack: "K3S · FLUXCD · INFISICAL · CERT-MANAGER · TRAEFIK · OCI · GITHUB ACTIONS",
@@ -279,8 +279,8 @@ export const homeContent = {
       },
     ],
     notes: {
-      findoc: "the amendment trail is the hard part — not the model call.",
-      gitops: "this website is deployed by the thing this case study describes",
+      findoc: "the amendments were way harder than the AI part",
+      gitops: "the site you're reading was deployed by this exact setup",
     },
   },
   experience: {
@@ -295,19 +295,19 @@ export const homeContent = {
         organization: "IBM",
         role: "FRONTEND DEVELOPMENT INTERN",
         roleShort: "FRONTEND DEV INTERN",
-        body: "Selected for a competitive three-month virtual internship under the IBM SkillsBuild Program. Designed and built a web application from the ground up — responsive, cross-browser layouts with clean component structure and semantic markup — working to iterative development, code review and milestone-based delivery.",
+        body: "Three months in IBM's SkillsBuild program, building an internal web app from scratch on a fixed timeline with milestones and code reviews. I turned design specs into a responsive UI that held up across browsers, with clean components and semantic HTML. It was my first time coding in a real work setup, and I learned a lot from it.",
         bodyShort:
-          "Selected for a competitive three-month virtual internship under IBM SkillsBuild. Built a web application from the ground up — responsive, cross-browser layouts with clean component structure — to iterative review and milestone delivery.",
-        stack: "IBM SKILLSBUILD · FRONTEND · CODE REVIEW · MILESTONE DELIVERY",
+          "Three months in IBM's SkillsBuild program, building an internal web app from scratch with milestones and code reviews. I turned design specs into a responsive UI that worked across browsers.",
+        stack: "IBM SKILLSBUILD · FRONTEND · RESPONSIVE UI · CODE REVIEW",
       },
       {
         dates: "AUG 2024 — MAY 2026",
-        datesShort: "AUG 2024 — MAY 2026 · GPA 3.7",
-        meta: "GPA 3.7",
+        datesShort: "AUG 2024 — MAY 2026 · GPA 3.9",
+        meta: "GPA 3.9",
         organization: "THE UNIVERSITY OF TEXAS AT ARLINGTON",
         role: "MS COMPUTER SCIENCE",
-        body: "Graduate coursework in distributed systems, machine learning and databases — the foundation under everything above.",
-        bodyShort: "Graduate coursework in distributed systems, machine learning and databases.",
+        body: "Graduate coursework in distributed systems, machine learning and databases, while I built the two projects above on the side.",
+        bodyShort: "Coursework in distributed systems, machine learning and databases.",
       },
       {
         dates: "JUN 2020 — APR 2024",
@@ -323,7 +323,7 @@ export const homeContent = {
   },
   stack: {
     heading: "THE STACK",
-    meta: "FOUR TIERS · ORDERED BY PRODUCTION DEPTH",
+    meta: "FOUR TIERS · BY WHAT I'VE SHIPPED",
     tiers: [
       {
         number: "01",
@@ -342,13 +342,12 @@ export const homeContent = {
       },
       { number: "04", label: "ADDITIONAL", body: "PYTHON · C / C++ · GO · CUDA" },
     ],
-    note: "ordered by how much of it I've actually run in production — honest, not flattering.",
-    noteShort:
-      "ordered by how much of it I've actually run in production — honest, not flattering.",
+    note: "tiers 01 to 03 run my live sites right now. 04 I know, just haven't shipped with yet.",
+    noteShort: "01 to 03 run my live sites. 04 I know, haven't shipped yet.",
   },
   archive: {
     heading: "THE ARCHIVE",
-    meta: "2021 — 2023 · STUDENT WORK, KEPT HONESTLY",
+    meta: "2021 — 2023 · OLD STUFF, STILL UP",
     projects: [
       {
         year: "2023",
@@ -378,12 +377,12 @@ export const homeContent = {
         href: "https://flair2k22.vercel.app/",
       },
     ],
-    note: "kept because they show the road, not the destination.",
+    note: "the spacex clone was my first real typescript site. be nice",
   },
   contact: {
     label: "§5 — CONTACT",
     heading: "LET'S\nBUILD\nSOMETHING.",
-    body: "Open to backend, AI-platform and full-stack roles — Dallas–Fort Worth and remote.",
+    body: "New grad looking for backend, AI-platform or full-stack roles. Dallas–Fort Worth or remote.",
     form: {
       heading: "GET IN TOUCH",
       fields: {
@@ -399,7 +398,7 @@ export const homeContent = {
       ],
       submitLabel: "SEND MESSAGE ↗",
       pendingLabel: "SENDING…",
-      successMessage: "MESSAGE SENT — I'LL GET BACK TO YOU SOON.",
+      successMessage: "GOT IT. I'LL GET BACK TO YOU SOON.",
       validationErrorMessage: "CHECK THE MARKED FIELDS AND TRY AGAIN.",
       genericErrorMessage: "SOMETHING WENT WRONG. TRY AGAIN OR EMAIL IDANYCB@GMAIL.COM DIRECTLY.",
       rateLimitMessage: "TOO MANY MESSAGES. TRY AGAIN IN 10 MINUTES OR EMAIL ME DIRECTLY.",
@@ -423,12 +422,10 @@ export const homeContent = {
   },
   footer: {
     description:
-      "Daniel Thomas Jesudoss — backend & AI software engineer. Dallas–Fort Worth Metroplex.",
+      "Daniel Thomas Jesudoss. Backend & AI software engineer, new grad, based in Dallas–Fort Worth.",
     siteLabel: "SITE",
     socialLabel: "PROFESSIONAL",
     socialLabelShort: "ELSEWHERE",
     directLabel: "DIRECT",
   },
 } as const satisfies HomepageContent;
-
-export type HomeContent = typeof homeContent;
