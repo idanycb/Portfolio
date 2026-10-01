@@ -57,3 +57,91 @@ export function summarizeRuns(reports) {
     ),
   };
 }
+
+const categoryLabels = {
+  performance: "perf",
+  accessibility: "a11y",
+  "best-practices": "bp",
+  seo: "seo",
+};
+const categoryTitles = {
+  performance: "Performance",
+  accessibility: "Accessibility",
+  "best-practices": "Best practices",
+  seo: "SEO",
+};
+const percent = (score) => (score === null ? "--" : String(Math.round(score * 100)));
+const mark = (check) => (check.passed ? "✓" : "✗");
+const lcpSeconds = (page) =>
+  `${(page.metrics["largest-contentful-paint"].median / 1000).toFixed(2)}s`;
+const performanceRuns = (page) => page.scores.performance.runs.map(percent).join(" ");
+
+export function formatPageRow(page, nameWidth) {
+  const cells = page.checks.map(
+    (check) =>
+      `${categoryLabels[check.category]} ${percent(check.median).padStart(3)} ${mark(check)}`,
+  );
+  return [
+    page.name.padEnd(nameWidth),
+    page.formFactor.padEnd(7),
+    ...cells,
+    `LCP ${lcpSeconds(page)}`,
+    `perf runs ${performanceRuns(page)}`,
+  ].join("  ");
+}
+
+export function failedChecks(pages) {
+  return pages.flatMap((page) =>
+    page.checks.filter((check) => !check.passed).map((check) => ({ page, check })),
+  );
+}
+
+export function formatFailure({ page, check }) {
+  const result =
+    check.median === null ? "missing" : `${percent(check.median)} < ${percent(check.minimum)}`;
+  return `${page.name} (${page.formFactor}): ${check.category} ${result}`;
+}
+
+function countLine(pages) {
+  const failed = pages.filter((page) => page.checks.some((check) => !check.passed)).length;
+  return `${pages.length - failed}/${pages.length} passed, ${failed} failed`;
+}
+
+export function formatSummary(pages, reportDirectory) {
+  return [
+    `Lighthouse: ${countLine(pages)}`,
+    ...failedChecks(pages).map((failure) => `  ✗ ${formatFailure(failure)}`),
+    `Reports: ${reportDirectory}/`,
+  ].join("\n");
+}
+
+export function formatMarkdownSummary(pages) {
+  const categories = Object.keys(scoreMinimums);
+  const header = [
+    "Page",
+    "Form factor",
+    ...categories.map((c) => categoryTitles[c]),
+    "LCP",
+    "Performance runs",
+  ];
+  const rows = pages.map((page) => [
+    `${page.name} (\`${page.path}\`)`,
+    page.formFactor,
+    ...page.checks.map((check) => `${percent(check.median)} ${mark(check)}`),
+    lcpSeconds(page),
+    performanceRuns(page),
+  ]);
+  const minimums = `Minimums: ${categories.map((c) => `${categoryTitles[c]} ${percent(scoreMinimums[c])}`).join(", ")}.`;
+  return [
+    "## Lighthouse",
+    "",
+    countLine(pages),
+    "",
+    `| ${header.join(" | ")} |`,
+    `| ${header.map(() => "---").join(" | ")} |`,
+    ...rows.map((row) => `| ${row.join(" | ")} |`),
+    "",
+    minimums,
+    "",
+  ].join("\n");
+}

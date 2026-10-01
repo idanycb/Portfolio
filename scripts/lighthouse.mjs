@@ -1,8 +1,17 @@
 import { chromium } from "@playwright/test";
 import { spawn, spawnSync } from "node:child_process";
-import { copyFileSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { appendFileSync, copyFileSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 
-import { checkMedianScores, scoreMinimums, summarizeRuns } from "./lighthouse-summary.mjs";
+import {
+  checkMedianScores,
+  failedChecks,
+  formatFailure,
+  formatMarkdownSummary,
+  formatPageRow,
+  formatSummary,
+  scoreMinimums,
+  summarizeRuns,
+} from "./lighthouse-summary.mjs";
 
 const args = process.argv.slice(2);
 const homeOnly = args.includes("--home-only");
@@ -20,6 +29,11 @@ if (
   baseUrl.pathname !== "/"
 )
   throw new Error("Lighthouse target must be an origin without credentials, a path, or query.");
+const ci = process.env.GITHUB_ACTIONS === "true";
+const tty = process.stdout.isTTY;
+const clearLine = () => {
+  if (tty) process.stdout.write("\r\x1b[K");
+};
 const outputDirectory = target ? ".lighthouseci/production" : ".lighthouseci";
 const runDirectory = `${outputDirectory}/runs/${new Date().toISOString().replaceAll(":", "-")}`;
 mkdirSync(runDirectory, { recursive: true });
@@ -58,11 +72,22 @@ try {
     }
     if (!ready) throw new Error("Lighthouse server did not start.");
   }
-  for (const [name, path] of [
-    ["home", "/"],
-    ["findoc", "/work/findoc"],
-    ["gitops", "/work/portfolio-gitops"],
-  ].filter(([name]) => !homeOnly || name === "home")) {
+  // The sitemap lists every public page, so new case studies are audited
+  // without editing this script. Its URLs use the production origin; only the
+  // paths are kept and resolved against the target.
+  const sitemap = await fetch(new URL("/sitemap.xml", baseUrl), {
+    headers: { Connection: "close" },
+  });
+  if (!sitemap.ok) throw new Error(`Lighthouse sitemap returned HTTP ${sitemap.status}.`);
+  const paths = [...(await sitemap.text()).matchAll(/<loc>\s*([^<]+?)\s*<\/loc>/g)].map(
+    ([, loc]) => new URL(loc).pathname,
+  );
+  if (!paths.includes("/")) throw new Error("Lighthouse sitemap does not list the home page.");
+  const pages = paths
+    .map((path) => [path === "/" ? "home" : path.split("/").filter(Boolean).at(-1), path])
+    .filter(([name]) => !homeOnly || name === "home");
+  const nameWidth = Math.max(...pages.map(([name]) => name.length));
+  for (const [name, path] of pages) {
     // Synchronous Lighthouse runs leave this process idle long enough for
     // pooled preflight sockets to expire. Do not reuse them between pages.
     const response = await fetch(new URL(path, baseUrl), { headers: { Connection: "close" } });
@@ -71,8 +96,12 @@ try {
     await response.body?.cancel();
     for (const formFactor of ["mobile", "desktop"]) {
       const reports = [];
+      if (ci) console.log(`::group::Lighthouse: ${name} (${formFactor})`);
       for (let run = 1; run <= 3; run++) {
-        console.log(`Lighthouse: ${name} (${formFactor}), run ${run}/3`);
+        // A terminal shows one progress line; CI folds the run lines into a group.
+        const progress = `Lighthouse: ${name} (${formFactor}), run ${run}/3`;
+        if (tty) process.stdout.write(`\r\x1b[K${progress}`);
+        else console.log(progress);
         const outputPath = `${runDirectory}/${name}-${formFactor}-run-${run}`;
         const result = spawnSync(
           "pnpm",
@@ -96,6 +125,8 @@ try {
           throw new Error(`Invalid Lighthouse report for ${path} (${formFactor}), run ${run}.`);
         reports.push(report);
       }
+      clearLine();
+      if (ci) console.log("::endgroup::");
       const result = summarizeRuns(reports);
       const representativePath = `${runDirectory}/${name}-${formFactor}-run-${result.representativeRun}`;
       for (const extension of ["json", "html"])
@@ -104,26 +135,29 @@ try {
           `${outputDirectory}/${name}-${formFactor}.report.${extension}`,
         );
       const checks = checkMedianScores(result.scores);
-      summary.pages.push({ name, path, formFactor, runDirectory, ...result, checks });
-      for (const check of checks.filter((check) => !check.passed)) {
-        console.error(
-          `FAIL ${name} (${formFactor}): ${check.category} median ${check.median === null ? "missing" : check.median * 100}; minimum ${check.minimum * 100}`,
-        );
-      }
+      const page = { name, path, formFactor, runDirectory, ...result, checks };
+      summary.pages.push(page);
       saveSummary();
-      console.log(
-        `Median ${name} (${formFactor}): Performance ${Math.round(result.scores.performance.median * 100)}, LCP ${(result.metrics["largest-contentful-paint"].median / 1000).toFixed(2)}s`,
-      );
+      console.log(formatPageRow(page, nameWidth));
     }
   }
   summary.status = "complete";
   summary.checksPassed = summary.pages.every((page) => page.checks.every((check) => check.passed));
   saveSummary();
+  console.log(`\n${formatSummary(summary.pages, outputDirectory)}`);
+  if (ci) {
+    for (const failure of failedChecks(summary.pages))
+      console.log(`::error title=Lighthouse::${formatFailure(failure)}`);
+    if (process.env.GITHUB_STEP_SUMMARY)
+      appendFileSync(process.env.GITHUB_STEP_SUMMARY, formatMarkdownSummary(summary.pages));
+  }
   if (!summary.checksPassed) process.exitCode = 1;
 } catch (error) {
   summary.status = "failed";
   saveSummary();
-  console.error(error.message);
+  clearLine();
+  if (ci) console.log("::endgroup::");
+  console.error(ci ? `::error title=Lighthouse::${error.message}` : error.message);
   process.exitCode = 1;
 } finally {
   if (server?.pid && server.exitCode === null) process.kill(-server.pid, "SIGTERM");

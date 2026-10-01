@@ -182,8 +182,9 @@ pnpm lighthouse
 Don't run other builds or browser tests at the same time, or the scores will be
 off.
 
-It audits three pages (home, FinDoc, and GitOps), on both mobile and desktop,
-three times each. That's 18 audits in total, run one after another.
+It audits every page in the sitemap (home and each case study), on both mobile
+and desktop, three times each. That's six audits per page, run one after
+another. A new case study is picked up automatically.
 
 ### Minimum scores
 
@@ -199,7 +200,7 @@ median of its three runs.
 
 Each page and device is checked on its own, with no rounding and no averaging
 across pages. Other numbers in the report, such as individual timing metrics,
-are for information only. If any score falls short, all 18 audits still finish
+are for information only. If any score falls short, all audits still finish
 before the command fails.
 
 ### Reading the results
