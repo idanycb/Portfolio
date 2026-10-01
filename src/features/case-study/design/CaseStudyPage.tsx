@@ -10,6 +10,7 @@ import { CaseStudyHero } from "./CaseStudyHero";
 import { CaseStudyNav } from "./CaseStudyNav";
 import { CaseStudySection } from "./CaseStudySection";
 import { CaseStudyToc } from "./CaseStudyToc";
+import { sourceSerif } from "./fonts";
 
 export function CaseStudyPage({ caseStudy }: { caseStudy: CaseStudy }) {
   const navigation = caseStudy.sections.map((section) => ({
@@ -19,7 +20,7 @@ export function CaseStudyPage({ caseStudy }: { caseStudy: CaseStudy }) {
   }));
 
   return (
-    <div id="top" className="bg-paper text-ink min-h-dvh">
+    <div id="top" className={`${sourceSerif.variable} bg-paper text-ink min-h-dvh`}>
       <PageDrawnLayer />
       <SiteHeader
         variant="case-study"
