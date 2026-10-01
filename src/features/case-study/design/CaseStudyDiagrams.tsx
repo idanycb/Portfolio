@@ -134,7 +134,9 @@ function PipelineMarks({
           );
         })}
         {nodes.slice(1).map((node, index) => {
-          const { d, length } = arrowPath(nodes[index], node);
+          const previousNode = nodes[index];
+          if (!previousNode) throw new Error("Pipeline arrow is missing its preceding node.");
+          const { d, length } = arrowPath(previousNode, node);
           return (
             <path
               key={index}
@@ -157,6 +159,7 @@ function PipelineMarks({
       >
         {steps.map((step, index) => {
           const node = nodes[index];
+          if (!node) throw new Error(`Pipeline step ${index + 1} is missing its drawing node.`);
           const lines = splitLabel(step.title, maxChars);
           // A cylinder's face sits below its top ellipse, so centre on the face.
           const centre = node.cy + (node.shape === "store" ? STORE_RY / 2 : 0);
@@ -445,16 +448,18 @@ function mobileLayout(steps: readonly PipelineStep[]) {
 }
 
 // Desktop: three across, down on the right, then back right to left.
-const DESKTOP_COLUMNS = [118, 400, 682];
-const DESKTOP_ROWS = [64, 204];
+const DESKTOP_COLUMNS = [118, 400, 682] as const;
+const DESKTOP_ROWS = [64, 204] as const;
 
 function desktopLayout(steps: readonly PipelineStep[]) {
   const nodes = steps.map((step, index) => {
     const shape = shapeOf(step);
     const row = index < 3 ? 0 : 1;
     const column = row === 0 ? index : 5 - index;
+    const cx = DESKTOP_COLUMNS[column];
+    if (cx === undefined) throw new Error("Desktop pipeline layouts support at most six steps.");
     return {
-      cx: DESKTOP_COLUMNS[column],
+      cx,
       cy: DESKTOP_ROWS[row],
       w: 176,
       h: heightOf(shape, 58),

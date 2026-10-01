@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 
 // Must equal the --ink-wobble default in globals.css.
-export const INK_WOBBLE_FALLBACK = 0.9;
+const INK_WOBBLE_FALLBACK = 0.9;
 
 export function InkFilter() {
   const displacementMap = useRef<SVGFEDisplacementMapElement>(null);

@@ -25,7 +25,7 @@ export type ContactActionState = {
   fieldErrors?: Partial<Record<ContactField, string>>;
 };
 
-export type ContactSubmission = {
+type ContactSubmission = {
   name: string;
   email: string;
   topic: ContactTopic;
