@@ -16,9 +16,10 @@ out
 dist
 coverage
 
-# Environment and editor noise
-.env
-.env.*
+# Environment and editor noise. `**/` also catches the copy Next.js writes to
+# .next/standalone/.env, which COPY .next/standalone would otherwise ship.
+**/.env
+**/.env.*
 .vscode
 
 # OS/editor files

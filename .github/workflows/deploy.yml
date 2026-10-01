@@ -1,68 +1,123 @@
-name: Build and push image to GHCR
+name: Checked release
 on:
-  push:
-    tags: ["*"]
-
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: Release tag (vMAJOR.MINOR.PATCH)
+        required: true
+        type: string
+      commit_sha:
+        description: Exact commit SHA to check and release
+        required: true
+        type: string
+      source_branch:
+        description: Repository branch containing the commit
+        required: true
+        type: string
+permissions:
+  contents: read
+concurrency:
+  group: release-${{ inputs.tag_name }}
+  cancel-in-progress: false
 jobs:
+  validate:
+    if: github.ref_name == github.event.repository.default_branch
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Validate request and branch membership
+        env:
+          TAG: ${{ inputs.tag_name }}
+          SHA: ${{ inputs.commit_sha }}
+          BRANCH: ${{ inputs.source_branch }}
+        run: |
+          node --input-type=module -e '
+            if (!/^v(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(-[0-9A-Za-z]+([.-][0-9A-Za-z]+)*)?$/.test(process.env.TAG)) process.exit(1);
+            if (!/^[0-9a-f]{40}$/.test(process.env.SHA)) process.exit(1);
+          '
+          git check-ref-format "refs/heads/$BRANCH"
+          git fetch origin "refs/heads/$BRANCH:refs/remotes/origin/release-source"
+          test "$(git cat-file -t "$SHA")" = commit
+          git cat-file -e "$SHA^{commit}"
+          git merge-base --is-ancestor "$SHA" refs/remotes/origin/release-source
+          if git show-ref --verify --quiet "refs/tags/$TAG"; then
+            test "$(git rev-parse "refs/tags/$TAG^{commit}")" = "$SHA"
+          fi
+  checks:
+    needs: validate
+    uses: ./.github/workflows/checks.yml
+    with:
+      commit_sha: ${{ inputs.commit_sha }}
   build-and-push:
+    needs: [validate, checks]
     runs-on: ubuntu-24.04-arm
     permissions:
-      contents: read
+      contents: write
       packages: write
     steps:
       - uses: actions/checkout@v6
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@8912a9102ac27614460f54aedde9e1e7f9aec20d # v6.0.5
         with:
-          version: 11
-
-      - name: Use Node.js 24
-        uses: actions/setup-node@v6
+          ref: ${{ inputs.commit_sha }}
+          fetch-depth: 0
+      - uses: pnpm/action-setup@8912a9102ac27614460f54aedde9e1e7f9aec20d # v6.0.5
+        with:
+          version: 11.1.2
+      - uses: actions/setup-node@v6
         with:
           node-version: 24
-          cache: "pnpm"
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Cache Next.js build
-        uses: actions/cache@v5
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+        env:
+          HUSKY: "0"
+      - run: pnpm build
+      - uses: docker/setup-buildx-action@v4
+      - name: Image name
+        id: image
+        env:
+          REPOSITORY: ${{ github.repository }}
+        run: echo "name=ghcr.io/${REPOSITORY,,}" >> "$GITHUB_OUTPUT"
+      - name: Build image without publishing
+        uses: docker/build-push-action@v7
         with:
-          path: .next/cache
-          key: nextjs-${{ hashFiles('pnpm-lock.yaml') }}-${{ hashFiles('**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx', '**/*.css') }}
-          restore-keys: |
-            nextjs-${{ hashFiles('pnpm-lock.yaml') }}-
-            nextjs-
-
-      - name: Build
-        run: pnpm build
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v4
-
-      - name: Log in to GHCR
-        uses: docker/login-action@v4.1.0
+          context: .
+          load: true
+          push: false
+          provenance: false
+          platforms: linux/arm64
+          tags: ${{ steps.image.outputs.name }}:${{ inputs.tag_name }}
+          labels: |
+            org.opencontainers.image.revision=${{ inputs.commit_sha }}
+            org.opencontainers.image.source=https://github.com/${{ github.repository }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+      - name: Create immutable release tag
+        env:
+          TAG: ${{ inputs.tag_name }}
+          SHA: ${{ inputs.commit_sha }}
+        run: |
+          git fetch origin --tags
+          if git show-ref --verify --quiet "refs/tags/$TAG"; then
+            test "$(git rev-parse "refs/tags/$TAG^{commit}")" = "$SHA"
+          else
+            git tag "$TAG" "$SHA"
+            git push origin "refs/tags/$TAG:refs/tags/$TAG"
+          fi
+      - uses: docker/login-action@v4.1.0
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Extract Docker metadata
-        id: meta
-        uses: docker/metadata-action@v6
-        with:
-          images: ghcr.io/${{ github.repository }}
-          tags: |
-            type=ref,event=tag
-
-      - name: Build and push image
-        uses: docker/build-push-action@v7
-        with:
-          context: .
-          push: true
-          provenance: false
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+      - name: Publish checked image
+        env:
+          IMAGE: ${{ steps.image.outputs.name }}
+          TAG: ${{ inputs.tag_name }}
+          SHA: ${{ inputs.commit_sha }}
+        run: |
+          test "$(docker image inspect "$IMAGE:$TAG" --format '{{ index .Config.Labels "org.opencontainers.image.revision" }}')" = "$SHA"
+          remote_tag=$(git ls-remote origin "refs/tags/$TAG" "refs/tags/$TAG^{}")
+          tested_tag=$(printf '%s\n' "$remote_tag" | awk '/\^\{\}$/ { peeled=$1 } NR==1 { direct=$1 } END { print peeled ? peeled : direct }')
+          test "$tested_tag" = "$SHA"
+          docker push "$IMAGE:$TAG"
+          printf 'Released `%s` from checked commit `%s` as `%s:%s`.\n' "$TAG" "$SHA" "$IMAGE" "$TAG" >> "$GITHUB_STEP_SUMMARY"
