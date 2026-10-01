@@ -6,13 +6,15 @@ import { useActionState, useCallback, useEffect, useRef } from "react";
 
 import { sendContact } from "./actions";
 import type { ContactActionState, ContactField } from "./contact-checks";
+import { TopicSelect } from "./TopicSelect";
 
-export const TURNSTILE_SITE_KEY = "0x4AAAAAAFImjValRPi0xGwS";
+const TURNSTILE_SITE_KEY = "0x4AAAAAAFImjValRPi0xGwS";
+const TURNSTILE_TEST_SITE_KEY = "1x00000000000000000000AA";
 
 type TurnstileOptions = {
   sitekey: string;
   appearance: "interaction-only";
-  size: "compact";
+  size: "flexible" | "compact";
   theme: "light";
 };
 
@@ -58,10 +60,17 @@ export function ContactForm({ content }: { content: ContactFormContent }) {
       return;
     }
 
+    // Flexible needs at least 300px; narrower containers fall back to compact.
+    const size = turnstileContainerRef.current.clientWidth >= 300 ? "flexible" : "compact";
+
     turnstileWidgetIdRef.current = window.turnstile.render(turnstileContainerRef.current, {
-      sitekey: TURNSTILE_SITE_KEY,
+      // Standalone production builds are also audited on loopback hosts.
+      // Dummy tokens remain invalid with the production server secret.
+      sitekey: ["localhost", "127.0.0.1", "[::1]"].includes(window.location.hostname)
+        ? TURNSTILE_TEST_SITE_KEY
+        : TURNSTILE_SITE_KEY,
       appearance: "interaction-only",
-      size: "compact",
+      size,
       theme: "light",
     });
   }, []);
@@ -152,25 +161,16 @@ export function ContactForm({ content }: { content: ContactFormContent }) {
           </div>
 
           <div>
-            <label htmlFor="contact-topic" className={labelClassName}>
-              {content.fields.topic.label}
-            </label>
-            <select
+            <TopicSelect
               id="contact-topic"
               name="topic"
-              required
-              defaultValue=""
-              aria-invalid={fieldError("topic") ? true : undefined}
-              aria-describedby={fieldError("topic") ? "contact-topic-error" : undefined}
-              className={`${fieldClassName} cursor-pointer`}
-            >
-              <option value="" disabled hidden />
-              {content.topics.map((topic) => (
-                <option key={topic.value} value={topic.value}>
-                  {topic.label}
-                </option>
-              ))}
-            </select>
+              label={content.fields.topic.label}
+              labelClassName={labelClassName}
+              options={content.topics}
+              invalid={Boolean(fieldError("topic"))}
+              describedBy={fieldError("topic") ? "contact-topic-error" : undefined}
+              requiredMessage={content.fieldErrors.topic}
+            />
             <FieldError field="topic" state={state} />
           </div>
 
