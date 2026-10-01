@@ -1,5 +1,7 @@
-import type { Viewport } from "next";
+import type { Metadata, Viewport } from "next";
 import { Architects_Daughter, Archivo, IBM_Plex_Mono, Source_Serif_4 } from "next/font/google";
+
+import { homeContent } from "@/content/home";
 
 import "./globals.css";
 
@@ -36,21 +38,42 @@ const architectsDaughter = Architects_Daughter({
   weight: "400",
 });
 
-export const metadata = {
-  title: "Daniel Thomas - Backend & AI Software Engineer",
-  description:
-    "Backend and AI software engineer building reliable Java, retrieval, and cloud-native systems.",
+const siteTitle = "Daniel Thomas Jesudoss | Backend & AI Software Engineer";
+const siteDescription =
+  "Daniel Thomas Jesudoss (Dany), a new-grad backend and AI software engineer in Dallas–Fort Worth. Spring Boot, RAG over SEC filings, and a self-run K3s cluster.";
+
+export const metadata: Metadata = {
+  metadataBase: new URL(homeContent.profile.website),
+  title: siteTitle,
+  description: siteDescription,
   keywords: [
-    "Daniel Thomas",
-    "Full Stack Developer",
-    "Portfolio",
-    "Web Development",
-    "Software Engineering",
-    "Projects",
-    "Skills",
-    "Design Work",
+    "Daniel Thomas Jesudoss",
+    "Dany",
+    "Backend Engineer",
+    "AI Software Engineer",
+    "Java",
+    "Spring Boot",
+    "RAG",
+    "pgvector",
+    "Kubernetes",
+    "Dallas–Fort Worth",
   ],
-  author: "Daniel Thomas Jesudoss",
+  authors: [{ name: homeContent.profile.name, url: homeContent.profile.website }],
+  creator: homeContent.profile.name,
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    url: "/",
+    siteName: homeContent.profile.name,
+    title: siteTitle,
+    description: siteDescription,
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary",
+    title: siteTitle,
+    description: siteDescription,
+  },
 };
 
 export const viewport: Viewport = {
@@ -64,7 +87,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" data-scroll-behavior="smooth">
       <body
         className={`${archivo.variable} ${plexMono.variable} ${architectsDaughter.variable} ${sourceSerif.variable} overflow-x-hidden antialiased`}
       >
