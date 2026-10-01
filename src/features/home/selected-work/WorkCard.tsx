@@ -29,7 +29,7 @@ export function WorkCard({ project, index, note }: WorkCardProps) {
         <div className="layout:order-none order-1 flex items-baseline gap-3.5">
           <span
             className={`font-display layout:text-[2.75rem] text-[2.125rem] leading-none font-black tracking-[-0.05em] ${
-              index === 0 ? "text-numeral" : "text-subtle"
+              index === 0 ? "text-muted" : "text-copy-muted"
             }`}
           >
             {project.number}
